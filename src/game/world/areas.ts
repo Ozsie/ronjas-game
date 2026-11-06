@@ -53,8 +53,8 @@ export const RESTAURANT_STATIONS = {
   customerDoor: { x: 22, y: 8 },
 } as const;
 
-// A quiet stretch of sidewalk outside the restaurant. Its west entrance
-// links back to the restaurant door.
+// The parking lot outside the restaurant. Its west entrance links back
+// to the restaurant door, and its north exit leads into the forest.
 const STREET_ROWS = [
   '#...........D...........',
   '#.......................',
@@ -72,6 +72,28 @@ const STREET_ROWS = [
   '#.......................',
   '#.......................',
   '#.......................',
+];
+
+export const STREET_FIXTURES = [
+  { kind: 'car', cellX: 6, cellY: 4, color: '#B74632' },
+  { kind: 'car', cellX: 12, cellY: 5, color: '#54727A' },
+  { kind: 'car', cellX: 18, cellY: 11, color: '#D6B450' },
+  { kind: 'trash-can', cellX: 2, cellY: 7 },
+] as const;
+
+export const STREET_PERSON = { cellX: 2, cellY: 10 } as const;
+
+// A deliberately empty forest graybox; its south door is the only authored
+// feature until the forest layout is designed.
+const FOREST_ROWS = [
+  '########',
+  '#......#',
+  '#......#',
+  '#......#',
+  '#......#',
+  '#......#',
+  '#......#',
+  '###D####',
 ];
 
 const restaurantLights: LightSource[] = [
@@ -130,14 +152,40 @@ const street: Area = {
       targetDoorId: 'front-door',
       spawnCell: { x: 1, y: 8 },
     },
+    {
+      id: 'forest-door',
+      cellX: 12,
+      cellY: 0,
+      targetAreaId: 'forest',
+      targetDoorId: 'street-entry',
+      spawnCell: { x: 12, y: 1 },
+    },
   ],
   lights: streetLights,
+};
+
+const forest: Area = {
+  id: 'forest',
+  tilemap: createTilemap(FOREST_ROWS, CELL_SIZE),
+  spawnCell: { x: 3, y: 6 },
+  doors: [
+    {
+      id: 'street-entry',
+      cellX: 3,
+      cellY: 7,
+      targetAreaId: 'street',
+      targetDoorId: 'forest-door',
+      spawnCell: { x: 3, y: 6 },
+    },
+  ],
+  lights: [],
 };
 
 // The registry. New areas register here by adding one entry.
 const AREAS: Record<string, Area> = {
   restaurant,
   street,
+  forest,
 };
 
 export const INITIAL_AREA_ID = 'restaurant';

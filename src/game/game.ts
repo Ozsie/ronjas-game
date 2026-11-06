@@ -26,6 +26,7 @@ import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
 import {
   drawLights,
   drawRestaurantFixtures,
+  drawStreetFixtures,
   drawWorldFrame,
 } from './scene/render';
 import {
@@ -45,6 +46,8 @@ import {
   INITIAL_AREA_ID,
   RESTAURANT_FIXTURES,
   RESTAURANT_STATIONS,
+  STREET_FIXTURES,
+  STREET_PERSON,
   getArea,
 } from './world/areas';
 import { cellCenter, createCollisionEnv } from './world/tilemap';
@@ -104,6 +107,15 @@ export const createGame = (
     currentArea.spawnCell.y,
   );
   const player = createEntity('player', spawn, PLAYER_HALF_EXTENTS);
+  const streetPerson = createEntity(
+    'street-person',
+    cellCenter(
+      getArea('street').tilemap,
+      STREET_PERSON.cellX,
+      STREET_PERSON.cellY,
+    ),
+    { halfWidth: 8, halfHeight: 6 },
+  );
   let camera = createCamera(player.x, player.y);
   const opening = createOpeningState(currentArea.tilemap, RESTAURANT_STATIONS);
 
@@ -258,7 +270,12 @@ export const createGame = (
       projection,
     );
     const actors = opening.complete
-      ? [{ entity: player }]
+      ? [
+          { entity: player },
+          ...(currentArea.id === 'street'
+            ? [{ entity: streetPerson, color: '#75838A' }]
+            : []),
+        ]
       : [
           { entity: opening.ronja, color: '#FFD45E' },
           ...(opening.customer
@@ -268,6 +285,9 @@ export const createGame = (
     drawWorldFrame(ctx, currentArea.tilemap, view, actors);
     if (currentArea.id === INITIAL_AREA_ID) {
       drawRestaurantFixtures(ctx, view, cellSize, RESTAURANT_FIXTURES);
+    }
+    if (currentArea.id === 'street') {
+      drawStreetFixtures(ctx, view, cellSize, STREET_FIXTURES);
     }
     const lightCarrier = opening.complete ? player : opening.ronja;
     drawLights(

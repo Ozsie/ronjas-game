@@ -164,6 +164,71 @@ export const drawRestaurantFixtures = (
   }
 };
 
+export const drawStreetFixtures = (
+  ctx: CanvasRenderingContext2D,
+  view: SceneIsoView,
+  cellSize: number,
+  fixtures: ReadonlyArray<{
+    kind: string;
+    cellX: number;
+    cellY: number;
+    color?: string;
+  }>,
+): void => {
+  for (const fixture of fixtures) {
+    const centerX = (fixture.cellX + 0.5) * cellSize;
+    const centerY = (fixture.cellY + 0.5) * cellSize;
+    if (fixture.kind === 'car') {
+      const width = cellSize * 1.5;
+      const depth = cellSize * 0.88;
+      const x = centerX - width / 2;
+      const y = centerY - depth / 2;
+      const bodyColor = fixture.color ?? '#B74632';
+      drawIsoBox(ctx, view, x, y, width, depth, 12, {
+        top: bodyColor,
+        south: '#453B3A',
+        east: '#302B2A',
+      });
+      const cabinWidth = width * 0.52;
+      const cabinDepth = depth * 0.68;
+      drawIsoBox(
+        ctx,
+        view,
+        centerX - cabinWidth / 2,
+        centerY - cabinDepth / 2,
+        cabinWidth,
+        cabinDepth,
+        22,
+        { top: '#C8D6D5', south: bodyColor, east: '#714039' },
+      );
+    } else {
+      const width = cellSize * 0.38;
+      const depth = cellSize * 0.38;
+      const x = centerX - width / 2;
+      const y = centerY - depth / 2;
+      drawIsoBox(ctx, view, x, y, width, depth, cellSize * 0.62, {
+        top: '#6E7778',
+        south: '#3E484A',
+        east: '#30383A',
+      });
+      drawIsoBox(
+        ctx,
+        view,
+        x - 1,
+        y - 1,
+        width + 2,
+        depth + 2,
+        cellSize * 0.66,
+        {
+          top: '#8C9695',
+          south: '#535C5D',
+          east: '#41494A',
+        },
+      );
+    }
+  }
+};
+
 // The additive light pass: the lighting package computes the animated
 // visibility polygons on the world plane, culled against the visible
 // bounds; scene projects and fills them. `timeMs` drives the animated

@@ -4,11 +4,13 @@ import {
   INITIAL_AREA_ID,
   RESTAURANT_FIXTURES,
   RESTAURANT_STATIONS,
+  STREET_FIXTURES,
+  STREET_PERSON,
   getArea,
 } from './areas';
 import { DOOR, SOLID, isSolidCell, tileAt } from './tilemap';
 
-const AREA_IDS = [INITIAL_AREA_ID, 'street'];
+const AREA_IDS = [INITIAL_AREA_ID, 'street', 'forest'];
 
 describe('area content invariants', () => {
   it('starts in the restaurant with an exit to the street', () => {
@@ -74,6 +76,36 @@ describe('area content invariants', () => {
     for (const station of Object.values(RESTAURANT_STATIONS)) {
       expect(isSolidCell(restaurant.tilemap, station.x, station.y)).toBe(false);
     }
+  });
+
+  it('dresses the street as a parking lot beside the restaurant exit', () => {
+    const street = getArea('street');
+    expect(
+      STREET_FIXTURES.filter((fixture) => fixture.kind === 'car'),
+    ).toHaveLength(3);
+    expect(
+      STREET_FIXTURES.find((fixture) => fixture.kind === 'trash-can'),
+    ).toMatchObject({ cellX: 2, cellY: 7 });
+    for (const fixture of STREET_FIXTURES) {
+      expect(isSolidCell(street.tilemap, fixture.cellX, fixture.cellY)).toBe(
+        false,
+      );
+    }
+    expect(
+      isSolidCell(street.tilemap, STREET_PERSON.cellX, STREET_PERSON.cellY),
+    ).toBe(false);
+  });
+
+  it('connects the street north door to the placeholder forest', () => {
+    const street = getArea('street');
+    const forest = getArea('forest');
+    const northDoor = street.doors.find((door) => door.id === 'forest-door');
+
+    expect(northDoor?.cellY).toBe(0);
+    expect(northDoor?.targetAreaId).toBe('forest');
+    expect(forest.doors[0]?.targetAreaId).toBe('street');
+    expect(forest.doors[0]?.spawnCell).toEqual({ x: 3, y: 6 });
+    expect(STREET_PERSON).toEqual({ cellX: 2, cellY: 10 });
   });
 
   it('lands arrivals inside the area, never back onto the door cell', () => {
