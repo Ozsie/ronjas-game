@@ -15,3 +15,4 @@ export const WORLD_PALETTE = {
 
 // Wall prism extrusion height in screen pixels.
 export const WALL_HEIGHT_PX = 30;
+export const WALL_HEIGHT_BEHIND_ACTOR_PX = WALL_HEIGHT_PX * 2;

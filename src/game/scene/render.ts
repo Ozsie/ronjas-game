@@ -22,7 +22,11 @@ import {
 import type { Entity } from '../engine/entity';
 import type { Tilemap } from '../world/tilemap';
 import { DOOR, SOLID } from '../world/tilemap';
-import { WALL_HEIGHT_PX, WORLD_PALETTE } from './palette';
+import {
+  WALL_HEIGHT_BEHIND_ACTOR_PX,
+  WALL_HEIGHT_PX,
+  WORLD_PALETTE,
+} from './palette';
 import {
   characterFrame,
   characterDirectionForMotion,
@@ -39,7 +43,7 @@ export const isoWorldView = (map: Tilemap): SceneIsoWorldView => ({
   cellSize: map.cellSize,
   wallCell: SOLID,
   doorCell: DOOR,
-  wallHeightPx: WALL_HEIGHT_PX,
+  wallHeightPx: WALL_HEIGHT_BEHIND_ACTOR_PX,
   palette: WORLD_PALETTE,
 });
 
@@ -83,22 +87,23 @@ const drawWallCell = (
   world: SceneIsoWorldView,
   cellX: number,
   cellY: number,
+  heights: readonly [number, number, number, number],
 ): void => {
-  const { cellSize, wallHeightPx, palette } = world;
+  const { cellSize, palette } = world;
   const left = cellX * cellSize;
   const top = cellY * cellSize;
   const north = worldToScreen(view, left, top);
   const east = worldToScreen(view, left + cellSize, top);
   const south = worldToScreen(view, left + cellSize, top + cellSize);
   const west = worldToScreen(view, left, top + cellSize);
-  const lift = (point: { x: number; y: number }) => ({
+  const lift = (point: { x: number; y: number }, height: number) => ({
     x: point.x,
-    y: point.y - wallHeightPx,
+    y: point.y - height,
   });
-  const raisedNorth = lift(north);
-  const raisedEast = lift(east);
-  const raisedSouth = lift(south);
-  const raisedWest = lift(west);
+  const raisedNorth = lift(north, heights[0]);
+  const raisedEast = lift(east, heights[1]);
+  const raisedSouth = lift(south, heights[2]);
+  const raisedWest = lift(west, heights[3]);
 
   ctx.fillStyle = palette.wallSouth;
   ctx.beginPath();
@@ -171,6 +176,41 @@ export const drawWorldFrame = (
   fixtureKind: 'restaurant' | 'street' | null = null,
 ): void => {
   const world = isoWorldView(map);
+  const mainActor = actors[0]?.entity;
+  const mainActorDepth = mainActor
+    ? isoDepth(mainActor.x, mainActor.y + mainActor.halfHeight)
+    : undefined;
+  let transitionWallDepth = Number.POSITIVE_INFINITY;
+  if (mainActorDepth !== undefined) {
+    for (let cellY = 0; cellY < world.rows.length; cellY += 1) {
+      for (
+        let cellX = 0;
+        cellX < (world.rows[cellY]?.length ?? 0);
+        cellX += 1
+      ) {
+        if (world.rows[cellY]?.[cellX] !== world.wallCell) continue;
+        const depth = isoDepth(
+          (cellX + 0.5) * world.cellSize,
+          (cellY + 0.5) * world.cellSize,
+        );
+        if (depth > mainActorDepth && depth < transitionWallDepth) {
+          transitionWallDepth = depth;
+        }
+      }
+    }
+  }
+  const heightAtDepth = (depth: number): number => {
+    const transitionStart = transitionWallDepth - world.cellSize;
+    const transitionLength = world.cellSize * 4;
+    const progress = Math.max(
+      0,
+      Math.min(1, (depth - transitionStart) / transitionLength),
+    );
+    return (
+      WALL_HEIGHT_BEHIND_ACTOR_PX +
+      (WALL_HEIGHT_PX - WALL_HEIGHT_BEHIND_ACTOR_PX) * progress
+    );
+  };
   const bounds = screenWorldBounds(view, world.wallHeightPx + ISO_CULL_PAD_PX);
   const widthCells = Math.max(...world.rows.map((row) => row.length));
   const firstX = Math.max(0, Math.floor(bounds.minX / world.cellSize));
@@ -191,12 +231,30 @@ export const drawWorldFrame = (
     for (let cellX = firstX; cellX <= lastX; cellX += 1) {
       const cell = world.rows[cellY]?.[cellX] ?? '';
       if (cell === world.wallCell) {
+        const depth = isoDepth(
+          (cellX + 0.5) * world.cellSize,
+          (cellY + 0.5) * world.cellSize,
+        );
+        const wallHeightPx =
+          mainActorDepth !== undefined && depth <= mainActorDepth
+            ? WALL_HEIGHT_BEHIND_ACTOR_PX
+            : WALL_HEIGHT_PX;
+        const left = cellX * world.cellSize;
+        const top = cellY * world.cellSize;
+        const heights: [number, number, number, number] =
+          transitionWallDepth === Number.POSITIVE_INFINITY
+            ? [wallHeightPx, wallHeightPx, wallHeightPx, wallHeightPx]
+            : [
+                heightAtDepth(isoDepth(left, top)),
+                heightAtDepth(isoDepth(left + world.cellSize, top)),
+                heightAtDepth(
+                  isoDepth(left + world.cellSize, top + world.cellSize),
+                ),
+                heightAtDepth(isoDepth(left, top + world.cellSize)),
+              ];
         queue.push({
-          depth: isoDepth(
-            (cellX + 0.5) * world.cellSize,
-            (cellY + 0.5) * world.cellSize,
-          ),
-          draw: () => drawWallCell(ctx, view, world, cellX, cellY),
+          depth,
+          draw: () => drawWallCell(ctx, view, world, cellX, cellY, heights),
         });
       } else {
         drawFloorCell(
@@ -486,7 +544,10 @@ export const drawLights = (
   view: SceneIsoView,
   timeMs: number,
 ): void => {
-  const bounds = screenWorldBounds(view, WALL_HEIGHT_PX + ISO_CULL_PAD_PX);
+  const bounds = screenWorldBounds(
+    view,
+    WALL_HEIGHT_BEHIND_ACTOR_PX + ISO_CULL_PAD_PX,
+  );
   const viewport = {
     x: bounds.minX / cellSize,
     y: bounds.minY / cellSize,
