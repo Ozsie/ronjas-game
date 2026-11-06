@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createCollisionEnv, createTilemap } from './world/tilemap';
-import { createOpeningState, updateOpening } from './opening';
+import { createOpeningState, skipOpening, updateOpening } from './opening';
 import { RESTAURANT_STATIONS } from './world/areas';
 
 const ROWS = [
@@ -23,6 +23,27 @@ const ROWS = [
 ];
 
 describe('restaurant opening choreography', () => {
+  it('skips the opening and clears its active actors and dialogue', () => {
+    const map = createTilemap(ROWS, 32);
+    const collisionEnv = createCollisionEnv(map);
+    const state = createOpeningState(map, RESTAURANT_STATIONS);
+    updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
+
+    skipOpening(state, map, RESTAURANT_STATIONS);
+
+    expect(state.complete).toBe(true);
+    expect(state.customer).toBeUndefined();
+    expect(state.dialogue).toBeNull();
+    expect(state.ronja.x).toBe(
+      (RESTAURANT_STATIONS.iceCreamMachine.x + 0.5) * 32,
+    );
+    expect(state.ronja.y).toBe(
+      (RESTAURANT_STATIONS.iceCreamMachine.y + 0.5) * 32,
+    );
+    expect(state.ronja.vx).toBe(0);
+    expect(state.ronja.vy).toBe(0);
+  });
+
   it('starts customer dialogue only after reaching the register', () => {
     const map = createTilemap(ROWS, 32);
     const collisionEnv = createCollisionEnv(map);

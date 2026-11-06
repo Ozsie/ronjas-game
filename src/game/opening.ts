@@ -78,6 +78,22 @@ export const createOpeningState = (
   complete: false,
 });
 
+export const skipOpening = (
+  state: OpeningState,
+  map: Tilemap,
+  stations: OpeningStations,
+): void => {
+  if (state.complete) return;
+  const destination = positionAt(map, stations.iceCreamMachine);
+  state.ronja.x = destination.x;
+  state.ronja.y = destination.y;
+  state.ronja.vx = 0;
+  state.ronja.vy = 0;
+  state.customer = undefined;
+  state.dialogue = null;
+  state.complete = true;
+};
+
 const setPhase = (
   state: OpeningState,
   phase: OpeningPhase,

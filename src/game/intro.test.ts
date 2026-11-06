@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { drawIntroOverlay } from './intro';
+import { drawIntroOverlay, isSkipButtonHit, skipButtonBounds } from './intro';
 
 describe('opening dialogue overlay', () => {
   it('shows dialogue in a panel without dimming the world or prompting for input', () => {
@@ -23,5 +23,14 @@ describe('opening dialogue overlay', () => {
     expect(fillRects).toHaveLength(1);
     expect(text).toContain('Could I get some ice cream?');
     expect(text.some((line) => line.includes('CLICK'))).toBe(false);
+  });
+
+  it('provides a skip button hit area sized for touch input', () => {
+    const bounds = skipButtonBounds(390);
+
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+    expect(isSkipButtonHit(bounds, bounds.x + 20, bounds.y + 20)).toBe(true);
+    expect(isSkipButtonHit(bounds, bounds.x - 1, bounds.y + 20)).toBe(false);
   });
 });

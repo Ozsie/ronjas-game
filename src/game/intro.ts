@@ -4,6 +4,52 @@ export type IntroBeat = {
   text: string;
 };
 
+export type SkipButtonBounds = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+export const skipButtonBounds = (width: number): SkipButtonBounds => {
+  const buttonWidth = Math.min(148, Math.max(0, width - 16));
+  return {
+    x: width - buttonWidth - 8,
+    y: 16,
+    width: buttonWidth,
+    height: 48,
+  };
+};
+
+export const isSkipButtonHit = (
+  bounds: SkipButtonBounds,
+  x: number,
+  y: number,
+): boolean =>
+  x >= bounds.x &&
+  x <= bounds.x + bounds.width &&
+  y >= bounds.y &&
+  y <= bounds.y + bounds.height;
+
+export const drawSkipButton = (
+  ctx: CanvasRenderingContext2D,
+  width: number,
+): void => {
+  const bounds = skipButtonBounds(width);
+  ctx.save();
+  ctx.fillStyle = 'rgba(23, 17, 15, 0.9)';
+  ctx.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+  ctx.strokeStyle = '#E5A72F';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
+  ctx.fillStyle = '#FFD45E';
+  ctx.font = 'bold 14px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('SKIP INTRO · ESC', bounds.x + bounds.width / 2, bounds.y + 24);
+  ctx.restore();
+};
+
 const wrapText = (
   ctx: CanvasRenderingContext2D,
   text: string,

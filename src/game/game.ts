@@ -28,8 +28,13 @@ import {
   drawRestaurantFixtures,
   drawWorldFrame,
 } from './scene/render';
-import { drawIntroOverlay } from './intro';
-import { createOpeningState, updateOpening } from './opening';
+import {
+  drawIntroOverlay,
+  drawSkipButton,
+  isSkipButtonHit,
+  skipButtonBounds,
+} from './intro';
+import { createOpeningState, skipOpening, updateOpening } from './opening';
 import {
   doorAtCell,
   arrivalPosition,
@@ -103,17 +108,46 @@ export const createGame = (
   const opening = createOpeningState(currentArea.tilemap, RESTAURANT_STATIONS);
 
   const input: InputHarness = createInputHarness();
+  const handOffToPlayer = (): void => {
+    player.x = opening.ronja.x;
+    player.y = opening.ronja.y;
+    player.vx = 0;
+    player.vy = 0;
+    camera = createCamera(player.x, player.y);
+    input.clear();
+  };
+  const skipIntro = (): void => {
+    skipOpening(opening, currentArea.tilemap, RESTAURANT_STATIONS);
+    handOffToPlayer();
+  };
   const onKeyDown = (event: KeyboardEvent): void => {
-    if (!opening.complete) return;
+    if (!opening.complete) {
+      if (event.code === 'Escape') skipIntro();
+      return;
+    }
     input.handleKeyDown(event);
   };
   const onKeyUp = (event: KeyboardEvent): void => input.handleKeyUp(event);
+  const onPointerDown = (event: PointerEvent): void => {
+    if (
+      !opening.complete &&
+      isSkipButtonHit(
+        skipButtonBounds(canvas.width),
+        event.offsetX,
+        event.offsetY,
+      )
+    ) {
+      event.preventDefault();
+      skipIntro();
+    }
+  };
   const onResize = (): void => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   };
   window.addEventListener('keydown', onKeyDown);
   window.addEventListener('keyup', onKeyUp);
+  canvas.addEventListener('pointerdown', onPointerDown);
   window.addEventListener('resize', onResize);
   onResize();
 
@@ -161,12 +195,7 @@ export const createGame = (
         stepMs,
       );
       if (opening.complete) {
-        player.x = opening.ronja.x;
-        player.y = opening.ronja.y;
-        player.vx = 0;
-        player.vy = 0;
-        camera = createCamera(player.x, player.y);
-        input.clear();
+        handOffToPlayer();
       }
       player.vx = 0;
       player.vy = 0;
@@ -253,6 +282,7 @@ export const createGame = (
     if (opening.dialogue && !opening.complete) {
       drawIntroOverlay(ctx, canvas.width, canvas.height, opening.dialogue);
     }
+    if (!opening.complete) drawSkipButton(ctx, canvas.width);
   };
 
   const loop: LoopHandle & { frame: (elapsedMs: number) => void } = createLoop({
@@ -266,6 +296,7 @@ export const createGame = (
       loop.stop();
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
+      canvas.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('resize', onResize);
       input.clear();
     },
