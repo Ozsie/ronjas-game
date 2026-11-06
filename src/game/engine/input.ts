@@ -17,6 +17,9 @@ export const InputAction = {
 
 export type InputAction = (typeof InputAction)[keyof typeof InputAction];
 
+export const isCollisionDebugToggleKey = (key: string, repeat: boolean) =>
+  key === '§' && !repeat;
+
 type KeyEventLike = {
   code: string;
   target?: unknown;
@@ -42,6 +45,18 @@ export type InputHarness = {
   isHeld: (action: InputAction) => boolean;
   heldActions: () => InputAction[];
   clear: () => void;
+};
+
+export const directionTowardPoint = (
+  from: { x: number; y: number },
+  target: { x: number; y: number },
+): { x: number; y: number } => {
+  const dx = target.x - from.x;
+  const dy = target.y - from.y;
+  const distance = Math.hypot(dx, dy);
+  return distance === 0
+    ? { x: 0, y: 0 }
+    : { x: dx / distance, y: dy / distance };
 };
 
 export const createInputHarness = (

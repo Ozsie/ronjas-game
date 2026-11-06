@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { createInputHarness, InputAction } from './input';
+import {
+  createInputHarness,
+  directionTowardPoint,
+  InputAction,
+  isCollisionDebugToggleKey,
+} from './input';
 
 const keyEvent = (code: string, target?: unknown) => ({
   code,
@@ -7,7 +12,26 @@ const keyEvent = (code: string, target?: unknown) => ({
   preventDefault: () => {},
 });
 
+describe('collision debug shortcut', () => {
+  it('recognizes § once per key press', () => {
+    expect(isCollisionDebugToggleKey('§', false)).toBe(true);
+    expect(isCollisionDebugToggleKey('§', true)).toBe(false);
+    expect(isCollisionDebugToggleKey('`', false)).toBe(false);
+  });
+});
+
 describe('createInputHarness', () => {
+  it('returns a normalized direction toward a target point', () => {
+    expect(directionTowardPoint({ x: 2, y: 3 }, { x: 5, y: 7 })).toEqual({
+      x: 0.6,
+      y: 0.8,
+    });
+    expect(directionTowardPoint({ x: 2, y: 3 }, { x: 2, y: 3 })).toEqual({
+      x: 0,
+      y: 0,
+    });
+  });
+
   it('tracks held actions between keydown and keyup', () => {
     const input = createInputHarness();
     input.handleKeyDown(keyEvent('KeyW'));

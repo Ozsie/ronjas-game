@@ -165,6 +165,8 @@ export const createGame = (
   let animationTimeMs = 0;
 
   const input: InputHarness = createInputHarness();
+  let activeTouchPointerId: number | null = null;
+  let touchTarget: { x: number; y: number } | null = null;
   let collisionDebugEnabled = false;
   const handOffToPlayer = (): void => {
     player.x = opening.ronja.x;
@@ -173,6 +175,7 @@ export const createGame = (
     player.vy = 0;
     camera = createCamera(player.x, player.y);
     input.clear();
+    touchTarget = null;
   };
   const skipIntro = (): void => {
     skipOpening(opening, currentArea.tilemap, RESTAURANT_STATIONS);
@@ -202,7 +205,36 @@ export const createGame = (
     ) {
       event.preventDefault();
       skipIntro();
+      return;
     }
+    if (!opening.complete || event.pointerType !== 'touch') return;
+    if (activeTouchPointerId !== null) return;
+    event.preventDefault();
+    activeTouchPointerId = event.pointerId;
+    canvas.setPointerCapture(event.pointerId);
+    updateTouchTarget(event);
+  };
+  const updateTouchTarget = (event: PointerEvent): void => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+    const screenX = ((event.clientX - rect.left) / rect.width) * canvas.width;
+    const screenY = ((event.clientY - rect.top) / rect.height) * canvas.height;
+    const anchor = worldToIsoPlane(projection, camera.x, camera.y);
+    touchTarget = isoPlaneToWorld(
+      projection,
+      screenX - canvas.width / 2 + anchor.x,
+      screenY - canvas.height / 2 + anchor.y,
+    );
+  };
+  const onPointerMove = (event: PointerEvent): void => {
+    if (event.pointerId !== activeTouchPointerId) return;
+    event.preventDefault();
+    updateTouchTarget(event);
+  };
+  const onPointerEnd = (event: PointerEvent): void => {
+    if (event.pointerId !== activeTouchPointerId) return;
+    activeTouchPointerId = null;
+    touchTarget = null;
   };
   const onResize = (): void => {
     canvas.width = window.innerWidth;
@@ -211,6 +243,10 @@ export const createGame = (
   window.addEventListener('keydown', onKeyDown);
   window.addEventListener('keyup', onKeyUp);
   canvas.addEventListener('pointerdown', onPointerDown);
+  canvas.addEventListener('pointermove', onPointerMove);
+  canvas.addEventListener('pointerup', onPointerEnd);
+  canvas.addEventListener('pointercancel', onPointerEnd);
+  canvas.addEventListener('lostpointercapture', onPointerEnd);
   window.addEventListener('resize', onResize);
   onResize();
 
@@ -276,16 +312,29 @@ export const createGame = (
     const screenDirY =
       (input.isHeld(InputAction.DOWN) ? 1 : 0) -
       (input.isHeld(InputAction.UP) ? 1 : 0);
-    const worldDir = screenDirectionToWorld(projection, screenDirX, screenDirY);
+    const touchDistance = touchTarget
+      ? Math.hypot(touchTarget.x - player.x, touchTarget.y - player.y)
+      : null;
+    const worldDir = touchTarget
+      ? directionTowardPoint(player, touchTarget)
+      : screenDirectionToWorld(projection, screenDirX, screenDirY);
     const dtS = stepMs / 1000;
+    const moveDistance =
+      touchDistance === null
+        ? MOVE_SPEED_PX_PER_S * dtS
+        : Math.min(touchDistance, MOVE_SPEED_PX_PER_S * dtS);
     const move = moveAabb(
       player,
-      worldDir.x * MOVE_SPEED_PX_PER_S * dtS,
-      worldDir.y * MOVE_SPEED_PX_PER_S * dtS,
+      worldDir.x * moveDistance,
+      worldDir.y * moveDistance,
       collisionEnv,
     );
-    player.vx = move.hitX ? 0 : worldDir.x * MOVE_SPEED_PX_PER_S;
-    player.vy = move.hitY ? 0 : worldDir.y * MOVE_SPEED_PX_PER_S;
+    const moveSpeed =
+      touchDistance !== null && touchDistance <= moveDistance
+        ? 0
+        : MOVE_SPEED_PX_PER_S;
+    player.vx = move.hitX ? 0 : worldDir.x * moveSpeed;
+    player.vy = move.hitY ? 0 : worldDir.y * moveSpeed;
     player.x = move.x;
     player.y = move.y;
     camera = updateCamera(
@@ -406,6 +455,10 @@ export const createGame = (
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
       canvas.removeEventListener('pointerdown', onPointerDown);
+      canvas.removeEventListener('pointermove', onPointerMove);
+      canvas.removeEventListener('pointerup', onPointerEnd);
+      canvas.removeEventListener('pointercancel', onPointerEnd);
+      canvas.removeEventListener('lostpointercapture', onPointerEnd);
       window.removeEventListener('resize', onResize);
       input.clear();
     },
