@@ -378,6 +378,13 @@ export const createGame = (
                 {
                   entity: streetPerson,
                   character: characterSprites['maintenance-worker'],
+                  ...(Math.hypot(
+                    player.x - streetPerson.x,
+                    player.y - streetPerson.y,
+                  ) <=
+                  cellSize * 1.5
+                    ? { name: 'Strange Man' }
+                    : {}),
                 },
               ]
             : []),

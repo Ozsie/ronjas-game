@@ -342,6 +342,7 @@ export const drawWorldFrame = (
     color?: string;
     character?: CharacterSpriteSheets;
     direction?: CharacterDirection;
+    name?: string;
   }>,
   animationTimeMs = 0,
   actorDirections: Map<string, CharacterDirection> = new Map(),
@@ -459,7 +460,7 @@ export const drawWorldFrame = (
   }
 
   for (const actor of actors) {
-    const { entity, character, color, direction = 'south' } = actor;
+    const { entity, character, color, direction = 'south', name } = actor;
     const feet = { x: entity.x, y: entity.y };
     const depth = isoDepth(feet.x, feet.y);
     const spriteReady =
@@ -470,6 +471,20 @@ export const drawWorldFrame = (
     queue.push({
       depth,
       draw: () => {
+        const drawName = (screenX: number, screenY: number): void => {
+          if (!name) return;
+          ctx.save();
+          ctx.fillStyle = '#FFF4D9';
+          ctx.font = 'bold 12px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+          ctx.fillText(
+            name,
+            screenX,
+            screenY - map.cellSize * 3 * (50 / 64) - 2,
+          );
+          ctx.restore();
+        };
         if (!spriteReady || !character) {
           const shape = actorView(entity, color);
           const screenFeet = worldToScreen(view, shape.feet.x, shape.feet.y);
@@ -495,6 +510,7 @@ export const drawWorldFrame = (
             bodyWidth,
             bodyHeight,
           );
+          drawName(screenFeet.x, screenFeet.y);
           return;
         }
 
@@ -535,6 +551,7 @@ export const drawWorldFrame = (
           spriteSize,
           spriteSize,
         );
+        drawName(screenFeet.x, screenFeet.y);
       },
     });
   }

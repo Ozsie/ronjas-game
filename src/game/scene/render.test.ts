@@ -212,6 +212,7 @@ describe('isometric world rendering', () => {
     let currentPath: number[] = [];
     let isWallTopPath = false;
     let spriteY = 0;
+    const drawnText: { text: string; x: number; y: number }[] = [];
     let fillStyle = '';
     const ctx = {
       get fillStyle() {
@@ -225,6 +226,8 @@ describe('isometric world rendering', () => {
         currentPath = [];
         isWallTopPath = fillStyle === WORLD_PALETTE.wallTop;
       },
+      save: () => undefined,
+      restore: () => undefined,
       moveTo: (_x: number, y: number) => {
         if (isWallTopPath) currentPath.push(y);
       },
@@ -248,6 +251,9 @@ describe('isometric world rendering', () => {
       ) => {
         spriteY = dy;
         events.push('sprite');
+      },
+      fillText: (text: string, x: number, y: number) => {
+        drawnText.push({ text, x, y });
       },
     } as unknown as CanvasRenderingContext2D;
     const map = createTilemap(
@@ -276,6 +282,7 @@ describe('isometric world rendering', () => {
       {
         entity,
         character,
+        name: 'Strange Man',
       },
     ]);
 
@@ -310,5 +317,12 @@ describe('isometric world rendering', () => {
     ]);
     const screenFeet = worldToScreen(view, entity.x, entity.y);
     expect(spriteY).toBe(screenFeet.y - (map.cellSize * 3 * 50) / 64);
+    expect(drawnText).toEqual([
+      {
+        text: 'Strange Man',
+        x: screenFeet.x,
+        y: screenFeet.y - (map.cellSize * 3 * 50) / 64 - 2,
+      },
+    ]);
   });
 });
