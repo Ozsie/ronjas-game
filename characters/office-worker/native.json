@@ -1,0 +1,936 @@
+{
+  "name": "Pro Office Worker — PixelLab Idle & Walk",
+  "version": "0.1.0-animation-review",
+  "character_id": "ce7b2239-c92e-465c-ae82-043be2697d0a",
+  "character_design_model": "PixelLab Pro",
+  "directions": [
+    "south",
+    "east",
+    "north",
+    "west"
+  ],
+  "clips": {
+    "idle_south": {
+      "action": "idle",
+      "direction": "south",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        48,
+        56
+      ],
+      "pivot": [
+        24,
+        47
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/idle.png",
+      "durations_ms": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "cycle_ms": 2700,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/idle/south/000.png",
+          "rect": [
+            8,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/001.png",
+          "rect": [
+            72,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/002.png",
+          "rect": [
+            136,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/003.png",
+          "rect": [
+            200,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/004.png",
+          "rect": [
+            264,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/005.png",
+          "rect": [
+            328,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/006.png",
+          "rect": [
+            392,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/007.png",
+          "rect": [
+            456,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/south/008.png",
+          "rect": [
+            520,
+            4,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        }
+      ]
+    },
+    "idle_east": {
+      "action": "idle",
+      "direction": "east",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        48,
+        56
+      ],
+      "pivot": [
+        24,
+        47
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/idle.png",
+      "durations_ms": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "cycle_ms": 2700,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/idle/east/000.png",
+          "rect": [
+            8,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/001.png",
+          "rect": [
+            72,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/002.png",
+          "rect": [
+            136,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/003.png",
+          "rect": [
+            200,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/004.png",
+          "rect": [
+            264,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/005.png",
+          "rect": [
+            328,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/006.png",
+          "rect": [
+            392,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/007.png",
+          "rect": [
+            456,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/east/008.png",
+          "rect": [
+            520,
+            68,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        }
+      ]
+    },
+    "idle_north": {
+      "action": "idle",
+      "direction": "north",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        48,
+        56
+      ],
+      "pivot": [
+        24,
+        47
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/idle.png",
+      "durations_ms": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "cycle_ms": 2700,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/idle/north/000.png",
+          "rect": [
+            8,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/001.png",
+          "rect": [
+            72,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/002.png",
+          "rect": [
+            136,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/003.png",
+          "rect": [
+            200,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/004.png",
+          "rect": [
+            264,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/005.png",
+          "rect": [
+            328,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/006.png",
+          "rect": [
+            392,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/007.png",
+          "rect": [
+            456,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/north/008.png",
+          "rect": [
+            520,
+            132,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        }
+      ]
+    },
+    "idle_west": {
+      "action": "idle",
+      "direction": "west",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        48,
+        56
+      ],
+      "pivot": [
+        24,
+        47
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/idle.png",
+      "durations_ms": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "cycle_ms": 2700,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/idle/west/000.png",
+          "rect": [
+            8,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/001.png",
+          "rect": [
+            72,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/002.png",
+          "rect": [
+            136,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/003.png",
+          "rect": [
+            200,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/004.png",
+          "rect": [
+            264,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/005.png",
+          "rect": [
+            328,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/006.png",
+          "rect": [
+            392,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/007.png",
+          "rect": [
+            456,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        },
+        {
+          "file": "art/characters/office-worker/assets/idle/west/008.png",
+          "rect": [
+            520,
+            196,
+            48,
+            56
+          ],
+          "duration_ms": 300
+        }
+      ]
+    },
+    "walk_south": {
+      "action": "walk",
+      "direction": "south",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        51
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/walk.png",
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/walk/south/000.png",
+          "rect": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/001.png",
+          "rect": [
+            64,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/002.png",
+          "rect": [
+            128,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/003.png",
+          "rect": [
+            192,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/004.png",
+          "rect": [
+            256,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/005.png",
+          "rect": [
+            320,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/006.png",
+          "rect": [
+            384,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/south/007.png",
+          "rect": [
+            448,
+            0,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        }
+      ]
+    },
+    "walk_east": {
+      "action": "walk",
+      "direction": "east",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        51
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/walk.png",
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/walk/east/000.png",
+          "rect": [
+            0,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/001.png",
+          "rect": [
+            64,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/002.png",
+          "rect": [
+            128,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/003.png",
+          "rect": [
+            192,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/004.png",
+          "rect": [
+            256,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/005.png",
+          "rect": [
+            320,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/006.png",
+          "rect": [
+            384,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/east/007.png",
+          "rect": [
+            448,
+            64,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        }
+      ]
+    },
+    "walk_north": {
+      "action": "walk",
+      "direction": "north",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        51
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/walk.png",
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/walk/north/000.png",
+          "rect": [
+            0,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/001.png",
+          "rect": [
+            64,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/002.png",
+          "rect": [
+            128,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/003.png",
+          "rect": [
+            192,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/004.png",
+          "rect": [
+            256,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/005.png",
+          "rect": [
+            320,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/006.png",
+          "rect": [
+            384,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/north/007.png",
+          "rect": [
+            448,
+            128,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        }
+      ]
+    },
+    "walk_west": {
+      "action": "walk",
+      "direction": "west",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        51
+      ],
+      "loop": true,
+      "sheet": "art/characters/office-worker/assets/walk.png",
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800,
+      "frames": [
+        {
+          "file": "art/characters/office-worker/assets/walk/west/000.png",
+          "rect": [
+            0,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/001.png",
+          "rect": [
+            64,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/002.png",
+          "rect": [
+            128,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/003.png",
+          "rect": [
+            192,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/004.png",
+          "rect": [
+            256,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/005.png",
+          "rect": [
+            320,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/006.png",
+          "rect": [
+            384,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        },
+        {
+          "file": "art/characters/office-worker/assets/walk/west/007.png",
+          "rect": [
+            448,
+            192,
+            64,
+            64
+          ],
+          "duration_ms": 100
+        }
+      ]
+    }
+  },
+  "frame_count": 68,
+  "timing_note": "Review timings: idle 300 ms per frame, walk 100 ms per frame. Idle includes reference + eight generated frames.",
+  "root_motion": false,
+  "transitions": {
+    "walk_entry_frame": {
+      "south": 0,
+      "east": 4,
+      "north": 0,
+      "west": 0
+    },
+    "settle_ms": 120,
+    "example": "examples/workspace/index.html"
+  },
+  "method": "PixelLab PixMiniMax idle and skeleton-guided V3 walk. Whole-pixel registration performed with PixelLab exact tools; no character rescaling."
+}

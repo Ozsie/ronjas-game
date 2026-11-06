@@ -1,0 +1,113 @@
+{
+  "cell": [
+    48,
+    48
+  ],
+  "frames": {
+    "south": {
+      "rect": [
+        0,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        42
+      ],
+      "file": "south.png"
+    },
+    "south-east": {
+      "rect": [
+        48,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        43
+      ],
+      "file": "south-east.png"
+    },
+    "east": {
+      "rect": [
+        96,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        43
+      ],
+      "file": "east.png"
+    },
+    "north-east": {
+      "rect": [
+        144,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        43
+      ],
+      "file": "north-east.png"
+    },
+    "north": {
+      "rect": [
+        192,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        43
+      ],
+      "file": "north.png"
+    },
+    "north-west": {
+      "rect": [
+        240,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        43
+      ],
+      "file": "north-west.png"
+    },
+    "west": {
+      "rect": [
+        288,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        25,
+        43
+      ],
+      "file": "west.png"
+    },
+    "south-west": {
+      "rect": [
+        336,
+        0,
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        43
+      ],
+      "file": "south-west.png"
+    }
+  },
+  "note": "Directional standing poses; these frames are not a motion cycle."
+}
