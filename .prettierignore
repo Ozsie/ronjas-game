@@ -1,0 +1,19 @@
+# Ignore artifacts:
+.svelte-kit
+build
+node_modules
+
+# Ignore all HTML files:
+*.html
+
+# Ignore config
+eslintrc.cjs
+package.json
+package-lock.json
+tsconfig.json
+vite.config.ts
+
+# Other
+README.md
+static
+.idea
