@@ -2,7 +2,9 @@
 
 Realtime 2.5D isometric game starter. SvelteKit + TypeScript, fully
 custom canvas rendering (no game engine), deployed as a static site. The
-current graybox areas are scaffolding, not settled game design. The
+target platform is mobile phones, so gameplay input must support touch.
+Keyboard input may also be supported, but touch is required.
+Current graybox areas are scaffolding, not settled game design. The
 player moves continuously (not grid-stepped) over tile-based areas; the
 realtime simulation core is built here and consumes HOARD engine packages.
 
@@ -63,6 +65,8 @@ static/                  favicon, future sprites/sfx/music
   or enemies, never move things in the render callback.
 - Frame-rate independence: velocities are pixels per second, inputs are
   sampled from held state each step, camera smoothing is exponential.
+- Input must work with touch for mobile phones. Touch controls should feed
+  held actions into the same per-step input sampling as keyboard controls.
 - Determinism: gameplay-affecting randomness flows only through
   `src/game/rng.ts` (seeded run stream; `seedRun` at game start).
   Wall-clock time (`performance.now()`) is allowed for visual effects

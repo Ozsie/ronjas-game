@@ -20,7 +20,7 @@ export type OpeningDialogue = {
 type OpeningPhase =
   | 'customer-arrives'
   | 'customer-speaks'
-  | 'ronja-to-pickup'
+  | 'ronja-to-machine-for-order'
   | 'ronja-speaks'
   | 'customer-leaves'
   | 'ronja-to-register'
@@ -166,16 +166,16 @@ export const updateOpening = (
   if (state.phase === 'customer-speaks') {
     state.phaseElapsedMs += stepMs;
     if (state.phaseElapsedMs >= DIALOGUE_DURATION_MS) {
-      setPhase(state, 'ronja-to-pickup');
+      setPhase(state, 'ronja-to-machine-for-order');
     }
     return;
   }
 
-  if (state.phase === 'ronja-to-pickup') {
+  if (state.phase === 'ronja-to-machine-for-order') {
     if (
       moveTowards(
         state.ronja,
-        positionAt(map, stations.pickup),
+        positionAt(map, stations.iceCreamMachine),
         stepMs,
         collisionEnv,
       )

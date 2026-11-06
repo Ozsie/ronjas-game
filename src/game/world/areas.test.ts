@@ -90,6 +90,18 @@ describe('area content invariants', () => {
     }
   });
 
+  it('lands arrivals immediately inside their door', () => {
+    for (const id of AREA_IDS) {
+      const area = getArea(id);
+      area.doors.forEach((door) => {
+        const distance =
+          Math.abs(door.spawnCell.x - door.cellX) +
+          Math.abs(door.spawnCell.y - door.cellY);
+        expect(distance).toBe(1);
+      });
+    }
+  });
+
   it('links every door to an existing door that links back', () => {
     for (const id of AREA_IDS) {
       const area = getArea(id);

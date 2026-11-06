@@ -2,6 +2,7 @@
 
 A realtime 2.5D isometric game starter built with SvelteKit, TypeScript,
 and custom canvas rendering (no game engine), deployed as a static site.
+Mobile phones are the target platform, so gameplay input must support touch.
 
 Built on the HOARD engine packages (`@hoard-engine/*`) — tile geometry,
 lighting, seeded RNG, versioned saves, audio and canvas UI chrome — with

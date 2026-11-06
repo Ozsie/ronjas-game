@@ -1,10 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createCollisionEnv, createTilemap } from './world/tilemap';
-import {
-  createOpeningState,
-  updateOpening,
-  type OpeningStations,
-} from './opening';
+import { createOpeningState, updateOpening } from './opening';
+import { RESTAURANT_STATIONS } from './world/areas';
 
 const ROWS = [
   '########################',
@@ -25,24 +22,42 @@ const ROWS = [
   '########################',
 ];
 
-const STATIONS: OpeningStations = {
-  register: { x: 12, y: 5 },
-  pickup: { x: 16, y: 5 },
-  iceCreamMachine: { x: 20, y: 5 },
-  customerStop: { x: 20, y: 8 },
-  customerDoor: { x: 22, y: 8 },
-};
-
 describe('restaurant opening choreography', () => {
+  it('starts customer dialogue only after reaching the register', () => {
+    const map = createTilemap(ROWS, 32);
+    const collisionEnv = createCollisionEnv(map);
+    const state = createOpeningState(map, RESTAURANT_STATIONS);
+
+    for (let elapsed = 0; elapsed < 60_000 && !state.dialogue; elapsed += 16) {
+      updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
+    }
+
+    expect(state.dialogue?.speaker).toBe('CUSTOMER');
+    expect(
+      Math.hypot(
+        (state.customer?.x ?? Number.POSITIVE_INFINITY) - (12 + 0.5) * 32,
+        (state.customer?.y ?? Number.POSITIVE_INFINITY) - (7 + 0.5) * 32,
+      ),
+    ).toBeLessThanOrEqual(1);
+  });
+
   it('runs three walk-up conversations and leaves Ronja at the ice cream machine', () => {
     const map = createTilemap(ROWS, 32);
     const collisionEnv = createCollisionEnv(map);
-    const state = createOpeningState(map, STATIONS);
+    const state = createOpeningState(map, RESTAURANT_STATIONS);
     const dialogue: string[] = [];
 
     for (let elapsed = 0; elapsed < 60_000 && !state.complete; elapsed += 16) {
-      updateOpening(state, 16, map, STATIONS, collisionEnv);
+      updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
       if (state.dialogue) {
+        if (state.dialogue.speaker === 'RONJA') {
+          expect(state.ronja.x).toBe(
+            (RESTAURANT_STATIONS.iceCreamMachine.x + 0.5) * 32,
+          );
+          expect(state.ronja.y).toBe(
+            (RESTAURANT_STATIONS.iceCreamMachine.y + 0.5) * 32,
+          );
+        }
         const line = `${state.dialogue.day}|${state.dialogue.speaker}|${state.dialogue.text}`;
         if (dialogue.at(-1) !== line) dialogue.push(line);
       }
@@ -51,8 +66,12 @@ describe('restaurant opening choreography', () => {
     expect(state.complete).toBe(true);
     expect(state.dayIndex).toBe(2);
     expect(state.customer).toBeUndefined();
-    expect(state.ronja.x).toBe((STATIONS.iceCreamMachine.x + 0.5) * 32);
-    expect(state.ronja.y).toBe((STATIONS.iceCreamMachine.y + 0.5) * 32);
+    expect(state.ronja.x).toBe(
+      (RESTAURANT_STATIONS.iceCreamMachine.x + 0.5) * 32,
+    );
+    expect(state.ronja.y).toBe(
+      (RESTAURANT_STATIONS.iceCreamMachine.y + 0.5) * 32,
+    );
     expect(dialogue.filter((line) => line.includes('|CUSTOMER|'))).toHaveLength(
       3,
     );
