@@ -6,9 +6,11 @@ import {
   RESTAURANT_STATIONS,
   STREET_FIXTURES,
   STREET_PERSON,
+  createAreaCollisionEnv,
   getArea,
 } from './areas';
 import { DOOR, SOLID, isSolidCell, tileAt } from './tilemap';
+import { moveAabb } from '../engine/physics';
 
 const AREA_IDS = [INITIAL_AREA_ID, 'street', 'forest'];
 
@@ -65,21 +67,58 @@ describe('area content invariants', () => {
 
   it('keeps dining and kitchen fixtures and opening stations on walkable cells', () => {
     const restaurant = getArea(INITIAL_AREA_ID);
+    const collisionEnv = createAreaCollisionEnv(restaurant);
     expect(
       RESTAURANT_FIXTURES.filter((fixture) => fixture.kind === 'table'),
     ).toHaveLength(4);
+    expect(collisionEnv.obstacles?.slice(0, 4)).toMatchObject([
+      { x: 92, y: 284, halfWidth: 30, halfHeight: 18 },
+      { x: 188, y: 284, halfWidth: 30, halfHeight: 18 },
+      { x: 92, y: 380, halfWidth: 30, halfHeight: 18 },
+      { x: 188, y: 380, halfWidth: 30, halfHeight: 18 },
+    ]);
+    expect(RESTAURANT_FIXTURES.map((fixture) => fixture.kind)).toEqual(
+      expect.arrayContaining([
+        'kitchen-range',
+        'reach-in-fridge',
+        'vending-machine',
+        'trash-bin',
+      ]),
+    );
     for (const fixture of RESTAURANT_FIXTURES) {
+      const collision = 'collision' in fixture ? fixture.collision : undefined;
+      const expectedX =
+        (fixture.cellX + 0.5) * restaurant.tilemap.cellSize +
+        (collision && 'offsetX' in collision ? collision.offsetX : 0);
+      const expectedY =
+        (fixture.cellY + 0.5) * restaurant.tilemap.cellSize +
+        (collision && 'offsetY' in collision ? collision.offsetY : 0);
       expect(
         isSolidCell(restaurant.tilemap, fixture.cellX, fixture.cellY),
       ).toBe(false);
+      const hasObstacle = collisionEnv.obstacles?.some(
+        (obstacle) => obstacle.x === expectedX && obstacle.y === expectedY,
+      );
+      expect(hasObstacle).toBe(Boolean(collision));
     }
     for (const station of Object.values(RESTAURANT_STATIONS)) {
       expect(isSolidCell(restaurant.tilemap, station.x, station.y)).toBe(false);
+      expect(collisionEnv.isSolidCell(station.x, station.y)).toBe(false);
     }
+
+    const movement = moveAabb(
+      { x: 40, y: 284, halfWidth: 8, halfHeight: 8 },
+      48,
+      0,
+      collisionEnv,
+    );
+    expect(movement).toMatchObject({ x: 54, hitX: true });
+    expect(collisionEnv.obstacles).toHaveLength(10);
   });
 
   it('dresses the street as a parking lot beside the restaurant exit', () => {
     const street = getArea('street');
+    const collisionEnv = createAreaCollisionEnv(street);
     expect(
       STREET_FIXTURES.filter((fixture) => fixture.kind === 'car'),
     ).toHaveLength(3);
@@ -88,6 +127,9 @@ describe('area content invariants', () => {
     ).toMatchObject({ cellX: 2, cellY: 7 });
     for (const fixture of STREET_FIXTURES) {
       expect(isSolidCell(street.tilemap, fixture.cellX, fixture.cellY)).toBe(
+        false,
+      );
+      expect(collisionEnv.isSolidCell(fixture.cellX, fixture.cellY)).toBe(
         false,
       );
     }

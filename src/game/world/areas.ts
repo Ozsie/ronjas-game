@@ -9,7 +9,7 @@ import {
   type LightSource,
 } from '@hoard-engine/lighting';
 import type { Area } from './area';
-import { createTilemap } from './tilemap';
+import { createCollisionEnv, createTilemap } from './tilemap';
 
 const CELL_SIZE = 32;
 
@@ -36,10 +36,66 @@ const RESTAURANT_ROWS = [
 ];
 
 export const RESTAURANT_FIXTURES = [
-  { kind: 'table', cellX: 3, cellY: 9 },
-  { kind: 'table', cellX: 6, cellY: 9 },
-  { kind: 'table', cellX: 3, cellY: 12 },
-  { kind: 'table', cellX: 6, cellY: 12 },
+  {
+    kind: 'table',
+    cellX: 3,
+    cellY: 9,
+    collision: { offsetX: -20, offsetY: -20, halfWidth: 30, halfHeight: 18 },
+  },
+  {
+    kind: 'table',
+    cellX: 6,
+    cellY: 9,
+    collision: { offsetX: -20, offsetY: -20, halfWidth: 30, halfHeight: 18 },
+  },
+  {
+    kind: 'table',
+    cellX: 3,
+    cellY: 12,
+    collision: { offsetX: -20, offsetY: -20, halfWidth: 30, halfHeight: 18 },
+  },
+  {
+    kind: 'table',
+    cellX: 6,
+    cellY: 12,
+    collision: { offsetX: -20, offsetY: -20, halfWidth: 30, halfHeight: 18 },
+  },
+  {
+    kind: 'kitchen-range',
+    cellX: 10,
+    cellY: 1,
+    collision: { halfWidth: 12, halfHeight: 10 },
+  },
+  {
+    kind: 'kitchen-range',
+    cellX: 11,
+    cellY: 1,
+    collision: { halfWidth: 12, halfHeight: 10 },
+  },
+  {
+    kind: 'reach-in-fridge',
+    cellX: 14,
+    cellY: 1,
+    collision: { halfWidth: 10, halfHeight: 12 },
+  },
+  {
+    kind: 'reach-in-fridge',
+    cellX: 16,
+    cellY: 1,
+    collision: { halfWidth: 10, halfHeight: 12 },
+  },
+  {
+    kind: 'vending-machine',
+    cellX: 4,
+    cellY: 1,
+    collision: { halfWidth: 10, halfHeight: 12 },
+  },
+  {
+    kind: 'trash-bin',
+    cellX: 8,
+    cellY: 15,
+    collision: { halfWidth: 7, halfHeight: 7 },
+  },
   { kind: 'register', cellX: 12, cellY: 5 },
   { kind: 'pickup', cellX: 16, cellY: 5 },
   { kind: 'ice-cream-machine', cellX: 20, cellY: 5 },
@@ -199,3 +255,25 @@ export const getArea = (areaId: string): Area => {
   }
   return area;
 };
+
+export const createAreaCollisionEnv = (area: Area) =>
+  createCollisionEnv(
+    area.tilemap,
+    [],
+    area.id === INITIAL_AREA_ID
+      ? RESTAURANT_FIXTURES.flatMap((fixture) => {
+          if (!('collision' in fixture)) return [];
+          const collision = fixture.collision;
+          const offsetX = 'offsetX' in collision ? collision.offsetX : 0;
+          const offsetY = 'offsetY' in collision ? collision.offsetY : 0;
+          return [
+            {
+              x: (fixture.cellX + 0.5) * area.tilemap.cellSize + offsetX,
+              y: (fixture.cellY + 0.5) * area.tilemap.cellSize + offsetY,
+              halfWidth: collision.halfWidth,
+              halfHeight: collision.halfHeight,
+            },
+          ];
+        })
+      : [],
+  );

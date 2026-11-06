@@ -3,7 +3,7 @@
 // are content — areas are authored as string grids, exactly like the
 // drakriddarna dungeon layouts.
 import { WALL, findCell } from '@hoard-engine/grid';
-import type { CollisionEnv } from '../engine/physics';
+import type { Aabb, CollisionEnv } from '../engine/physics';
 
 export const FLOOR = '.';
 export const SOLID = WALL;
@@ -71,7 +71,18 @@ export const cellCenter = (
 });
 
 // The collision contract physics sweeps against.
-export const createCollisionEnv = (map: Tilemap): CollisionEnv => ({
-  cellSize: map.cellSize,
-  isSolidCell: (cellX, cellY) => isSolidCell(map, cellX, cellY),
-});
+export const createCollisionEnv = (
+  map: Tilemap,
+  solidCells: ReadonlyArray<{ cellX: number; cellY: number }> = [],
+  obstacles: ReadonlyArray<Aabb> = [],
+): CollisionEnv => {
+  const solidCellKeys = new Set(
+    solidCells.map(({ cellX, cellY }) => `${cellX},${cellY}`),
+  );
+  return {
+    cellSize: map.cellSize,
+    obstacles,
+    isSolidCell: (cellX, cellY) =>
+      isSolidCell(map, cellX, cellY) || solidCellKeys.has(`${cellX},${cellY}`),
+  };
+};

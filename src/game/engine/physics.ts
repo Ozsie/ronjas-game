@@ -10,6 +10,7 @@
 export interface CollisionEnv {
   cellSize: number;
   isSolidCell: (cellX: number, cellY: number) => boolean;
+  obstacles?: ReadonlyArray<Aabb>;
 }
 
 export type Aabb = {
@@ -30,6 +31,9 @@ export type MoveResult = {
 // count as overlapping the next cell, so a box snapped flush against a
 // wall stays flush (zero-width contact is not a collision).
 const EPS = 1e-9;
+
+const overlaps = (minA: number, maxA: number, minB: number, maxB: number) =>
+  maxA > minB + EPS && minA < maxB - EPS;
 
 const cellRange = (
   min: number,
@@ -60,6 +64,78 @@ const rowHasSolid = (
     if (env.isSolidCell(cellX, cellY)) return true;
   }
   return false;
+};
+
+const obstacleX = (box: Aabb, dx: number, env: CollisionEnv): number | null => {
+  let nearest: number | null = null;
+  for (const obstacle of env.obstacles ?? []) {
+    if (
+      !overlaps(
+        box.y - box.halfHeight,
+        box.y + box.halfHeight,
+        obstacle.y - obstacle.halfHeight,
+        obstacle.y + obstacle.halfHeight,
+      )
+    ) {
+      continue;
+    }
+    if (dx > 0) {
+      const edge = obstacle.x - obstacle.halfWidth;
+      if (
+        box.x + box.halfWidth <= edge + EPS &&
+        box.x + box.halfWidth + dx > edge + EPS &&
+        (nearest === null || edge < nearest)
+      ) {
+        nearest = edge;
+      }
+    } else {
+      const edge = obstacle.x + obstacle.halfWidth;
+      if (
+        box.x - box.halfWidth >= edge - EPS &&
+        box.x - box.halfWidth + dx < edge - EPS &&
+        (nearest === null || edge > nearest)
+      ) {
+        nearest = edge;
+      }
+    }
+  }
+  return nearest;
+};
+
+const obstacleY = (box: Aabb, dy: number, env: CollisionEnv): number | null => {
+  let nearest: number | null = null;
+  for (const obstacle of env.obstacles ?? []) {
+    if (
+      !overlaps(
+        box.x - box.halfWidth,
+        box.x + box.halfWidth,
+        obstacle.x - obstacle.halfWidth,
+        obstacle.x + obstacle.halfWidth,
+      )
+    ) {
+      continue;
+    }
+    if (dy > 0) {
+      const edge = obstacle.y - obstacle.halfHeight;
+      if (
+        box.y + box.halfHeight <= edge + EPS &&
+        box.y + box.halfHeight + dy > edge + EPS &&
+        (nearest === null || edge < nearest)
+      ) {
+        nearest = edge;
+      }
+    } else {
+      const edge = obstacle.y + obstacle.halfHeight;
+      if (
+        box.y - box.halfHeight >= edge - EPS &&
+        box.y - box.halfHeight + dy < edge - EPS &&
+        (nearest === null || edge > nearest)
+      ) {
+        nearest = edge;
+      }
+    }
+  }
+  return nearest;
 };
 
 // Moves along X across the swept width; returns the landed x and whether
@@ -98,12 +174,26 @@ const moveX = (
       }
     }
   }
-  if (blockColumn === null) return { x: box.x + dx, hitX: false };
-  const snappedX =
-    dx > 0
-      ? blockColumn * env.cellSize - box.halfWidth
-      : (blockColumn + 1) * env.cellSize + box.halfWidth;
-  return { x: snappedX, hitX: true };
+  const solidEdge =
+    blockColumn === null
+      ? null
+      : dx > 0
+        ? blockColumn * env.cellSize
+        : (blockColumn + 1) * env.cellSize;
+  const shapeEdge = obstacleX(box, dx, env);
+  const edge =
+    solidEdge === null
+      ? shapeEdge
+      : shapeEdge === null
+        ? solidEdge
+        : dx > 0
+          ? Math.min(solidEdge, shapeEdge)
+          : Math.max(solidEdge, shapeEdge);
+  if (edge === null) return { x: box.x + dx, hitX: false };
+  return {
+    x: dx > 0 ? edge - box.halfWidth : edge + box.halfWidth,
+    hitX: true,
+  };
 };
 
 // Moves along Y across the swept height, same nearest-blocker snap.
@@ -143,12 +233,26 @@ const moveY = (
       }
     }
   }
-  if (blockRow === null) return { y: box.y + dy, hitY: false };
-  const snappedY =
-    dy > 0
-      ? blockRow * env.cellSize - box.halfHeight
-      : (blockRow + 1) * env.cellSize + box.halfHeight;
-  return { y: snappedY, hitY: true };
+  const solidEdge =
+    blockRow === null
+      ? null
+      : dy > 0
+        ? blockRow * env.cellSize
+        : (blockRow + 1) * env.cellSize;
+  const shapeEdge = obstacleY(box, dy, env);
+  const edge =
+    solidEdge === null
+      ? shapeEdge
+      : shapeEdge === null
+        ? solidEdge
+        : dy > 0
+          ? Math.min(solidEdge, shapeEdge)
+          : Math.max(solidEdge, shapeEdge);
+  if (edge === null) return { y: box.y + dy, hitY: false };
+  return {
+    y: dy > 0 ? edge - box.halfHeight : edge + box.halfHeight,
+    hitY: true,
+  };
 };
 
 // Sweeps the box along dx then dy, returning the landed position and

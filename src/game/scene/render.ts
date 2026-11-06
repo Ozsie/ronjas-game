@@ -20,6 +20,7 @@ import {
   type LightingEnv,
 } from '@hoard-engine/lighting';
 import type { Entity } from '../engine/entity';
+import type { Aabb, CollisionEnv } from '../engine/physics';
 import type { Tilemap } from '../world/tilemap';
 import { DOOR, SOLID } from '../world/tilemap';
 import {
@@ -48,9 +49,9 @@ export const isoWorldView = (map: Tilemap): SceneIsoWorldView => ({
 });
 
 // An entity as the iso actor view: colors resolved from the palette,
-// with its feet at the lower edge of the collision bounds.
+// with its feet at the entity's ground position.
 const actorView = (entity: Entity, color?: string): SceneIsoActorView => ({
-  feet: { x: entity.x, y: entity.y + entity.halfHeight },
+  feet: { x: entity.x, y: entity.y },
   halfWidth: entity.halfWidth,
   halfHeight: entity.halfHeight,
   color: color ?? WORLD_PALETTE.player,
@@ -79,6 +80,77 @@ const drawFloorCell = (
   ctx.lineTo(west.x, west.y);
   ctx.closePath();
   ctx.fill();
+};
+
+const drawCollisionBox = (
+  ctx: CanvasRenderingContext2D,
+  view: SceneIsoView,
+  box: Aabb,
+  color: string,
+): void => {
+  const northWest = worldToScreen(
+    view,
+    box.x - box.halfWidth,
+    box.y - box.halfHeight,
+  );
+  const northEast = worldToScreen(
+    view,
+    box.x + box.halfWidth,
+    box.y - box.halfHeight,
+  );
+  const southEast = worldToScreen(
+    view,
+    box.x + box.halfWidth,
+    box.y + box.halfHeight,
+  );
+  const southWest = worldToScreen(
+    view,
+    box.x - box.halfWidth,
+    box.y + box.halfHeight,
+  );
+  ctx.save();
+  ctx.fillStyle =
+    color === '#00ff88' ? 'rgba(0, 255, 136, 0.14)' : 'rgba(255, 59, 48, 0.18)';
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(northWest.x, northWest.y);
+  ctx.lineTo(northEast.x, northEast.y);
+  ctx.lineTo(southEast.x, southEast.y);
+  ctx.lineTo(southWest.x, southWest.y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+};
+
+export const drawCollisionDebug = (
+  ctx: CanvasRenderingContext2D,
+  map: Tilemap,
+  view: SceneIsoView,
+  collisionEnv: CollisionEnv,
+  player: Aabb,
+): void => {
+  for (let cellY = 0; cellY < map.rows.length; cellY += 1) {
+    for (let cellX = 0; cellX < (map.rows[cellY]?.length ?? 0); cellX += 1) {
+      if (map.rows[cellY]?.[cellX] !== SOLID) continue;
+      drawCollisionBox(
+        ctx,
+        view,
+        {
+          x: (cellX + 0.5) * map.cellSize,
+          y: (cellY + 0.5) * map.cellSize,
+          halfWidth: map.cellSize / 2,
+          halfHeight: map.cellSize / 2,
+        },
+        '#ff3b30',
+      );
+    }
+  }
+  for (const obstacle of collisionEnv.obstacles ?? []) {
+    drawCollisionBox(ctx, view, obstacle, '#ff3b30');
+  }
+  drawCollisionBox(ctx, view, player, '#00ff88');
 };
 
 const drawWallCell = (
@@ -156,6 +228,107 @@ type WorldFixture = {
   color?: string;
 };
 
+export type CafeteriaAssets = {
+  floor: HTMLImageElement;
+  table: HTMLImageElement;
+  fruitBasket: HTMLImageElement;
+  kitchenRange: HTMLImageElement;
+  reachInFridge: HTMLImageElement;
+  trashBin: HTMLImageElement;
+  vendingMachine: HTMLImageElement;
+};
+
+const imageReady = (
+  image: HTMLImageElement | undefined,
+): image is HTMLImageElement =>
+  Boolean(image?.complete && image.naturalWidth > 0);
+
+const drawFloorTexture = (
+  ctx: CanvasRenderingContext2D,
+  view: SceneIsoView,
+  cellSize: number,
+  cellX: number,
+  cellY: number,
+  image: HTMLImageElement,
+): void => {
+  const left = cellX * cellSize;
+  const top = cellY * cellSize;
+  const center = worldToScreen(view, left + cellSize / 2, top + cellSize / 2);
+  const north = worldToScreen(view, left, top);
+  const east = worldToScreen(view, left + cellSize, top);
+  const south = worldToScreen(view, left + cellSize, top + cellSize);
+  const west = worldToScreen(view, left, top + cellSize);
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(north.x, north.y);
+  ctx.lineTo(east.x, east.y);
+  ctx.lineTo(south.x, south.y);
+  ctx.lineTo(west.x, west.y);
+  ctx.closePath();
+  ctx.clip();
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    image.naturalWidth,
+    image.naturalHeight,
+    center.x - image.naturalWidth / 2,
+    north.y - image.naturalHeight / 2,
+    image.naturalWidth,
+    image.naturalHeight,
+  );
+  ctx.restore();
+};
+
+const fixtureImage = (
+  kind: string,
+  assets: CafeteriaAssets,
+): HTMLImageElement | undefined => {
+  switch (kind) {
+    case 'table':
+      return assets.table;
+    case 'fruit-basket':
+      return assets.fruitBasket;
+    case 'kitchen-range':
+      return assets.kitchenRange;
+    case 'reach-in-fridge':
+      return assets.reachInFridge;
+    case 'trash-bin':
+      return assets.trashBin;
+    case 'vending-machine':
+      return assets.vendingMachine;
+    default:
+      return undefined;
+  }
+};
+
+const drawFixtureImage = (
+  ctx: CanvasRenderingContext2D,
+  view: SceneIsoView,
+  cellSize: number,
+  fixture: WorldFixture,
+  image: HTMLImageElement,
+): void => {
+  const center = worldToScreen(
+    view,
+    (fixture.cellX + 0.5) * cellSize,
+    (fixture.cellY + 0.5) * cellSize,
+  );
+  const width = cellSize * 3;
+  const height = cellSize * 3;
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    image.naturalWidth,
+    image.naturalHeight,
+    center.x - width / 2,
+    center.y + cellSize * 0.25 - height,
+    width,
+    height,
+  );
+};
+
 type PainterEntry = { depth: number; draw: () => void };
 
 // One full world pass: floors first, then walls, actors and fixtures in
@@ -174,6 +347,7 @@ export const drawWorldFrame = (
   actorDirections: Map<string, CharacterDirection> = new Map(),
   fixtures: ReadonlyArray<WorldFixture> = [],
   fixtureKind: 'restaurant' | 'street' | null = null,
+  cafeteriaAssets?: CafeteriaAssets,
 ): void => {
   const world = isoWorldView(map);
   const mainActor = actors[0]?.entity;
@@ -265,13 +439,28 @@ export const drawWorldFrame = (
           cellY,
           cell === world.doorCell ? world.palette.door : world.palette.floor,
         );
+        if (
+          fixtureKind === 'restaurant' &&
+          cafeteriaAssets &&
+          cell !== world.doorCell &&
+          imageReady(cafeteriaAssets.floor)
+        ) {
+          drawFloorTexture(
+            ctx,
+            view,
+            world.cellSize,
+            cellX,
+            cellY,
+            cafeteriaAssets.floor,
+          );
+        }
       }
     }
   }
 
   for (const actor of actors) {
     const { entity, character, color, direction = 'south' } = actor;
-    const feet = { x: entity.x, y: entity.y + entity.halfHeight };
+    const feet = { x: entity.x, y: entity.y };
     const depth = isoDepth(feet.x, feet.y);
     const spriteReady =
       character?.idle.complete &&
@@ -357,7 +546,14 @@ export const drawWorldFrame = (
       depth: isoDepth(centerX, centerY),
       draw: () => {
         if (fixtureKind === 'restaurant') {
-          drawRestaurantFixtures(ctx, view, world.cellSize, [fixture]);
+          const image = cafeteriaAssets
+            ? fixtureImage(fixture.kind, cafeteriaAssets)
+            : undefined;
+          if (imageReady(image)) {
+            drawFixtureImage(ctx, view, world.cellSize, fixture, image);
+          } else {
+            drawRestaurantFixtures(ctx, view, world.cellSize, [fixture]);
+          }
         } else if (fixtureKind === 'street') {
           drawStreetFixtures(ctx, view, world.cellSize, [fixture]);
         }

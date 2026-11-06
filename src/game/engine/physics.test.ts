@@ -62,4 +62,37 @@ describe('moveAabb', () => {
     const result = moveAabb(boxAt(56, 80.5), 0, -40, solidAt);
     expect(result).toEqual({ x: 56, y: 40.5, hitX: false, hitY: false });
   });
+
+  it('sweeps against a fine-grained obstacle within an otherwise open tile', () => {
+    const env: CollisionEnv = {
+      ...open,
+      obstacles: [{ x: 80, y: 80, halfWidth: 10, halfHeight: 8 }],
+    };
+
+    const result = moveAabb(boxAt(48, 80), 40, 0, env);
+
+    expect(result).toEqual({ x: 62, y: 80, hitX: true, hitY: false });
+  });
+
+  it('allows movement through the unused part of a fixture tile', () => {
+    const env: CollisionEnv = {
+      ...open,
+      obstacles: [{ x: 80, y: 80, halfWidth: 10, halfHeight: 8 }],
+    };
+
+    const result = moveAabb(boxAt(48, 63), 40, 0, env);
+
+    expect(result).toEqual({ x: 88, y: 63, hitX: false, hitY: false });
+  });
+
+  it('sweeps vertically against a fine-grained obstacle', () => {
+    const env: CollisionEnv = {
+      ...open,
+      obstacles: [{ x: 80, y: 80, halfWidth: 10, halfHeight: 8 }],
+    };
+
+    const result = moveAabb(boxAt(80, 48), 0, 40, env);
+
+    expect(result).toEqual({ x: 80, y: 64, hitX: false, hitY: true });
+  });
 });

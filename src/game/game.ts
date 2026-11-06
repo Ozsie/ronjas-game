@@ -9,8 +9,10 @@ import { createCamera, updateCamera } from '@hoard-engine/camera';
 import { createEntity, type Entity } from './engine/entity';
 import {
   createInputHarness,
+  directionTowardPoint,
   InputAction,
   type InputHarness,
+  isCollisionDebugToggleKey,
 } from './engine/input';
 import { createLoop, type LoopHandle } from './engine/loop';
 import { moveAabb, type CollisionEnv } from './engine/physics';
@@ -18,8 +20,10 @@ import { createLight, type LightSource } from '@hoard-engine/lighting';
 import {
   createIsoProjection,
   createIsoView,
+  isoPlaneToWorld,
   screenDirectionToWorld,
   type IsoProjection,
+  worldToIsoPlane,
 } from '@hoard-engine/scene';
 import { seedRun } from './rng';
 import {
@@ -29,7 +33,12 @@ import {
   type CharacterSpriteSheets,
 } from './scene/characters';
 import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
-import { drawLights, drawWorldFrame } from './scene/render';
+import {
+  drawLights,
+  drawCollisionDebug,
+  drawWorldFrame,
+  type CafeteriaAssets,
+} from './scene/render';
 import {
   drawIntroOverlay,
   drawSkipButton,
@@ -49,9 +58,10 @@ import {
   RESTAURANT_STATIONS,
   STREET_FIXTURES,
   STREET_PERSON,
+  createAreaCollisionEnv,
   getArea,
 } from './world/areas';
-import { cellCenter, createCollisionEnv } from './world/tilemap';
+import { cellCenter } from './world/tilemap';
 import type { LightingEnv } from '@hoard-engine/lighting';
 import {
   CAMERA_LAG_PER_SECOND,
@@ -93,7 +103,7 @@ export const createGame = (
   // The current area and its per-area contracts; travel swaps all of
   // them together.
   let currentArea: Area = getArea(INITIAL_AREA_ID);
-  let collisionEnv: CollisionEnv = createCollisionEnv(currentArea.tilemap);
+  let collisionEnv: CollisionEnv = createAreaCollisionEnv(currentArea);
   let lightingEnv: LightingEnv = createLightingEnv(currentArea.tilemap);
   let occlusionKey = occlusionKeyFor(currentArea.tilemap);
   // One shared projection per area: input mapping and rendering must
@@ -140,10 +150,22 @@ export const createGame = (
     courier: loadCharacterSprites('courier'),
     'maintenance-worker': loadCharacterSprites('maintenance-worker'),
   };
+  const loadCafeteriaAsset = (name: string): HTMLImageElement =>
+    loadCharacterImage(`assets/cafeteria/${name}.png`);
+  const cafeteriaAssets: CafeteriaAssets = {
+    floor: loadCafeteriaAsset('floor_checker_vinyl'),
+    table: loadCafeteriaAsset('cafeteria_table'),
+    fruitBasket: loadCafeteriaAsset('fruit_basket'),
+    kitchenRange: loadCafeteriaAsset('kitchen_range'),
+    reachInFridge: loadCafeteriaAsset('reach_in_fridge'),
+    trashBin: loadCafeteriaAsset('trash_bin'),
+    vendingMachine: loadCafeteriaAsset('vending_machine'),
+  };
   const actorDirections = new Map<string, CharacterDirection>();
   let animationTimeMs = 0;
 
   const input: InputHarness = createInputHarness();
+  let collisionDebugEnabled = false;
   const handOffToPlayer = (): void => {
     player.x = opening.ronja.x;
     player.y = opening.ronja.y;
@@ -157,6 +179,11 @@ export const createGame = (
     handOffToPlayer();
   };
   const onKeyDown = (event: KeyboardEvent): void => {
+    if (isCollisionDebugToggleKey(event.key, event.repeat)) {
+      collisionDebugEnabled = !collisionDebugEnabled;
+      event.preventDefault();
+      return;
+    }
     if (!opening.complete) {
       if (event.code === 'Escape') skipIntro();
       return;
@@ -194,7 +221,7 @@ export const createGame = (
     const target = getArea(door.targetAreaId);
     const arrival = arrivalPosition(target, door.targetDoorId);
     currentArea = target;
-    collisionEnv = createCollisionEnv(target.tilemap);
+    collisionEnv = createAreaCollisionEnv(target);
     lightingEnv = createLightingEnv(target.tilemap);
     occlusionKey = occlusionKeyFor(target.tilemap);
     projection = createIsoProjection(target.tilemap.cellSize);
@@ -339,6 +366,7 @@ export const createGame = (
       actorDirections,
       fixtures,
       fixtureKind,
+      currentArea.id === INITIAL_AREA_ID ? cafeteriaAssets : undefined,
     );
     const lightCarrier = opening.complete ? player : opening.ronja;
     drawLights(
@@ -350,6 +378,16 @@ export const createGame = (
       view,
       performance.now(),
     );
+    if (collisionDebugEnabled) {
+      const debugActor = opening.complete ? player : opening.ronja;
+      drawCollisionDebug(
+        ctx,
+        currentArea.tilemap,
+        view,
+        collisionEnv,
+        debugActor,
+      );
+    }
     if (opening.dialogue && !opening.complete) {
       drawIntroOverlay(ctx, canvas.width, canvas.height, opening.dialogue);
     }
