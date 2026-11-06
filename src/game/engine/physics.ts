@@ -82,7 +82,7 @@ const moveX = (
     env.cellSize,
   );
   // The first blocking column along the travel direction.
-  let blockColumn = -1;
+  let blockColumn: number | null = null;
   if (dx > 0) {
     for (let c = columns.first; c <= columns.last; c += 1) {
       if (columnHasSolid(c, rows, env)) {
@@ -98,7 +98,7 @@ const moveX = (
       }
     }
   }
-  if (blockColumn < 0) return { x: box.x + dx, hitX: false };
+  if (blockColumn === null) return { x: box.x + dx, hitX: false };
   const snappedX =
     dx > 0
       ? blockColumn * env.cellSize - box.halfWidth
@@ -127,7 +127,7 @@ const moveY = (
     box.x + box.halfWidth,
     env.cellSize,
   );
-  let blockRow = -1;
+  let blockRow: number | null = null;
   if (dy > 0) {
     for (let r = rows.first; r <= rows.last; r += 1) {
       if (rowHasSolid(r, columns, env)) {
@@ -143,7 +143,7 @@ const moveY = (
       }
     }
   }
-  if (blockRow < 0) return { y: box.y + dy, hitY: false };
+  if (blockRow === null) return { y: box.y + dy, hitY: false };
   const snappedY =
     dy > 0
       ? blockRow * env.cellSize - box.halfHeight

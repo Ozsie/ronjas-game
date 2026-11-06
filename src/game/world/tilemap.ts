@@ -40,7 +40,18 @@ export const isSolidCell = (
   map: Tilemap,
   cellX: number,
   cellY: number,
-): boolean => tileAt(map, cellX, cellY) === SOLID;
+): boolean => {
+  const row = map.rows[cellY];
+  if (
+    cellX < 0 ||
+    cellY < 0 ||
+    cellY >= map.rows.length ||
+    cellX >= (row?.length ?? 0)
+  ) {
+    return true;
+  }
+  return tileAt(map, cellX, cellY) === SOLID;
+};
 
 export const isDoorCell = (
   map: Tilemap,

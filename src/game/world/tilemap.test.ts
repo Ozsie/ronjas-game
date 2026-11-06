@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { moveAabb } from '../engine/physics';
 import {
   DOOR,
   cellCenter,
@@ -27,7 +28,35 @@ describe('tilemap', () => {
   it('reports solidity from the row characters', () => {
     expect(isSolidCell(map, 1, 1)).toBe(false);
     expect(isSolidCell(map, 0, 0)).toBe(true);
-    expect(isSolidCell(map, 4, 4)).toBe(false); // out of bounds: no solid
+    expect(isSolidCell(map, 4, 4)).toBe(true);
+  });
+
+  it('treats every edge outside the map as solid', () => {
+    expect(isSolidCell(map, -1, 1)).toBe(true);
+    expect(isSolidCell(map, 3, 1)).toBe(true);
+    expect(isSolidCell(map, 1, -1)).toBe(true);
+    expect(isSolidCell(map, 1, 3)).toBe(true);
+  });
+
+  it('keeps an entity inside an open map edge during a movement sweep', () => {
+    const openMap = createTilemap(['...', '...'], 32);
+    const movements = [
+      { dx: -50, dy: 0, expected: { x: 8, y: 16, hitX: true, hitY: false } },
+      { dx: 100, dy: 0, expected: { x: 88, y: 16, hitX: true, hitY: false } },
+      { dx: 0, dy: -50, expected: { x: 16, y: 8, hitX: false, hitY: true } },
+      { dx: 0, dy: 50, expected: { x: 16, y: 56, hitX: false, hitY: true } },
+    ];
+
+    movements.forEach(({ dx, dy, expected }) => {
+      expect(
+        moveAabb(
+          { x: 16, y: 16, halfWidth: 8, halfHeight: 8 },
+          dx,
+          dy,
+          createCollisionEnv(openMap),
+        ),
+      ).toEqual(expected);
+    });
   });
 
   it('marks solidity with the grid package wall token', () => {
