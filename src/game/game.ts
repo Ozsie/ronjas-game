@@ -22,13 +22,14 @@ import {
   type IsoProjection,
 } from '@hoard-engine/scene';
 import { seedRun } from './rng';
-import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
 import {
-  drawLights,
-  drawRestaurantFixtures,
-  drawStreetFixtures,
-  drawWorldFrame,
-} from './scene/render';
+  customerCharacterForDay,
+  type CharacterId,
+  type CharacterDirection,
+  type CharacterSpriteSheets,
+} from './scene/characters';
+import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
+import { drawLights, drawWorldFrame } from './scene/render';
 import {
   drawIntroOverlay,
   drawSkipButton,
@@ -118,6 +119,29 @@ export const createGame = (
   );
   let camera = createCamera(player.x, player.y);
   const opening = createOpeningState(currentArea.tilemap, RESTAURANT_STATIONS);
+  const loadCharacterImage = (path: string): HTMLImageElement => {
+    const image = new Image();
+    image.src = `${import.meta.env.BASE_URL}${path}`;
+    return image;
+  };
+  const loadCharacterSprites = (
+    characterId: CharacterId,
+  ): CharacterSpriteSheets => {
+    const assetPath = `characters/${characterId}/assets`;
+    return {
+      idle: loadCharacterImage(`${assetPath}/idle.png`),
+      walk: loadCharacterImage(`${assetPath}/walk.png`),
+    };
+  };
+  const characterSprites: Record<CharacterId, CharacterSpriteSheets> = {
+    barista: loadCharacterSprites('barista'),
+    resident: loadCharacterSprites('resident'),
+    'office-worker': loadCharacterSprites('office-worker'),
+    courier: loadCharacterSprites('courier'),
+    'maintenance-worker': loadCharacterSprites('maintenance-worker'),
+  };
+  const actorDirections = new Map<string, CharacterDirection>();
+  let animationTimeMs = 0;
 
   const input: InputHarness = createInputHarness();
   const handOffToPlayer = (): void => {
@@ -260,7 +284,8 @@ export const createGame = (
   // effects; the simulation steps stay deterministic from the loop's
   // accumulator. The light pass runs after the frame so floors, walls
   // and actors all catch the glow.
-  const renderScene = (): void => {
+  const renderScene = (frameMs: number): void => {
+    animationTimeMs += Math.max(frameMs, 0);
     const cellSize = currentArea.tilemap.cellSize;
     const view = createIsoView(
       camera,
@@ -271,24 +296,50 @@ export const createGame = (
     );
     const actors = opening.complete
       ? [
-          { entity: player },
+          { entity: player, character: characterSprites.barista },
           ...(currentArea.id === 'street'
-            ? [{ entity: streetPerson, color: '#75838A' }]
+            ? [
+                {
+                  entity: streetPerson,
+                  character: characterSprites['maintenance-worker'],
+                },
+              ]
             : []),
         ]
       : [
-          { entity: opening.ronja, color: '#FFD45E' },
+          { entity: opening.ronja, character: characterSprites.barista },
           ...(opening.customer
-            ? [{ entity: opening.customer, color: '#F27B57' }]
+            ? [
+                {
+                  entity: opening.customer,
+                  character:
+                    characterSprites[customerCharacterForDay(opening.dayIndex)],
+                },
+              ]
             : []),
         ];
-    drawWorldFrame(ctx, currentArea.tilemap, view, actors);
-    if (currentArea.id === INITIAL_AREA_ID) {
-      drawRestaurantFixtures(ctx, view, cellSize, RESTAURANT_FIXTURES);
-    }
-    if (currentArea.id === 'street') {
-      drawStreetFixtures(ctx, view, cellSize, STREET_FIXTURES);
-    }
+    const fixtures =
+      currentArea.id === INITIAL_AREA_ID
+        ? RESTAURANT_FIXTURES
+        : currentArea.id === 'street'
+          ? STREET_FIXTURES
+          : [];
+    const fixtureKind =
+      currentArea.id === INITIAL_AREA_ID
+        ? 'restaurant'
+        : currentArea.id === 'street'
+          ? 'street'
+          : null;
+    drawWorldFrame(
+      ctx,
+      currentArea.tilemap,
+      view,
+      actors,
+      animationTimeMs,
+      actorDirections,
+      fixtures,
+      fixtureKind,
+    );
     const lightCarrier = opening.complete ? player : opening.ronja;
     drawLights(
       ctx,
@@ -307,7 +358,7 @@ export const createGame = (
 
   const loop: LoopHandle & { frame: (elapsedMs: number) => void } = createLoop({
     update,
-    render: () => renderScene(),
+    render: (_interpolation, frameMs) => renderScene(frameMs),
   });
   loop.start();
 

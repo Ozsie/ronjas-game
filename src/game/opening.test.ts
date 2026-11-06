@@ -62,6 +62,23 @@ describe('restaurant opening choreography', () => {
     ).toBeLessThanOrEqual(1);
   });
 
+  it('keeps the customer idle while Ronja checks the ice cream machine', () => {
+    const map = createTilemap(ROWS, 32);
+    const collisionEnv = createCollisionEnv(map);
+    const state = createOpeningState(map, RESTAURANT_STATIONS);
+
+    for (let elapsed = 0; elapsed < 60_000; elapsed += 16) {
+      updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
+      if (state.dialogue?.speaker === 'RONJA') break;
+    }
+
+    expect(state.dialogue?.speaker).toBe('RONJA');
+    expect(state.ronja.vx).toBe(0);
+    expect(state.ronja.vy).toBe(0);
+    expect(state.customer?.vx).toBe(0);
+    expect(state.customer?.vy).toBe(0);
+  });
+
   it('runs three walk-up conversations and leaves Ronja at the ice cream machine', () => {
     const map = createTilemap(ROWS, 32);
     const collisionEnv = createCollisionEnv(map);

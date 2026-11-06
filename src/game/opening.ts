@@ -142,7 +142,14 @@ const moveTowards = (
   entity.vy = ((result.y - entity.y) / stepMs) * 1000;
   entity.x = result.x;
   entity.y = result.y;
-  return Math.hypot(target.x - entity.x, target.y - entity.y) <= 1;
+  const arrived = Math.hypot(target.x - entity.x, target.y - entity.y) <= 1;
+  if (arrived) {
+    entity.x = target.x;
+    entity.y = target.y;
+    entity.vx = 0;
+    entity.vy = 0;
+  }
+  return arrived;
 };
 
 export const updateOpening = (
