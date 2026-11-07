@@ -7,6 +7,7 @@
 // component.
 import { createCamera, updateCamera } from '@hoard-engine/camera';
 import { createEntity } from './engine/entity';
+import { advanceStamina, createStaminaPool } from './engine/stamina';
 import { dialogPanelBounds, isDialogPanelHit } from './dialogView';
 import {
   createInputHarness,
@@ -26,6 +27,7 @@ import { seedRun } from './rng';
 import { createGameRenderer } from './scene/gameRenderer';
 import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
 import {
+  isTouchRunDistance,
   worldMovementForInput,
   worldMovementForScreenDirection,
 } from './scene/movement';
@@ -51,6 +53,8 @@ import {
   CAMERA_LAG_PER_SECOND,
   MOVE_SPEED_PX_PER_S,
   PLAYER_HALF_EXTENTS,
+  RUN_SPEED_MULTIPLIER,
+  TOUCH_RUN_DISTANCE_CELLS,
 } from './world/world';
 
 export type GameHandle = {
@@ -91,6 +95,7 @@ export const createGame = (
     currentArea.spawnCell.y,
   );
   const player = createEntity('player', spawn, PLAYER_HALF_EXTENTS);
+  let stamina = createStaminaPool();
   let camera = createCamera(player.x, player.y);
   const featureControllers = new Map<string, AreaFeatureController>();
   const featuresForArea = (area: Area): AreaFeatureController => {
@@ -229,6 +234,7 @@ export const createGame = (
     if (featureUpdate.blocksPlayer) {
       player.vx = 0;
       player.vy = 0;
+      stamina = advanceStamina(stamina, false, stepMs / 1000);
       if (!featureUpdate.playerPosition) {
         const focus = featureUpdate.cameraFocus ?? {
           x: player.x,
@@ -274,10 +280,22 @@ export const createGame = (
         )
       : worldMovementForInput(projection, screenDirX, screenDirY);
     const dtS = stepMs / 1000;
+    const touchRequestsRun =
+      touchDistance !== null &&
+      isTouchRunDistance(
+        touchDistance,
+        currentArea.tilemap.cellSize * TOUCH_RUN_DISTANCE_CELLS,
+      );
+    const requestedSpeed =
+      (input.isHeld(InputAction.RUN) || touchRequestsRun) &&
+      stamina.value > 0 &&
+      (worldDir.x !== 0 || worldDir.y !== 0)
+        ? MOVE_SPEED_PX_PER_S * RUN_SPEED_MULTIPLIER
+        : MOVE_SPEED_PX_PER_S;
     const moveDistance =
       touchDistance === null
-        ? MOVE_SPEED_PX_PER_S * dtS
-        : Math.min(touchDistance, MOVE_SPEED_PX_PER_S * dtS);
+        ? requestedSpeed * dtS
+        : Math.min(touchDistance, requestedSpeed * dtS);
     const move = moveAabb(
       player,
       worldDir.x * moveDistance,
@@ -287,11 +305,14 @@ export const createGame = (
     const moveSpeed =
       touchDistance !== null && touchDistance <= moveDistance
         ? 0
-        : MOVE_SPEED_PX_PER_S;
+        : requestedSpeed;
+    const moved = move.x !== player.x || move.y !== player.y;
     player.vx = move.hitX ? 0 : worldDir.x * moveSpeed;
     player.vy = move.hitY ? 0 : worldDir.y * moveSpeed;
     player.x = move.x;
     player.y = move.y;
+    const running = requestedSpeed > MOVE_SPEED_PX_PER_S && moved;
+    stamina = advanceStamina(stamina, running, dtS);
     camera = updateCamera(
       camera,
       player.x,
@@ -320,6 +341,7 @@ export const createGame = (
           camera,
           projection,
           player,
+          stamina: stamina.value,
           features: areaFeatures.presentation(),
           collisionEnv,
           lightingEnv,

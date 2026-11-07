@@ -40,6 +40,14 @@ describe('createInputHarness', () => {
     expect(input.isHeld(InputAction.UP)).toBe(false);
   });
 
+  it('tracks Shift as a held run action', () => {
+    const input = createInputHarness();
+    input.handleKeyDown(keyEvent('ShiftLeft'));
+    expect(input.isHeld(InputAction.RUN)).toBe(true);
+    input.handleKeyUp(keyEvent('ShiftLeft'));
+    expect(input.isHeld(InputAction.RUN)).toBe(false);
+  });
+
   it('supports bound alternates for the same action', () => {
     const input = createInputHarness();
     input.handleKeyDown(keyEvent('ArrowUp'));

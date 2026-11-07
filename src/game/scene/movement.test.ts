@@ -1,11 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import { createIsoProjection, worldToIsoPlane } from '@hoard-engine/scene';
 import {
+  isTouchRunDistance,
   worldMovementForInput,
   worldMovementForScreenDirection,
 } from './movement';
 
 describe('isometric movement', () => {
+  it('uses touch distance beyond one cell to request running', () => {
+    expect(isTouchRunDistance(31, 32)).toBe(false);
+    expect(isTouchRunDistance(32, 32)).toBe(false);
+    expect(isTouchRunDistance(33, 32)).toBe(true);
+  });
+
   it('moves at the same projected speed in every direction', () => {
     const projection = createIsoProjection(32);
     const projectedSpeed = (horizontal: number, vertical: number) => {

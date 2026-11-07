@@ -1,5 +1,10 @@
 import { isoPlaneToWorld, type IsoProjection } from '@hoard-engine/scene';
 
+export const isTouchRunDistance = (
+  distance: number,
+  cellSize: number,
+): boolean => distance > cellSize;
+
 export const worldMovementForScreenDirection = (
   projection: IsoProjection,
   screenX: number,

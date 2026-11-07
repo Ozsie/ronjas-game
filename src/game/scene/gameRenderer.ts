@@ -3,6 +3,7 @@ import { createLight, type LightingEnv } from '@hoard-engine/lighting';
 import { createIsoView, type IsoProjection } from '@hoard-engine/scene';
 import type { Entity } from '../engine/entity';
 import type { CollisionEnv } from '../engine/physics';
+import { drawStaminaHud, shouldShowStaminaHud } from './staminaHud';
 import { drawDialogPanel } from '../dialogView';
 import { drawIntroOverlay, drawSkipButton } from '../intro';
 import type { Area } from '../world/area';
@@ -34,6 +35,7 @@ export type GameRenderState = {
   camera: Camera;
   projection: IsoProjection;
   player: Entity;
+  stamina: number;
   features: AreaFeaturePresentation;
   collisionEnv: CollisionEnv;
   lightingEnv: LightingEnv;
@@ -220,6 +222,9 @@ export const createGameRenderer = (
         );
       }
       if (features.showSkipButton) drawSkipButton(ctx, canvas.width);
+      if (shouldShowStaminaHud(features)) {
+        drawStaminaHud(ctx, state.stamina, animationTimeMs);
+      }
     },
   };
 };

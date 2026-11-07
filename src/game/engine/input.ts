@@ -12,6 +12,7 @@ export const InputAction = {
   DOWN: 'down',
   LEFT: 'left',
   RIGHT: 'right',
+  RUN: 'run',
   USE: 'use',
 } as const;
 
@@ -35,6 +36,8 @@ export const DEFAULT_KEY_BINDINGS: Record<string, InputAction> = {
   KeyA: InputAction.LEFT,
   ArrowRight: InputAction.RIGHT,
   KeyD: InputAction.RIGHT,
+  ShiftLeft: InputAction.RUN,
+  ShiftRight: InputAction.RUN,
   Space: InputAction.USE,
   KeyE: InputAction.USE,
 };
