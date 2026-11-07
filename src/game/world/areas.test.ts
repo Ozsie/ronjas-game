@@ -1,14 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { doorById } from './area';
+import { INITIAL_AREA_ID, createAreaCollisionEnv, getArea } from './areas';
 import {
-  INITIAL_AREA_ID,
   RESTAURANT_FIXTURES,
   RESTAURANT_STATIONS,
-  STREET_FIXTURES,
-  STREET_PERSON,
-  createAreaCollisionEnv,
-  getArea,
-} from './areas';
+} from './areas/restaurant/area';
+import { STREET_FIXTURES } from './areas/street/area';
+import { STRANGE_MAN } from './areas/street/actors/strangeMan/actor';
 import { DOOR, SOLID, isSolidCell, tileAt } from './tilemap';
 import { moveAabb } from '../engine/physics';
 
@@ -134,8 +132,14 @@ describe('area content invariants', () => {
       );
     }
     expect(
-      isSolidCell(street.tilemap, STREET_PERSON.cellX, STREET_PERSON.cellY),
+      isSolidCell(street.tilemap, STRANGE_MAN.cellX, STRANGE_MAN.cellY),
     ).toBe(false);
+    expect(STRANGE_MAN).toMatchObject({
+      id: 'street-person',
+      halfExtents: { halfWidth: 8, halfHeight: 6 },
+      characterId: 'maintenance-worker',
+      displayName: 'Strange Man',
+    });
   });
 
   it('connects the street north door to the placeholder forest', () => {
@@ -147,7 +151,7 @@ describe('area content invariants', () => {
     expect(northDoor?.targetAreaId).toBe('forest');
     expect(forest.doors[0]?.targetAreaId).toBe('street');
     expect(forest.doors[0]?.spawnCell).toEqual({ x: 3, y: 6 });
-    expect(STREET_PERSON).toEqual({ cellX: 2, cellY: 10 });
+    expect(STRANGE_MAN).toMatchObject({ cellX: 2, cellY: 10 });
   });
 
   it('lands arrivals inside the area, never back onto the door cell', () => {

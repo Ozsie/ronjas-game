@@ -6,19 +6,8 @@
 // door's spawn cell) and owns the canvas lifecycle for the Svelte
 // component.
 import { createCamera, updateCamera } from '@hoard-engine/camera';
-import { createEntity, type Entity } from './engine/entity';
-import {
-  advanceDialog,
-  currentDialogNode,
-  startDialog,
-  type DialogState,
-} from './dialog';
-import { STRANGE_MAN_DIALOG } from './dialogContent';
-import {
-  dialogPanelBounds,
-  drawDialogPanel,
-  isDialogPanelHit,
-} from './dialogView';
+import { createEntity } from './engine/entity';
+import { dialogPanelBounds, isDialogPanelHit } from './dialogView';
 import {
   createInputHarness,
   directionTowardPoint,
@@ -28,41 +17,18 @@ import {
 } from './engine/input';
 import { createLoop, type LoopHandle } from './engine/loop';
 import { moveAabb, type CollisionEnv } from './engine/physics';
-import { createLight, type LightSource } from '@hoard-engine/lighting';
 import {
   createIsoProjection,
-  createIsoView,
   isoPlaneToWorld,
   screenDirectionToWorld,
   type IsoProjection,
   worldToIsoPlane,
 } from '@hoard-engine/scene';
 import { seedRun } from './rng';
-import {
-  customerCharacterForDay,
-  type CharacterId,
-  type CharacterDirection,
-  type CharacterSpriteSheets,
-} from './scene/characters';
+import { createGameRenderer } from './scene/gameRenderer';
 import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
-import {
-  drawLights,
-  drawCollisionDebug,
-  drawWorldFrame,
-  type CafeteriaAssets,
-} from './scene/render';
-import {
-  drawIntroOverlay,
-  drawSkipButton,
-  isSkipButtonHit,
-  skipButtonBounds,
-} from './intro';
-import {
-  createOpeningState,
-  openingDialogue,
-  skipOpening,
-  updateOpening,
-} from './opening';
+import { isSkipButtonHit, skipButtonBounds } from './intro';
+import { createOpeningState, skipOpening, updateOpening } from './opening';
 import {
   doorAtCell,
   arrivalPosition,
@@ -71,13 +37,12 @@ import {
 } from './world/area';
 import {
   INITIAL_AREA_ID,
-  RESTAURANT_FIXTURES,
-  RESTAURANT_STATIONS,
-  STREET_FIXTURES,
-  STREET_PERSON,
   createAreaCollisionEnv,
   getArea,
 } from './world/areas';
+import { RESTAURANT_STATIONS } from './world/areas/restaurant/area';
+import { STRANGE_MAN } from './world/areas/street/actors/strangeMan/actor';
+import { createStrangeManInteraction } from './world/areas/street/actors/strangeMan/interaction';
 import { cellCenter } from './world/tilemap';
 import type { LightingEnv } from '@hoard-engine/lighting';
 import {
@@ -94,18 +59,6 @@ export type GameOptions = {
   seed?: number;
 };
 
-// The player-carried light: follows the player at fractional cell
-// coordinates (the lighting package's polygon cache is keyed by light
-// geometry, so a moving light recomputes instead of serving a stale
-// entry).
-const playerLightAt = (player: Entity, cellSize: number): LightSource =>
-  createLight(player.x / cellSize - 0.5, player.y / cellSize - 0.5, undefined, {
-    id: 'player-light',
-    color: '#BFE8FF',
-    radius: 5,
-    intensity: 0.32,
-  });
-
 export const createGame = (
   canvas: HTMLCanvasElement,
   options: GameOptions = {},
@@ -116,6 +69,7 @@ export const createGame = (
   }
 
   seedRun(options.seed ?? 1);
+  const renderer = createGameRenderer(canvas, ctx);
 
   // The current area and its per-area contracts; travel swaps all of
   // them together.
@@ -136,62 +90,18 @@ export const createGame = (
   );
   const player = createEntity('player', spawn, PLAYER_HALF_EXTENTS);
   const streetPerson = createEntity(
-    'street-person',
-    cellCenter(
-      getArea('street').tilemap,
-      STREET_PERSON.cellX,
-      STREET_PERSON.cellY,
-    ),
-    { halfWidth: 8, halfHeight: 6 },
+    STRANGE_MAN.id,
+    cellCenter(getArea('street').tilemap, STRANGE_MAN.cellX, STRANGE_MAN.cellY),
+    STRANGE_MAN.halfExtents,
   );
   let camera = createCamera(player.x, player.y);
   const opening = createOpeningState(currentArea.tilemap, RESTAURANT_STATIONS);
-  const loadCharacterImage = (path: string): HTMLImageElement => {
-    const image = new Image();
-    image.src = `${import.meta.env.BASE_URL}${path}`;
-    return image;
-  };
-  const loadCharacterSprites = (
-    characterId: CharacterId,
-  ): CharacterSpriteSheets => {
-    const assetPath = `characters/${characterId}/assets`;
-    return {
-      idle: loadCharacterImage(`${assetPath}/idle.png`),
-      walk: loadCharacterImage(`${assetPath}/walk.png`),
-    };
-  };
-  const characterSprites: Record<CharacterId, CharacterSpriteSheets> = {
-    barista: loadCharacterSprites('barista'),
-    resident: loadCharacterSprites('resident'),
-    'office-worker': loadCharacterSprites('office-worker'),
-    courier: loadCharacterSprites('courier'),
-    'maintenance-worker': loadCharacterSprites('maintenance-worker'),
-  };
-  const loadCafeteriaAsset = (name: string): HTMLImageElement =>
-    loadCharacterImage(`assets/cafeteria/${name}.png`);
-  const cafeteriaAssets: CafeteriaAssets = {
-    floor: loadCafeteriaAsset('floor_checker_vinyl'),
-    table: loadCafeteriaAsset('cafeteria_table'),
-    fruitBasket: loadCafeteriaAsset('fruit_basket'),
-    kitchenRange: loadCafeteriaAsset('kitchen_range'),
-    reachInFridge: loadCafeteriaAsset('reach_in_fridge'),
-    trashBin: loadCafeteriaAsset('trash_bin'),
-    vendingMachine: loadCafeteriaAsset('vending_machine'),
-  };
-  const actorDirections = new Map<string, CharacterDirection>();
-  let animationTimeMs = 0;
 
   const input: InputHarness = createInputHarness();
   let activeTouchPointerId: number | null = null;
   let touchTarget: { x: number; y: number } | null = null;
   let collisionDebugEnabled = false;
-  let streetDialogue: {
-    kind: 'greeting' | 'conversation';
-    session: DialogState;
-  } | null = null;
-  let greetingIndex = 0;
-  let wasNearStreetPerson = false;
-  let useRequested = false;
+  const strangeManInteraction = createStrangeManInteraction();
   const handOffToPlayer = (): void => {
     player.x = opening.ronja.x;
     player.y = opening.ronja.y;
@@ -205,48 +115,6 @@ export const createGame = (
     skipOpening(opening, currentArea.tilemap, RESTAURANT_STATIONS);
     handOffToPlayer();
   };
-  const isNearStreetPerson = (): boolean =>
-    currentArea.id === 'street' &&
-    Math.hypot(player.x - streetPerson.x, player.y - streetPerson.y) <=
-      currentArea.tilemap.cellSize * 1.5;
-  const updateStreetDialogue = (): boolean => {
-    const nearPerson = isNearStreetPerson();
-    if (!nearPerson && streetDialogue?.kind === 'greeting') {
-      streetDialogue = null;
-    }
-    if (nearPerson && !wasNearStreetPerson && !streetDialogue) {
-      const greetingNode =
-        greetingIndex % 2 === 0 ? 'greeting-first' : 'greeting-second';
-      streetDialogue = {
-        kind: 'greeting',
-        session: startDialog(STRANGE_MAN_DIALOG, greetingNode),
-      };
-      greetingIndex += 1;
-    }
-    wasNearStreetPerson = nearPerson;
-
-    if (useRequested) {
-      useRequested = false;
-      if (nearPerson) {
-        if (streetDialogue?.kind === 'conversation') {
-          const session = advanceDialog(streetDialogue.session);
-          streetDialogue = currentDialogNode(session)
-            ? { kind: 'conversation', session }
-            : null;
-        } else {
-          streetDialogue = {
-            kind: 'conversation',
-            session: startDialog(STRANGE_MAN_DIALOG, 'machine'),
-          };
-        }
-      }
-    }
-
-    if (streetDialogue?.kind === 'conversation' && !nearPerson) {
-      streetDialogue = null;
-    }
-    return streetDialogue?.kind === 'conversation';
-  };
   const onKeyDown = (event: KeyboardEvent): void => {
     if (isCollisionDebugToggleKey(event.key, event.repeat)) {
       collisionDebugEnabled = !collisionDebugEnabled;
@@ -258,7 +126,7 @@ export const createGame = (
       return;
     }
     if (!event.repeat && (event.code === 'KeyE' || event.code === 'Space')) {
-      useRequested = true;
+      strangeManInteraction.requestUse();
     }
     input.handleKeyDown(event);
   };
@@ -279,7 +147,7 @@ export const createGame = (
     if (
       opening.complete &&
       event.pointerType === 'touch' &&
-      streetDialogue &&
+      strangeManInteraction.currentDialogue() &&
       isDialogPanelHit(
         dialogPanelBounds(canvas.width, canvas.height),
         event.offsetX,
@@ -287,10 +155,11 @@ export const createGame = (
       )
     ) {
       event.preventDefault();
-      useRequested = true;
+      strangeManInteraction.requestUse();
       return;
     }
-    if (streetDialogue?.kind === 'conversation') return;
+    if (strangeManInteraction.currentDialogue()?.kind === 'conversation')
+      return;
     if (!opening.complete || event.pointerType !== 'touch') return;
     if (activeTouchPointerId !== null) return;
     event.preventDefault();
@@ -350,8 +219,7 @@ export const createGame = (
     player.vx = 0;
     player.vy = 0;
     camera = createCamera(player.x, player.y);
-    streetDialogue = null;
-    wasNearStreetPerson = false;
+    strangeManInteraction.reset();
   };
 
   const update = (stepMs: number): void => {
@@ -386,7 +254,7 @@ export const createGame = (
       player.vy = 0;
       return;
     }
-    if (updateStreetDialogue()) {
+    if (strangeManInteraction.update(player, currentArea)) {
       touchTarget = null;
       player.vx = 0;
       player.vy = 0;
@@ -455,118 +323,25 @@ export const createGame = (
     }
   };
 
-  // Rendering receives wall-clock visual time for the animated light
-  // effects; the simulation steps stay deterministic from the loop's
-  // accumulator. The light pass runs after the frame so floors, walls
-  // and actors all catch the glow.
-  const renderScene = (frameMs: number): void => {
-    animationTimeMs += Math.max(frameMs, 0);
-    const cellSize = currentArea.tilemap.cellSize;
-    const view = createIsoView(
-      camera,
-      canvas.width,
-      canvas.height,
-      cellSize,
-      projection,
-    );
-    const actors = opening.complete
-      ? [
-          { entity: player, character: characterSprites.barista },
-          ...(currentArea.id === 'street'
-            ? [
-                {
-                  entity: streetPerson,
-                  character: characterSprites['maintenance-worker'],
-                  ...(Math.hypot(
-                    player.x - streetPerson.x,
-                    player.y - streetPerson.y,
-                  ) <=
-                  cellSize * 1.5
-                    ? { name: 'Strange Man' }
-                    : {}),
-                },
-              ]
-            : []),
-        ]
-      : [
-          { entity: opening.ronja, character: characterSprites.barista },
-          ...(opening.customer
-            ? [
-                {
-                  entity: opening.customer,
-                  character:
-                    characterSprites[customerCharacterForDay(opening.dayIndex)],
-                },
-              ]
-            : []),
-        ];
-    const fixtures =
-      currentArea.id === INITIAL_AREA_ID
-        ? RESTAURANT_FIXTURES
-        : currentArea.id === 'street'
-          ? STREET_FIXTURES
-          : [];
-    const fixtureKind =
-      currentArea.id === INITIAL_AREA_ID
-        ? 'restaurant'
-        : currentArea.id === 'street'
-          ? 'street'
-          : null;
-    drawWorldFrame(
-      ctx,
-      currentArea.tilemap,
-      view,
-      actors,
-      animationTimeMs,
-      actorDirections,
-      fixtures,
-      fixtureKind,
-      currentArea.id === INITIAL_AREA_ID ? cafeteriaAssets : undefined,
-    );
-    const lightCarrier = opening.complete ? player : opening.ronja;
-    drawLights(
-      ctx,
-      [...currentArea.lights, playerLightAt(lightCarrier, cellSize)],
-      lightingEnv,
-      occlusionKey,
-      cellSize,
-      view,
-      performance.now(),
-    );
-    if (collisionDebugEnabled) {
-      const debugActor = opening.complete ? player : opening.ronja;
-      drawCollisionDebug(
-        ctx,
-        currentArea.tilemap,
-        view,
-        collisionEnv,
-        debugActor,
-      );
-    }
-    const dialogue = openingDialogue(opening);
-    if (dialogue && !opening.complete) {
-      drawIntroOverlay(ctx, canvas.width, canvas.height, dialogue);
-    }
-    const streetLine = streetDialogue
-      ? currentDialogNode(streetDialogue.session)
-      : null;
-    if (streetLine) {
-      drawDialogPanel(
-        ctx,
-        canvas.width,
-        canvas.height,
-        streetLine,
-        streetDialogue?.kind === 'greeting'
-          ? 'E / TAP TO TALK'
-          : 'E / TAP TO CONTINUE',
-      );
-    }
-    if (!opening.complete) drawSkipButton(ctx, canvas.width);
-  };
-
   const loop: LoopHandle & { frame: (elapsedMs: number) => void } = createLoop({
     update,
-    render: (_interpolation, frameMs) => renderScene(frameMs),
+    render: (_interpolation, frameMs) =>
+      renderer.render(
+        {
+          area: currentArea,
+          camera,
+          projection,
+          player,
+          streetPerson,
+          opening,
+          streetDialogue: strangeManInteraction.currentDialogue(),
+          collisionEnv,
+          lightingEnv,
+          occlusionKey,
+          collisionDebugEnabled,
+        },
+        frameMs,
+      ),
   });
   loop.start();
 

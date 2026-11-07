@@ -1,4 +1,4 @@
-import type { DialogDefinition } from './dialog';
+import type { DialogDefinition } from '../../../../../dialog';
 
 export const STRANGE_MAN_DIALOG: DialogDefinition = {
   start: 'greeting-first',

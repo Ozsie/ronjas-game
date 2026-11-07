@@ -6,7 +6,7 @@ import {
   skipOpening,
   updateOpening,
 } from './opening';
-import { RESTAURANT_STATIONS } from './world/areas';
+import { RESTAURANT_STATIONS } from './world/areas/restaurant/area';
 
 const ROWS = [
   '########################',

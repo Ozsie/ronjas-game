@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { advanceDialog, currentDialogNode, startDialog } from './dialog';
-import { STRANGE_MAN_DIALOG } from './dialogContent';
+import {
+  advanceDialog,
+  currentDialogNode,
+  startDialog,
+} from '../../../../../dialog';
+import { STRANGE_MAN_DIALOG } from './dialog';
 
 describe('Strange Man dialogue', () => {
   it('offers the two approach greetings and the forest information sequence', () => {
