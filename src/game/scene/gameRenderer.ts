@@ -18,6 +18,8 @@ import {
 import { RESTAURANT_FIXTURES } from '../world/areas/restaurant/area';
 import { STREET_FIXTURES } from '../world/areas/street/area';
 import {
+  CHARACTER_SPRITE_CONFIG,
+  characterFrame,
   type CharacterDirection,
   type CharacterId,
   type CharacterSpriteSheets,
@@ -56,10 +58,22 @@ const loadImage = (path: string): HTMLImageElement => {
 const loadCharacterSprites = (
   characterId: CharacterId,
 ): CharacterSpriteSheets => {
-  const assetPath = `characters/${characterId}/assets`;
+  const usesAnimationAssets = [
+    'rogue',
+    'vampire-count',
+    'vampire-countess',
+    'blood-alchemist',
+  ].includes(characterId);
+  const assetPath = `characters/${characterId}/${usesAnimationAssets ? 'animations' : 'assets'}`;
+  const spriteConfig = CHARACTER_SPRITE_CONFIG[characterId] ?? {
+    frameSize: 64,
+    pivotX: 32,
+    pivotY: 50,
+  };
   return {
     idle: loadImage(`${assetPath}/idle.png`),
     walk: loadImage(`${assetPath}/walk.png`),
+    ...spriteConfig,
   };
 };
 
@@ -90,7 +104,14 @@ export const createGameRenderer = (
     'office-worker': loadCharacterSprites('office-worker'),
     courier: loadCharacterSprites('courier'),
     'maintenance-worker': loadCharacterSprites('maintenance-worker'),
+    rogue: loadCharacterSprites('rogue'),
+    'vampire-count': loadCharacterSprites('vampire-count'),
+    'vampire-countess': loadCharacterSprites('vampire-countess'),
+    'blood-alchemist': loadCharacterSprites('blood-alchemist'),
   };
+  const forestCombatBackdrop = loadImage(
+    'backdrops/1280x720/forest_clearing.png',
+  );
   const cafeteriaAssets: CafeteriaAssets = {
     floor: loadCafeteriaAsset('floor_checker_vinyl'),
     table: loadCafeteriaAsset('cafeteria_table'),
@@ -138,10 +159,82 @@ export const createGameRenderer = (
   const actorDirections = new Map<string, CharacterDirection>();
   let animationTimeMs = 0;
 
+  const drawCombatScene = (enemyCharacterId: CharacterId): void => {
+    ctx.fillStyle = '#17201c';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (
+      forestCombatBackdrop.complete &&
+      forestCombatBackdrop.naturalWidth > 0
+    ) {
+      const scale = Math.max(
+        canvas.width / forestCombatBackdrop.naturalWidth,
+        canvas.height / forestCombatBackdrop.naturalHeight,
+      );
+      const width = forestCombatBackdrop.naturalWidth * scale;
+      const height = forestCombatBackdrop.naturalHeight * scale;
+      ctx.drawImage(
+        forestCombatBackdrop,
+        (canvas.width - width) / 2,
+        (canvas.height - height) / 2,
+        width,
+        height,
+      );
+    }
+    ctx.fillStyle = 'rgba(10, 14, 16, 0.45)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const drawCombatant = (characterId: CharacterId, centerX: number): void => {
+      const character = characterSprites[characterId];
+      if (!character.idle.complete || character.idle.naturalWidth === 0) return;
+      const frameCount = Math.max(
+        1,
+        Math.floor(character.idle.naturalWidth / character.frameSize),
+      );
+      const source = characterFrame(
+        'idle',
+        'south',
+        animationTimeMs,
+        character.frameSize,
+        frameCount,
+      );
+      const size = Math.min(canvas.width * 0.22, canvas.height * 0.42);
+      const feetY = canvas.height * 0.72;
+      ctx.drawImage(
+        character.idle,
+        source.sx,
+        source.sy,
+        source.sw,
+        source.sh,
+        centerX - (size * character.pivotX) / character.frameSize,
+        feetY - (size * character.pivotY) / character.frameSize,
+        size,
+        size,
+      );
+    };
+    drawCombatant('barista', canvas.width * 0.28);
+    drawCombatant(enemyCharacterId, canvas.width * 0.72);
+
+    ctx.fillStyle = '#fff4d9';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `bold ${Math.max(20, canvas.width * 0.045)}px sans-serif`;
+    ctx.fillText('COMBAT', canvas.width / 2, canvas.height * 0.14);
+    ctx.font = `bold ${Math.max(12, canvas.width * 0.018)}px sans-serif`;
+    ctx.fillText(
+      'Combat rules will be added later',
+      canvas.width / 2,
+      canvas.height * 0.91,
+    );
+  };
+
   return {
     render: (state, frameMs) => {
       animationTimeMs += Math.max(frameMs, 0);
       const { area, camera, features, player, projection } = state;
+      if (features.encounter) {
+        drawCombatScene(features.encounter.enemy.characterId);
+        return;
+      }
       const cellSize = area.tilemap.cellSize;
       const view = createIsoView(
         camera,

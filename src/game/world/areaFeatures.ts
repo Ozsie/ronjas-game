@@ -5,7 +5,7 @@ import type { IntroBeat } from '../intro';
 import type { CharacterId } from '../scene/characters';
 import type { Area } from './area';
 
-export type AreaFeatureAction = 'interact' | 'skip';
+export type AreaFeatureAction = 'interact' | 'skip' | 'escape';
 
 export type AreaFeatureActor = {
   entity: Entity;
@@ -20,8 +20,13 @@ export type AreaFeatureDialogue = {
   blocksMovement: boolean;
 };
 
+export type AreaFeatureEncounter = {
+  enemy: AreaFeatureActor;
+};
+
 export type AreaFeaturePresentation = {
   actors: AreaFeatureActor[];
+  encounter?: AreaFeatureEncounter;
   dialogue?: AreaFeatureDialogue;
   intro?: IntroBeat;
   showSkipButton?: boolean;
@@ -94,9 +99,11 @@ export const createAreaFeatureController = (
       const lightCarrier = presentations.find(
         (view) => view.lightCarrier,
       )?.lightCarrier;
+      const encounter = presentations.find((view) => view.encounter)?.encounter;
 
       return {
         actors: presentations.flatMap((view) => view.actors),
+        ...(encounter ? { encounter } : {}),
         ...(dialogue ? { dialogue } : {}),
         ...(intro ? { intro } : {}),
         showSkipButton: presentations.some((view) => view.showSkipButton),

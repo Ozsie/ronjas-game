@@ -1,5 +1,6 @@
 import type { Area } from '../../area';
 import { createTilemap, TREE } from '../../tilemap';
+import { createForestEnemiesFeature } from './enemies';
 
 const CELL_SIZE = 32;
 const FOREST_SIZE = 100;
@@ -166,4 +167,5 @@ export const FOREST_AREA: Area = {
     },
   ],
   lights: [],
+  features: [createForestEnemiesFeature],
 };

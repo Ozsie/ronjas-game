@@ -14,6 +14,10 @@ describe('character sprites', () => {
       'office-worker',
       'courier',
       'maintenance-worker',
+      'rogue',
+      'vampire-count',
+      'vampire-countess',
+      'blood-alchemist',
     ]);
   });
 
@@ -50,6 +54,15 @@ describe('character sprites', () => {
       sy: 192,
       sw: 64,
       sh: 64,
+    });
+  });
+
+  it('selects frames from the 80-pixel enemy atlases', () => {
+    expect(characterFrame('walk', 'west', 800, 80, 8)).toEqual({
+      sx: 0,
+      sy: 240,
+      sw: 80,
+      sh: 80,
     });
   });
 });

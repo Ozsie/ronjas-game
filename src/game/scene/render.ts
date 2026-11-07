@@ -536,6 +536,9 @@ export const drawWorldFrame = (
       draw: () => {
         const drawName = (screenX: number, screenY: number): void => {
           if (!name) return;
+          const pivotRatio = character
+            ? character.pivotY / character.frameSize
+            : 50 / 64;
           ctx.save();
           ctx.fillStyle = '#FFF4D9';
           ctx.font = 'bold 12px sans-serif';
@@ -544,7 +547,7 @@ export const drawWorldFrame = (
           ctx.fillText(
             name,
             screenX,
-            screenY - map.cellSize * 3 * (50 / 64) - 2,
+            screenY - map.cellSize * 3 * pivotRatio - 2,
           );
           ctx.restore();
         };
@@ -585,11 +588,21 @@ export const drawWorldFrame = (
         );
         if (moving) actorDirections.set(entity.id, facing);
         const action: CharacterAction = moving ? 'walk' : 'idle';
-        const source = characterFrame(action, facing, animationTimeMs);
+        const frameCount = Math.max(
+          1,
+          Math.floor(character[action].naturalWidth / character.frameSize),
+        );
+        const source = characterFrame(
+          action,
+          facing,
+          animationTimeMs,
+          character.frameSize,
+          frameCount,
+        );
         const screenFeet = worldToScreen(view, feet.x, feet.y);
         const spriteSize = map.cellSize * 3;
-        const pivotX = spriteSize / 2;
-        const pivotY = (spriteSize * 50) / 64;
+        const pivotX = (spriteSize * character.pivotX) / character.frameSize;
+        const pivotY = (spriteSize * character.pivotY) / character.frameSize;
 
         ctx.fillStyle = WORLD_PALETTE.entityShadow;
         ctx.beginPath();

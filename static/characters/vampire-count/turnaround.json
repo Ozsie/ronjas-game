@@ -1,0 +1,250 @@
+{
+  "name": "Vampire Count",
+  "pixel_lab_id": "269eb21d-17af-4f46-91ed-f27346d44430",
+  "model": "PixelLab Pro",
+  "cell": [
+    64,
+    64
+  ],
+  "pivot": [
+    32,
+    56
+  ],
+  "directions": [
+    "south",
+    "south-east",
+    "east",
+    "north-east",
+    "north",
+    "north-west",
+    "west",
+    "south-west"
+  ],
+  "frames": {
+    "south": {
+      "file": "south.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        6,
+        1,
+        42,
+        47
+      ],
+      "pivot": [
+        24,
+        47
+      ],
+      "atlas_rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "356402f49b2bef3b802df5b46ad3126157631794bd0a288c4f840550c8f11eaa"
+    },
+    "south-east": {
+      "file": "south-east.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        7,
+        2,
+        37,
+        47
+      ],
+      "pivot": [
+        22,
+        47
+      ],
+      "atlas_rect": [
+        64,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "644d9a684852fcae4febd6a7bf970141c9cd079cd3b7d9ab5e76fe0ad2eeb0c4"
+    },
+    "east": {
+      "file": "east.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        10,
+        2,
+        35,
+        47
+      ],
+      "pivot": [
+        22,
+        47
+      ],
+      "atlas_rect": [
+        128,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "0448be850234a87b6c7791239f0717e6e279b0d6721d4587a98150f1c52e81d7"
+    },
+    "north-east": {
+      "file": "north-east.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        8,
+        2,
+        37,
+        46
+      ],
+      "pivot": [
+        22,
+        46
+      ],
+      "atlas_rect": [
+        192,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "1e1b0f73640431b34fc2b269df3871f9105c677bb61de34eb13c3ebd338cb44a"
+    },
+    "north": {
+      "file": "north.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        7,
+        2,
+        41,
+        46
+      ],
+      "pivot": [
+        24,
+        46
+      ],
+      "atlas_rect": [
+        256,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "e0a789036aac4a0cf99c9db9e2b4b8b97140675e38696b3d75a4cf633eb42f69"
+    },
+    "north-west": {
+      "file": "north-west.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        11,
+        2,
+        40,
+        46
+      ],
+      "pivot": [
+        25,
+        46
+      ],
+      "atlas_rect": [
+        320,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "9f7e7eb2923564d0ab677c5dc0a778328ecb3a44ab1ab70159914c625fd045ec"
+    },
+    "west": {
+      "file": "west.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        13,
+        2,
+        38,
+        47
+      ],
+      "pivot": [
+        25,
+        47
+      ],
+      "atlas_rect": [
+        384,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "34ea670bdbbf7e6c58dca6ae755b700eb31f5fdc90ff59befccc6812fe6992a0"
+    },
+    "south-west": {
+      "file": "south-west.png",
+      "canvas": [
+        48,
+        48
+      ],
+      "visible_bounds": [
+        11,
+        2,
+        41,
+        47
+      ],
+      "pivot": [
+        26,
+        47
+      ],
+      "atlas_rect": [
+        448,
+        0,
+        64,
+        64
+      ],
+      "atlas_pivot": [
+        32,
+        56
+      ],
+      "sha256": "9c771b1781a523a7f6fd5c3df87154391c5c916873075052128afb3d823d9bdc"
+    }
+  },
+  "animations": []
+}

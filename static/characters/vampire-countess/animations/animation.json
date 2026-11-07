@@ -1,0 +1,2330 @@
+{
+  "name": "Vampire Countess — Idle & Walk",
+  "version": "0.1.1",
+  "character_id": "18ee046c-f337-46e6-89a6-ec5355057a8f",
+  "design_model": "PixelLab Pro",
+  "directions": [
+    "south",
+    "east",
+    "north",
+    "west"
+  ],
+  "clips": {
+    "idle_south": {
+      "action": "idle",
+      "direction": "south",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/south/000.png",
+          "rect": [
+            0,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/countess-idle-south/south/frame_000.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "14c1aba0003858d0d65383b4d27c82c3f91e58301f96dc4c4ac8aebb7880a5f2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/south/001.png",
+          "rect": [
+            80,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 300,
+          "source": "Idle/animations/countess-idle-south/south/frame_001.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "289b3607c9783bb955888d35fc1ef9b3f17afe750d8dc115a431155d649f4c40",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 33
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 45
+          }
+        },
+        {
+          "file": "idle/south/002.png",
+          "rect": [
+            160,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-idle-south/south/frame_002.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "f23794cd52c0f214071c3175b60c7eda2e0114f726cc5b09ed06297b84219f38",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 67
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 67
+          }
+        },
+        {
+          "file": "idle/south/003.png",
+          "rect": [
+            240,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/countess-idle-south/south/frame_003.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "f279fe656db8f810cc7fa4e5dee327069b355ecf13af2dd8d76517fe1471e388",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 103
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 60
+          }
+        },
+        {
+          "file": "idle/south/004.png",
+          "rect": [
+            320,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-idle-south/south/frame_004.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "67e3252a926b940fe85192cca8493ce8a88981adfe2aba767cec33888157c568",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 102
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 65
+          }
+        },
+        {
+          "file": "idle/south/005.png",
+          "rect": [
+            400,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 320,
+          "source": "Idle/animations/countess-idle-south/south/frame_005.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "5fd11774ab6f50ebcdfb82c68fe1ac1bc5accf6e69929644507685bc53258fb6",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 102
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 72
+          }
+        },
+        {
+          "file": "idle/south/006.png",
+          "rect": [
+            480,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 300,
+          "source": "Idle/animations/countess-idle-south/south/frame_006.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "004a776d917fc55a689cd58c23dd56f41ab6e7369c5547f5f80e82e260c2bcc2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 102
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 70
+          }
+        },
+        {
+          "file": "idle/south/007.png",
+          "rect": [
+            560,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 160,
+          "source": "Idle/animations/countess-idle-south/south/frame_007.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "af9a1b1a374f514889fb6f1b5ab9f0cc92cfedf59678ebc335be3e228d823403",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 67
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 57
+          }
+        },
+        {
+          "file": "idle/south/008.png",
+          "rect": [
+            640,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/countess-idle-south/south/frame_008.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            13
+          ],
+          "source_sha256": "bc4272d44cd583beebf60dd384606ecffc091378a0d828dc736c1186db9caa80",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 130
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        }
+      ],
+      "durations_ms": [
+        400,
+        300,
+        100,
+        80,
+        100,
+        320,
+        300,
+        160,
+        400
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_east": {
+      "action": "idle",
+      "direction": "east",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/east/000.png",
+          "rect": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/countess-idle-east/east/frame_000.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "ce4abfd1cc9265f8e79a03b9052034b63bbc350301f22ffbd425623bf4b6d894",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/east/001.png",
+          "rect": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 280,
+          "source": "Idle/animations/countess-idle-east/east/frame_001.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "76f016f0adc8b961c96b2ce4cb2831a17991da2bdb92f4b35f2cf19de4feaa56",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 40
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 47
+          }
+        },
+        {
+          "file": "idle/east/002.png",
+          "rect": [
+            160,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 280,
+          "source": "Idle/animations/countess-idle-east/east/frame_002.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "8eb4b621aae0b7fb75c600e8a42cda5711f7c48f6e2f3ebff6ca82fc8ba153c5",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 49
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 48
+          }
+        },
+        {
+          "file": "idle/east/003.png",
+          "rect": [
+            240,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 280,
+          "source": "Idle/animations/countess-idle-east/east/frame_003.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "043bc401b2043e8088fc544ea3cfa85f3c6ea6771c1437f8d8d3ab665c428a5f",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 40
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 54
+          }
+        },
+        {
+          "file": "idle/east/004.png",
+          "rect": [
+            320,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/countess-idle-east/east/frame_004.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "0b8d5bf0903d2d5c9929635e27f3129f82065ef04d2da5b1c490dee0f83120b2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 61
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 55
+          }
+        },
+        {
+          "file": "idle/east/005.png",
+          "rect": [
+            400,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/countess-idle-east/east/frame_005.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "81b561152336682a531966281983e8a1e57087954738ca0f84f5c96beea76993",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 62
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 53
+          }
+        },
+        {
+          "file": "idle/east/006.png",
+          "rect": [
+            480,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-idle-east/east/frame_006.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "d29e50fc9af87a54e1b5032bb644d9a879823f182bd3cb9db9a75db86003f138",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 41
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 54
+          }
+        },
+        {
+          "file": "idle/east/007.png",
+          "rect": [
+            560,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/countess-idle-east/east/frame_007.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "83508fceae2d898a9a00d1a8d572e145bab4822bfeb6051e2457a66d35bb6d66",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 47
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 54
+          }
+        },
+        {
+          "file": "idle/east/008.png",
+          "rect": [
+            640,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/countess-idle-east/east/frame_008.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            19,
+            13
+          ],
+          "source_sha256": "1aa52a6c23d1d8ff46f6380564f00c3154e248dd359db622b66c23491fedfa55",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 113
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        }
+      ],
+      "durations_ms": [
+        400,
+        280,
+        280,
+        280,
+        80,
+        80,
+        100,
+        260,
+        400
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_north": {
+      "action": "idle",
+      "direction": "north",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/north/000.png",
+          "rect": [
+            0,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_000.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "7a476957aa6ccbff55aa041bb39cbff13c318f4d566f3617bfa51f47def20396",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/north/001.png",
+          "rect": [
+            80,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_001.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "59b891ea11450118f13e93a5391999729c0e7d9288cee6a293871f088c50c7b8",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 33
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 30
+          }
+        },
+        {
+          "file": "idle/north/002.png",
+          "rect": [
+            160,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_002.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "2dec5179b12ee67fb48b8fc399a515fbc993694734cee9ea6c1a7c48484316d4",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 59
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 30
+          }
+        },
+        {
+          "file": "idle/north/003.png",
+          "rect": [
+            240,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_003.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "ee3372725788b940760f167967c2dde8a7c8b854f7f01f67e60f7f4ba9a15728",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 106
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 30
+          }
+        },
+        {
+          "file": "idle/north/004.png",
+          "rect": [
+            320,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_004.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "1313a702daa3ba131b3a4bbfa6ec0c977b9e7ea82c4ad6ad6e82e48b3a3b30f5",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 106
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 31
+          }
+        },
+        {
+          "file": "idle/north/005.png",
+          "rect": [
+            400,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_005.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "dbbb90c95ab885aaf5986e82b4d3cfd0dc635832f0bf123811f03c552b58e83b",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 115
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 30
+          }
+        },
+        {
+          "file": "idle/north/006.png",
+          "rect": [
+            480,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_006.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "1ecb36cb6db63bf36781947d2ba984354039f3fd81a8e5dc5cd43c101d08137e",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 106
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 38
+          }
+        },
+        {
+          "file": "idle/north/007.png",
+          "rect": [
+            560,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_007.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "4eadcc0247a29be6234a9ca1f151bee12bb62c708f25144be7cace1e852297f3",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 60
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 38
+          }
+        },
+        {
+          "file": "idle/north/008.png",
+          "rect": [
+            640,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/countess-idle-north/north/frame_008.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            16,
+            14
+          ],
+          "source_sha256": "629ffe111523d9f6d696c7e866492cea30a25f6e3099c25c184906a6702e70c9",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 71
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        }
+      ],
+      "durations_ms": [
+        240,
+        240,
+        240,
+        240,
+        240,
+        240,
+        240,
+        240,
+        240
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_west": {
+      "action": "idle",
+      "direction": "west",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/west/000.png",
+          "rect": [
+            0,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/countess-idle-west/west/frame_000.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "e4706717e6fb9bdab821ed0e21228870e9721f9975876d5e953e8af95db86021",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/west/001.png",
+          "rect": [
+            80,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 280,
+          "source": "Idle/animations/countess-idle-west/west/frame_001.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "42d9392a34cf2fd579e70ec717048934747db0ff443b06d0b1b9261941f76d5c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 24
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 54
+          }
+        },
+        {
+          "file": "idle/west/002.png",
+          "rect": [
+            160,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 280,
+          "source": "Idle/animations/countess-idle-west/west/frame_002.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "08cb3812981d03695c73ad7839f7c4aec76dcc653f2b34eb0a7f495982cea40f",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 68
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 55
+          }
+        },
+        {
+          "file": "idle/west/003.png",
+          "rect": [
+            240,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 280,
+          "source": "Idle/animations/countess-idle-west/west/frame_003.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "6e8d44b83ceb5de05d891fd83cc12190b65d55a0b0391d2df0f25b577d8f038c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 89
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 62
+          }
+        },
+        {
+          "file": "idle/west/004.png",
+          "rect": [
+            320,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/countess-idle-west/west/frame_004.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "f168ab5578798dffbb125f1e602541447f9e4ab4f431897c92c2293f5693d3fc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 76
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 74
+          }
+        },
+        {
+          "file": "idle/west/005.png",
+          "rect": [
+            400,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/countess-idle-west/west/frame_005.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "a337a5104cabca8b5dd15a7f103b2a1e018c0f7297c47d07751b38a2a267e4db",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 49
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 63
+          }
+        },
+        {
+          "file": "idle/west/006.png",
+          "rect": [
+            480,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-idle-west/west/frame_006.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "30a9a83771589e10f525270f4b8b90390f60eb9e65d9b3d2abfb3e18a8829449",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 50
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 64
+          }
+        },
+        {
+          "file": "idle/west/007.png",
+          "rect": [
+            560,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/countess-idle-west/west/frame_007.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "224349598342296824d9a956e3390caeb30459c70cb567253a80fd8d4e6729ba",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 25
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 60
+          }
+        },
+        {
+          "file": "idle/west/008.png",
+          "rect": [
+            640,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/countess-idle-west/west/frame_008.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            14,
+            13
+          ],
+          "source_sha256": "dfa1a20775be9e367715efba345a5974c20b6fb65d693d3f462cf3c3b456e85a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "c56479f4-c327-4ab9-b35b-833bda289014",
+            "changed_visible_pixels": 104
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+            "changed_visible_pixels": 0
+          }
+        }
+      ],
+      "durations_ms": [
+        400,
+        280,
+        280,
+        280,
+        80,
+        80,
+        100,
+        260,
+        400
+      ],
+      "cycle_ms": 2160
+    },
+    "walk_south": {
+      "action": "walk",
+      "direction": "south",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/south/000.png",
+          "rect": [
+            0,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "2c936240b339f3feab4f04ec9e606a96992ec68d340d0e2b0574e8b2020961d6",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/south/001.png",
+          "rect": [
+            80,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "286c11e48ddf29c521bfcef86dc7155aa2f8cd149149f1354efd4a1b16a1d6c7",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 9
+          }
+        },
+        {
+          "file": "walk/south/002.png",
+          "rect": [
+            160,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "8e5599cfc0bbdf6b755d536a8eea2dec904fc15bcf21fd968c53307dfb8b759d",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 13
+          }
+        },
+        {
+          "file": "walk/south/003.png",
+          "rect": [
+            240,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "e9d17e131e25041998f007f8d22a41dde1a3c1e3669f1f12b626dac612957e26",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 13
+          }
+        },
+        {
+          "file": "walk/south/004.png",
+          "rect": [
+            320,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "25d139fd76708d2a82a9c6d7ee54b18a638e2599fa59dd5ece81d805bc3e1ddf",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 16
+          }
+        },
+        {
+          "file": "walk/south/005.png",
+          "rect": [
+            400,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "57444f1fc074d651ae11709c5e03b3e990d504e7ac1658b9fc7611c90133cddb",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 2
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 32
+          }
+        },
+        {
+          "file": "walk/south/006.png",
+          "rect": [
+            480,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "bbac90561e4721b44adfe7b12d0d35bcbabbe47b92cd1f69cf12871d57cd38ff",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 5
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 122
+          }
+        },
+        {
+          "file": "walk/south/007.png",
+          "rect": [
+            560,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/south/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "17f9ebebccab0b7de526a06b5ca329344fa1218d230b74c88ad66e0cb357dfa2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 6
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 216
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_east": {
+      "action": "walk",
+      "direction": "east",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/east/000.png",
+          "rect": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "b3c22a97a7667886f8bf958d62574e81c2f09c45a1e0a0b8897a81f68abc422a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/east/001.png",
+          "rect": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "4cfdd27486da2dbd565294be428ced3e3254b057474cce5cfe73dc5d00114f20",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 5
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/east/002.png",
+          "rect": [
+            160,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "c0c0e15e4f29bc4d0396a60dbc29d0152caade82564f8aa800a724975af538fa",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 68
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 94
+          }
+        },
+        {
+          "file": "walk/east/003.png",
+          "rect": [
+            240,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "db28f2aa7717d7bd0b49732a47acbf40677a2345ad770738a73297365db72ddb",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 97
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 95
+          }
+        },
+        {
+          "file": "walk/east/004.png",
+          "rect": [
+            320,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "2c0bb277b62d765e449af174e00adef1d32ca4f3fd710ce0726cd8625b85b4fa",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 8
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/east/005.png",
+          "rect": [
+            400,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            8
+          ],
+          "source_sha256": "70b33634d8c3e889e13c718662df54525bb0618884b7bdebb47258ad093da617",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 10
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/east/006.png",
+          "rect": [
+            480,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            8
+          ],
+          "source_sha256": "877b9bf17ca95f1a7bce4ac629f4660fddc2542cd43df454ebc65defae04779d",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 33
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 55
+          }
+        },
+        {
+          "file": "walk/east/007.png",
+          "rect": [
+            560,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/east/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "6549b3e4b63d0e3e0e4baeb6d99724f67f2b04f9e8df7acd8bc00d03efe7ace7",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 73
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 92
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_north": {
+      "action": "walk",
+      "direction": "north",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/north/000.png",
+          "rect": [
+            0,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_000.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "9d1d8fb8bf6022fc562467e567fa24d91d8db84d4d3b3b5172002f887639a343",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/001.png",
+          "rect": [
+            80,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_001.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "58c935fb70a29f9e061825dccbfc4b9f14797ba8c2eb382445cc241d10608082",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 15
+          }
+        },
+        {
+          "file": "walk/north/002.png",
+          "rect": [
+            160,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_002.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "a2f5b76740227da3331244a3f01f5db14be818cb08a434fa8f1cfc137b495471",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 22
+          }
+        },
+        {
+          "file": "walk/north/003.png",
+          "rect": [
+            240,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_003.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "5c3cca3e53907724f9c16282d72c2f1a8475293f6d1f110bc66705ef1b7cf6e9",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 3
+          }
+        },
+        {
+          "file": "walk/north/004.png",
+          "rect": [
+            320,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_004.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "a066b9d7b02d921763736a0646f5516d6370357373d33051612e757ab1f1c8b3",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/north/005.png",
+          "rect": [
+            400,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_005.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "004da7757c4196ceefe497c1bdaa4ae1ab8d5809568ba96f13464a319873aa8c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 3
+          }
+        },
+        {
+          "file": "walk/north/006.png",
+          "rect": [
+            480,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_006.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "878d70774f89aabdc46e560a35fa52bf0d7da9dbcac92c5d0401693cc76bc4dc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/north/007.png",
+          "rect": [
+            560,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/north/frame_007.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "c99995181d1ba78ef8fbf72790eefebd4126ffd4e8f460706d733e41bcb9430a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 7
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_west": {
+      "action": "walk",
+      "direction": "west",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/west/000.png",
+          "rect": [
+            0,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "df342ca80563996ef4c4c1ce60ba486770482b819960b9e19109a6faa73e5ecc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 0
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/west/001.png",
+          "rect": [
+            80,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "669eff84eb5c372e1ef6bb57150a862b4a6eb9b1d946e1355fe3a063cd4b7d71",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 42
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 17
+          }
+        },
+        {
+          "file": "walk/west/002.png",
+          "rect": [
+            160,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "880a82166dab0e274d9420c3ed9311a2ba6e970d665f06d0f9ccaa6cd7a156aa",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 6
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 1
+          }
+        },
+        {
+          "file": "walk/west/003.png",
+          "rect": [
+            240,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "5740b6e0913634177c95b8beba6f63fc4b719792a7ba3f0cb0fadd821bbbf4b3",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 2
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 2
+          }
+        },
+        {
+          "file": "walk/west/004.png",
+          "rect": [
+            320,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "030b055918ecab97df8d61c5dd4cbea3331fc8af10ae54fdc1095d0bb4a96cfc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 11
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/west/005.png",
+          "rect": [
+            400,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "f472f661d84309670e815366f63ee30333c509b3f2bb5488b8171f5e6633c98a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 28
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/west/006.png",
+          "rect": [
+            480,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "54b14c7e95c8b4f336f9935b9a772b2c5560846c4c7c75f4c6f86c47d9bb3fb2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 8
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/west/007.png",
+          "rect": [
+            560,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/countess-walk/west/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "5483fd2d9be36d01b1b5636ae27c5cd44a436d2853b0411d0d50732058d97a56",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "242764ef-e264-42a4-837f-dbbce2bd8f04",
+            "changed_visible_pixels": 7
+          },
+          "refinement": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad",
+            "changed_visible_pixels": 4
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    }
+  },
+  "frame_count": 68,
+  "cell": [
+    80,
+    80
+  ],
+  "pivot": [
+    40,
+    70
+  ],
+  "root_motion": false,
+  "transitions": {
+    "walk_entry_frame": {
+      "south": 4,
+      "east": 1,
+      "north": 4,
+      "west": 6
+    },
+    "settle_ms": 120
+  },
+  "method": "PixelLab-generated motion with integer registration and targeted deterministic PixelLab cleanup. Source/reference pose regions reused only for inspected defects. Original raw generation archive retained. Second reviewed PixelLab refinement stabilizes heads and eyelids, removes wrist ghosts and repairs slit continuity.",
+  "cleanup": {
+    "provider": "PixelLab pixelart_workbench",
+    "ids": {
+      "idle": "c56479f4-c327-4ab9-b35b-833bda289014",
+      "walk": "242764ef-e264-42a4-837f-dbbce2bd8f04"
+    },
+    "changes": [
+      "Stable idle skirt, slit and planted boots",
+      "Exact idle endpoint closure",
+      "Shortened blink holds while keeping 2160 ms idle cycle",
+      "Neutral side-walk expressions stabilized",
+      "Removed spurious exposed knee on opposite side of skirt slit"
+    ]
+  },
+  "refinement": {
+    "provider": "PixelLab pixelart_workbench",
+    "ids": {
+      "idle": "4f3a8c35-be65-49b3-b00d-dc2d4e2a211f",
+      "walk": "adad8cd1-7222-4a59-9f6e-e074cf78c7ad"
+    },
+    "changes": [
+      "Head/face/hair shapes stabilized with original vertical bob retained",
+      "Matched symmetric south blink and cleaner side eyelids",
+      "Removed rear-wrist ghost pixels",
+      "Closed false front-skirt slit while retaining natural coverage of the correct leg"
+    ],
+    "previous_cleanup_retained": true
+  }
+}

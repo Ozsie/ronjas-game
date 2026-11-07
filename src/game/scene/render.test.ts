@@ -355,7 +355,13 @@ describe('isometric world rendering', () => {
       complete: true,
       naturalWidth: 576,
     } as HTMLImageElement;
-    const character = { idle: image, walk: image };
+    const character = {
+      idle: image,
+      walk: image,
+      frameSize: 64,
+      pivotX: 32,
+      pivotY: 50,
+    };
     const entity = createEntity(
       'ronja',
       { x: 32, y: 32 },

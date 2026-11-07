@@ -1,0 +1,2804 @@
+{
+  "name": "Blood Alchemist — Idle & Walk",
+  "version": "0.1.0",
+  "character_id": "a1e374b7-5272-45ed-8c8e-e937eb80f1d9",
+  "design_model": "PixelLab Pro",
+  "directions": [
+    "south",
+    "east",
+    "north",
+    "west"
+  ],
+  "clips": {
+    "idle_south": {
+      "action": "idle",
+      "direction": "south",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/south/000.png",
+          "rect": [
+            0,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/south/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "ffdc0b78bfb2dd2072c7c5401066bd4ad587113c364a2b02e49418c97b32ab4d",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/south/001.png",
+          "rect": [
+            80,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/south/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "5b4b0c05107a2bc987d15d99f8a98c187b5749ad4d74b7ceff002c38cf22ec02",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 101
+          }
+        },
+        {
+          "file": "idle/south/002.png",
+          "rect": [
+            160,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/south/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "fe235487758ecdc8b1839f7ebb327e943fcf56c32848fc9ce374400ba96307eb",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 120
+          }
+        },
+        {
+          "file": "idle/south/003.png",
+          "rect": [
+            240,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/south/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "245d30f89d78ca100c8bb201b2ab570374ae3c9a8f40df53d5de1cd050f5e367",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 133
+          }
+        }
+      ],
+      "durations_ms": [
+        540,
+        540,
+        540,
+        540
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_east": {
+      "action": "idle",
+      "direction": "east",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/east/000.png",
+          "rect": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/east/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "b2646146922f54f0cd345531d56b753305b6122086c52eaeba16b8526edfdeaa",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/east/001.png",
+          "rect": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/east/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "a7f711fb1bee2e91aa4c837a5d3d81eb52455e330d4d291db1c16e9331d11956",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 161
+          }
+        },
+        {
+          "file": "idle/east/002.png",
+          "rect": [
+            160,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/east/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "ba4ffddf28621430c558f6c4a9d5699b3a9367773d2b88885f247e827370ff49",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 211
+          }
+        },
+        {
+          "file": "idle/east/003.png",
+          "rect": [
+            240,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/east/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            -1,
+            7
+          ],
+          "source_sha256": "942877dc358d6f16bc32c411fb201b2ade990eeff0c083a37e17147b93ce3d5e",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 284
+          }
+        }
+      ],
+      "durations_ms": [
+        540,
+        540,
+        540,
+        540
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_north": {
+      "action": "idle",
+      "direction": "north",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/north/000.png",
+          "rect": [
+            0,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/north/frame_000.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "c58d9ddf422cd72d59dcc5052a1345cc7e598e158c96a5aa3e65490225052763",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/north/001.png",
+          "rect": [
+            80,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/north/frame_001.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "6f3c5047f177ca3ec3a705221e1aabb522e075c0aa899a287acb1ba49ffcac03",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/north/002.png",
+          "rect": [
+            160,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/north/frame_002.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "3389a234429ea2634d7bac8342456c1b7866a91906e17f960fe7c72ae72029d9",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/north/003.png",
+          "rect": [
+            240,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/north/frame_003.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "d9d9e0c1639c382ac6a0930d825f49b2cba925c6ee5b9df86025fd105e474aca",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 4
+          }
+        }
+      ],
+      "durations_ms": [
+        540,
+        540,
+        540,
+        540
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_west": {
+      "action": "idle",
+      "direction": "west",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/west/000.png",
+          "rect": [
+            0,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/west/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "1e56ad9159c1109645c681082e287502c840e6470e4615bf7743a97652b1a2b5",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 200
+          }
+        },
+        {
+          "file": "idle/west/001.png",
+          "rect": [
+            80,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/west/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "c7b052e8b771d997e514171f50f4ea2d479a7707f0eec0b96060657f277c82a2",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 81
+          }
+        },
+        {
+          "file": "idle/west/002.png",
+          "rect": [
+            160,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/west/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "0bc47463e8ad261700f76e519a61f3843f1e9ca2c8705a9b1d88e0fe1c0e7ece",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "idle/west/003.png",
+          "rect": [
+            240,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 540,
+          "source": "Idle/animations/alchemist-idle/west/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "322c8deab2d973119c999c3100982f43e4f993a3aba84a2d00282d796c5559e9",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+            "changed_visible_pixels": 136
+          }
+        }
+      ],
+      "durations_ms": [
+        540,
+        540,
+        540,
+        540
+      ],
+      "cycle_ms": 2160
+    },
+    "walk_south": {
+      "action": "walk",
+      "direction": "south",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/south/000.png",
+          "rect": [
+            0,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "1a737216c655a80d3ff608ca4f2195b74ef56626b058bbc881f62917210cdbaa",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 34
+          }
+        },
+        {
+          "file": "walk/south/001.png",
+          "rect": [
+            80,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "6ee78bfb6acbd73bdd147719eec4f185398fc7d5c389359c9e194df85d6e9361",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 2
+          }
+        },
+        {
+          "file": "walk/south/002.png",
+          "rect": [
+            160,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "2cef225e30166b922b463d22b94b7041bb844e4ebf6425a32d0e4b18bbb5d7f3",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/south/003.png",
+          "rect": [
+            240,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "1860ef15ea9416c3539e6bfa26b5462ff91d1067e64fd7649c3b44a4c3bd2e69",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 1
+          }
+        },
+        {
+          "file": "walk/south/004.png",
+          "rect": [
+            320,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "fd57726a51d5a907066144fbe2f5127080661723e271e2e09dd42bbba9e26688",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/south/005.png",
+          "rect": [
+            400,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "d13d85811aa7d0df5615ccaad326da08393da89c5fffeb22cb1c554a75c787e2",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 171
+          }
+        },
+        {
+          "file": "walk/south/006.png",
+          "rect": [
+            480,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "5c03a71b82e24ac1fcc11e7fa80b54b835e3003dfc97ba57e1a4e6b4cee0f91f",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 187
+          }
+        },
+        {
+          "file": "walk/south/007.png",
+          "rect": [
+            560,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/south/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "95c5dbfc8f1680b1ab586187db44bfbd146f607a1a66e2111c2ea013851e1941",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 186
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_east": {
+      "action": "walk",
+      "direction": "east",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/east/000.png",
+          "rect": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "4ca964dc1f56f8f733ae25ed2df2d2dd2e2f746c3aa4cfebc46df25f964ca86f",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/east/001.png",
+          "rect": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "5555429b886a023c2a7334edc1a616f72aafd5bac3d91af70cfec7a3b80b9ec5",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 20
+          }
+        },
+        {
+          "file": "walk/east/002.png",
+          "rect": [
+            160,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "6cc752a0d9d3d84979d7598bf3c2d7c7dfe7d03530d2fcf111286bcf22e04969",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 34
+          }
+        },
+        {
+          "file": "walk/east/003.png",
+          "rect": [
+            240,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "5f7d3fa38602afa866430fc4e2c41b55dcb7bf8348f5341f72467576573f2caf",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 36
+          }
+        },
+        {
+          "file": "walk/east/004.png",
+          "rect": [
+            320,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "dccd8d0491bfc37803803bb69d384d0d1298543e73ea866108ef2612e63361dd",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 77
+          }
+        },
+        {
+          "file": "walk/east/005.png",
+          "rect": [
+            400,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "5534c5cbfa60674d1d174d70eec8f046a9982abe7fb254d1c595da2198586754",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 80
+          }
+        },
+        {
+          "file": "walk/east/006.png",
+          "rect": [
+            480,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "9a77445fa78846f261793bdc4739fcdca450d348f2cfeb1b73b175199e1a21da",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 52
+          }
+        },
+        {
+          "file": "walk/east/007.png",
+          "rect": [
+            560,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/east/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "592c0507b3924d4f3da91f6c0e614fea837d653f011e0f76c8e21cba4d23aee4",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 47
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_north": {
+      "action": "walk",
+      "direction": "north",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/north/000.png",
+          "rect": [
+            0,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_000.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "19d6040fbb2b56e2189506308f4d986e4dfde74b2da02963c5734d811b642947",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/001.png",
+          "rect": [
+            80,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_001.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "9cd510d3612ccc6d3896e6a8b49c8d86251649b7f1a1c51e85ef949946d281b1",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/002.png",
+          "rect": [
+            160,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_002.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            15
+          ],
+          "source_sha256": "0726535d05273ed41e4787b4c437d3d6192d1b1f07fe2e6d5e11ed83f9f5bd8d",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/003.png",
+          "rect": [
+            240,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_003.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "f496643af7431c8ccd6a08752521727b8c9b75b4e7172356446a2884733eb327",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/004.png",
+          "rect": [
+            320,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_004.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "ce66a8709faeddb6d69a9a88cacfe5b24d60049b538ef15d8b0945993b21c37b",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/005.png",
+          "rect": [
+            400,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_005.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "ea3e577162435370cec70463a6b26fcc43f10c0c7c67d55a42d31d6e6fc84386",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/006.png",
+          "rect": [
+            480,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_006.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            15
+          ],
+          "source_sha256": "fb3b26263ef3d64e7d0ef4dd72f589c18a576aefbd427d90908c322c8bda87ba",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/north/007.png",
+          "rect": [
+            560,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/north/frame_007.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "267bda5abda71093db04968fbf049fbf2a9f43bc841f4094f1c306ba8fde7e28",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_west": {
+      "action": "walk",
+      "direction": "west",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/west/000.png",
+          "rect": [
+            0,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "f47ce286dfd529e7fb01835a1e11c6b32b43f9daebff01ba16f1d4c1adc22091",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 1
+          }
+        },
+        {
+          "file": "walk/west/001.png",
+          "rect": [
+            80,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "f872669068c7eb0edda152e64c263dd42f31149e2a6ecd6b02410e89c491119a",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 1
+          }
+        },
+        {
+          "file": "walk/west/002.png",
+          "rect": [
+            160,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "ffd1d0111dccfd4d9cb4e98c06c2d6e5a1eb04f55aea286408bd51925bb355a7",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/west/003.png",
+          "rect": [
+            240,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "d2fb6d2f2d3f93e995638b0e6da718cb08b7aee144ecde0092e2643b97b31b83",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/west/004.png",
+          "rect": [
+            320,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "e1b9e80f9ebebd15acdaeef3000520cbf77852e24705f18177f2bf685ca109ed",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 0
+          }
+        },
+        {
+          "file": "walk/west/005.png",
+          "rect": [
+            400,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "0ef662d3dfe9c2a682e39d888ec8c3a5e3287470bde7c016516122987745c73a",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 2
+          }
+        },
+        {
+          "file": "walk/west/006.png",
+          "rect": [
+            480,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "d60454b833160662e22bcf47aef5d508438cfe49c865cf1662440c42c54440f7",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 4
+          }
+        },
+        {
+          "file": "walk/west/007.png",
+          "rect": [
+            560,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/alchemist-walk/west/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            1,
+            7
+          ],
+          "source_sha256": "2854297f5fd7e0f25ed0b0b704d057b60bcf8a2620f2eb89eb794b2fbd826c41",
+          "cleanup": {
+            "tool": "PixelLab pixelart_workbench",
+            "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+            "changed_visible_pixels": 2
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    }
+  },
+  "frame_count": 48,
+  "cell": [
+    80,
+    80
+  ],
+  "pivot": [
+    40,
+    70
+  ],
+  "root_motion": false,
+  "transitions": {
+    "walk_entry_frame": {
+      "south": 4,
+      "east": 0,
+      "north": 0,
+      "west": 0
+    },
+    "settle_ms": 120
+  },
+  "method": "PixelLab Pro character design; skeleton-guided V3 breathing-idle and walking-8-frames. Original pixels aligned by integer translation, then exact targeted PixelLab pixelart_workbench edits. The fourth idle frame repeats the first rest pose.",
+  "cleanup": {
+    "idle": {
+      "result_id": "48080360-4908-4c6c-9e2e-03950a5c1854",
+      "changed_frames": 10,
+      "changed_pixels": 1431,
+      "operations": [
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            0,
+            79,
+            79
+          ],
+          "at": [
+            240,
+            0
+          ],
+          "reason": "Repeat the reviewed rest pose as the last idle frame to close its seam exactly."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            18,
+            79,
+            40
+          ],
+          "at": [
+            80,
+            18
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            33,
+            41,
+            47,
+            44
+          ],
+          "at": [
+            113,
+            41
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            62,
+            79,
+            79
+          ],
+          "at": [
+            80,
+            62
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            18,
+            79,
+            40
+          ],
+          "at": [
+            160,
+            17
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            33,
+            41,
+            47,
+            44
+          ],
+          "at": [
+            193,
+            40
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            62,
+            79,
+            79
+          ],
+          "at": [
+            160,
+            62
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            18,
+            79,
+            40
+          ],
+          "at": [
+            240,
+            18
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            33,
+            41,
+            47,
+            44
+          ],
+          "at": [
+            273,
+            41
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            62,
+            79,
+            79
+          ],
+          "at": [
+            240,
+            62
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            80,
+            79,
+            159
+          ],
+          "at": [
+            240,
+            80
+          ],
+          "reason": "Repeat the reviewed rest pose as the last idle frame to close its seam exactly."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            80,
+            98
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            142,
+            79,
+            159
+          ],
+          "at": [
+            80,
+            142
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            160,
+            98
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            142,
+            79,
+            159
+          ],
+          "at": [
+            160,
+            142
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            240,
+            98
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            142,
+            79,
+            159
+          ],
+          "at": [
+            240,
+            142
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            160,
+            79,
+            239
+          ],
+          "at": [
+            240,
+            160
+          ],
+          "reason": "Repeat the reviewed rest pose as the last idle frame to close its seam exactly."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            80,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            222,
+            79,
+            239
+          ],
+          "at": [
+            80,
+            222
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            160,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            222,
+            79,
+            239
+          ],
+          "at": [
+            160,
+            222
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            240,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            222,
+            79,
+            239
+          ],
+          "at": [
+            240,
+            222
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            240,
+            79,
+            319
+          ],
+          "at": [
+            240,
+            240
+          ],
+          "reason": "Repeat the reviewed rest pose as the last idle frame to close its seam exactly."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            0,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            80,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            302,
+            79,
+            319
+          ],
+          "at": [
+            80,
+            302
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            160,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            302,
+            79,
+            319
+          ],
+          "at": [
+            160,
+            302
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            240,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            302,
+            79,
+            319
+          ],
+          "at": [
+            240,
+            302
+          ],
+          "reason": "Hold planted idle shoes and lower-leg pixels steady while the upper body breathes."
+        }
+      ]
+    },
+    "walk": {
+      "result_id": "be3efcce-5b67-4663-8758-8c5fa0b348c2",
+      "changed_frames": 19,
+      "changed_pixels": 941,
+      "operations": [
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            0,
+            18
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            33,
+            41
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            80,
+            17
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            113,
+            40
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            160,
+            17
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            193,
+            40
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            240,
+            18
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            273,
+            41
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            400,
+            17
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            433,
+            40
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            480,
+            17
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            513,
+            40
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            320,
+            18,
+            399,
+            40
+          ],
+          "at": [
+            560,
+            18
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            353,
+            41,
+            367,
+            43
+          ],
+          "at": [
+            593,
+            41
+          ],
+          "reason": "Keep the chin and lower hair consistent without copying the surrounding shoulder poses."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            80,
+            98
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            160,
+            98
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            240,
+            98
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            320,
+            97
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            400,
+            97
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            480,
+            97
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            98,
+            79,
+            122
+          ],
+          "at": [
+            560,
+            97
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            80,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            160,
+            177
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            240,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            320,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            400,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            480,
+            177
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            0,
+            178,
+            79,
+            201
+          ],
+          "at": [
+            560,
+            178
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            0,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            80,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            160,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            320,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            400,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            480,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        },
+        {
+          "operation": "copy_region",
+          "layer": "image",
+          "frames": [
+            1
+          ],
+          "source_layer": "image",
+          "source_frame": 1,
+          "region": [
+            240,
+            258,
+            319,
+            283
+          ],
+          "at": [
+            560,
+            258
+          ],
+          "reason": "Stabilize the reviewed glasses, face and hair while retaining the original vertical head motion."
+        }
+      ]
+    }
+  },
+  "review": {
+    "frames_reviewed": 48,
+    "notes": "Reviewed all 48 timed frames in four directions before and after exact PixelLab cleanup. Stabilized changing glasses, face and hair details, held planted idle shoes steady and repeated the initial rest pose at each idle seam. Original vertical head motion is retained. South jaw edits exclude the surrounding shoulder poses. Every walking pixel from row 45 down is unchanged, preserving the generated arms, cuffs, apron, legs and shoes. All silhouettes remain connected and registered on the shared foot line. Minor cuff, hand and apron-shape variation remains. Suggested entry poses and a 120 ms settling hold control playback; these are not separate generated transition clips. The furnished laboratory is a staged visual test without collision, navigation or prop interactions. Live browser rendering has not been verified.\n",
+    "walking_pixels_preserved_from_row": 45,
+    "live_browser_checked": false
+  }
+}

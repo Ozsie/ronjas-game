@@ -118,6 +118,11 @@ export const createGame = (
       event.preventDefault();
       return;
     }
+    if (event.code === 'Escape' && areaFeatures.presentation().encounter) {
+      areaFeatures.handleAction('escape');
+      event.preventDefault();
+      return;
+    }
     if (areaFeatures.presentation().hidePlayer) {
       if (event.code === 'Escape') areaFeatures.handleAction('skip');
       return;

@@ -1,0 +1,2063 @@
+{
+  "name": "Vampire Count — Idle & Walk",
+  "version": "0.1.2",
+  "character_id": "269eb21d-17af-4f46-91ed-f27346d44430",
+  "design_model": "PixelLab Pro",
+  "directions": [
+    "south",
+    "east",
+    "north",
+    "west"
+  ],
+  "clips": {
+    "idle_south": {
+      "action": "idle",
+      "direction": "south",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/south/000.png",
+          "rect": [
+            0,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/count-idle-south/south/frame_000.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "d6d3c98cc15be7d6f2c3f6ee021a980f78f14308d0f41b33dbcfff57516f27d1",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 0,
+            "before_sha256": "d4473b358520dacdca6c1718869717a53dea41c81ca94826a49e8af223755075"
+          }
+        },
+        {
+          "file": "idle/south/001.png",
+          "rect": [
+            80,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-south/south/frame_001.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "90122447c1e037b069d7a9fef10bcac426e0b1d7c823978e940e1edc5651c6e1",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 22,
+            "before_sha256": "fd369ef68a5f77f851039ed0ac82c00ca699127d0e60c12931fb208d8fd9c547"
+          }
+        },
+        {
+          "file": "idle/south/002.png",
+          "rect": [
+            160,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-south/south/frame_002.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "78e9c504d364c03213dfa518b7d68c57ea1c8b8b3d426fa68ceb96f20e224caa",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 25,
+            "before_sha256": "c86959cf2a2d4552da071d503b77ac4952c9538675d327197d1a50b42daf5f44"
+          }
+        },
+        {
+          "file": "idle/south/003.png",
+          "rect": [
+            240,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-south/south/frame_003.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "4b9f9a5f08d65380ca1eab63ff3240b2a373c010616d094375474b4334a7949c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 27,
+            "before_sha256": "327b734ff414b3ec5baa41572936c333ce1e8ccd63410fb70e3d90eb72e0d67b"
+          }
+        },
+        {
+          "file": "idle/south/004.png",
+          "rect": [
+            320,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-south/south/frame_004.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "fa3fb60ec765b37f2809bab406a19db890722a030d40d059b616a51257efd842",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 24,
+            "before_sha256": "07fd542b4a1d5de0b09fa02b866c3f1230eda7be056108088e242a1a29cae6a8"
+          }
+        },
+        {
+          "file": "idle/south/005.png",
+          "rect": [
+            400,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/count-idle-south/south/frame_005.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "813b22eaf9302a386d5966d3aab776e4e45c778cd50b1e0e55024a97dcf9af20",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 21,
+            "before_sha256": "1d7b0c645eed00d8691465fd0525bae858eec14246bd39ea83b1668c1f7d6fef"
+          }
+        },
+        {
+          "file": "idle/south/006.png",
+          "rect": [
+            480,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-idle-south/south/frame_006.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "037dcb419c365faf4833a5e7e7c9b65320e686cb0d3a77406171e6886ac024b6",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 23,
+            "before_sha256": "b65334ee01542f848a8e49fbfcce77eff3fa4f362d74280579eaddf3489b02ad"
+          }
+        },
+        {
+          "file": "idle/south/007.png",
+          "rect": [
+            560,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 140,
+          "source": "Idle/animations/count-idle-south/south/frame_007.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "4b0683f64b0e7c804bb8a4a8cca4906ded311dfacaf2bb0472e9204681c2eb3c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 21,
+            "before_sha256": "88ec001b5735dd7848bdbe43537a7ce588b82cbe5a4b2c5947d5f322820d8b61"
+          }
+        },
+        {
+          "file": "idle/south/008.png",
+          "rect": [
+            640,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/count-idle-south/south/frame_008.png",
+          "source_canvas": [
+            56,
+            68
+          ],
+          "translation": [
+            12,
+            13
+          ],
+          "source_sha256": "5cc918b5ff869270f5a82b386cb941e8649402e9027631e6906a303a4c489822",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 138,
+            "before_sha256": "a012d9c31f672becaf78fa9487d5375ddf2e14d27c6f44d6f2a7a0e067e8b616"
+          }
+        }
+      ],
+      "durations_ms": [
+        400,
+        260,
+        260,
+        260,
+        260,
+        80,
+        100,
+        140,
+        400
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_east": {
+      "action": "idle",
+      "direction": "east",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/east/000.png",
+          "rect": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/count-idle-east/east/frame_000.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "32e65158d0364e32a6a4051a09442b11678a6c1a9ed379f6ec4da858c9c606af",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 0,
+            "before_sha256": "a97c240962988c26e1d188b2150cb0715ceabe272c475125d67c97952b336694"
+          }
+        },
+        {
+          "file": "idle/east/001.png",
+          "rect": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-east/east/frame_001.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "40535be5a0944b8f25d162a8143e82e2f62b38182097a61a53c8d54b59477f3a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "71c5cf4f9daaa1c9e8b0e1bae667bda25feeb91b5b51f4149a75c7a0367ba513"
+          }
+        },
+        {
+          "file": "idle/east/002.png",
+          "rect": [
+            160,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-east/east/frame_002.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "e1eadd6aa8a1cdd9f3285ff14094106fd996dcb4a86cd73c8e37f0c90d5b0bc1",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "86248aecf96237429d5dac16c26831eca80801f5e5256c398ddea99cd95cb4e8"
+          }
+        },
+        {
+          "file": "idle/east/003.png",
+          "rect": [
+            240,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-east/east/frame_003.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "68083c08f2902943fe4f5bdfd856c0b7c1dfefe9e3c5fcbae1c5aabc1000283d",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "da8e75fc7360e04775b03cff3385e0a7abc7605f07ae971f976a85113f94f24b"
+          }
+        },
+        {
+          "file": "idle/east/004.png",
+          "rect": [
+            320,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/count-idle-east/east/frame_004.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "19ae23d9938d4fc9c74c5550fc2bfa96a4a0523a5a9b8ef82b9c43cd4fa4bf54",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "014ad7513b6b65c715fa407f4d60b66ab94c4664bcddfd04999e7228451d6299"
+          }
+        },
+        {
+          "file": "idle/east/005.png",
+          "rect": [
+            400,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-idle-east/east/frame_005.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "e5d30edec6be3ecbb2ae29a4e236f45d6bf6638fbaec5d054ab3f4c82fa4572f",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "24b6efdcbb34ebe87192261afd05b0e678829fbe4516701e0280dece1b078cd0"
+          }
+        },
+        {
+          "file": "idle/east/006.png",
+          "rect": [
+            480,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-east/east/frame_006.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "b6f71722efb15ab8bc25629984d7260c60b47460ee005cdede3a8336490752dc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "db65cf6b765aee91e085c0bace57322299223b25343605159bd107778ec1c8d6"
+          }
+        },
+        {
+          "file": "idle/east/007.png",
+          "rect": [
+            560,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 140,
+          "source": "Idle/animations/count-idle-east/east/frame_007.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "f9d84e9733a57d66e0531668bb75df52ad51cdb5e23fea67fc0f4b95ec37b734",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 11,
+            "before_sha256": "692defe7feea6191b1634da910a0a21e0b7b8c017cf97a4802d9d2167636b29a"
+          }
+        },
+        {
+          "file": "idle/east/008.png",
+          "rect": [
+            640,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/count-idle-east/east/frame_008.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            18,
+            13
+          ],
+          "source_sha256": "48756bad7263f39c10b76ce8b06643abe8bb5824a68676b2f8f7ef5fcfc16417",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 105,
+            "before_sha256": "c9330dcda05c42804758b37d5ae858a89211c4d30841448a96d14e962aa2bdc7"
+          }
+        }
+      ],
+      "durations_ms": [
+        400,
+        260,
+        260,
+        260,
+        80,
+        100,
+        260,
+        140,
+        400
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_north": {
+      "action": "idle",
+      "direction": "north",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/north/000.png",
+          "rect": [
+            0,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_000.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "56fdd3c978186752579623cc47d899abcc4310936512e3ac0212f2cd3cf701b8",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 0,
+            "before_sha256": "c2a298c26a5c4a5ec6e09e18bef482aa94083cb0a4c6217b9c4f639bd8df190c"
+          }
+        },
+        {
+          "file": "idle/north/001.png",
+          "rect": [
+            80,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_001.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "fb4f9a6d6b8423273d92b2eaf5687c3be9f5d5c0347c70e0f30afe8ee6f2e22c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 8,
+            "before_sha256": "13390dc3990912d6de56d13182c212e7b6d415978d4070f630d1d370d0d240ed"
+          }
+        },
+        {
+          "file": "idle/north/002.png",
+          "rect": [
+            160,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_002.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "86c9933068f22d395eb993ac041d5bd3a659f1120df63c1b0abdbef26b8f394a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 8,
+            "before_sha256": "6b96acc9361f849b9a581954d27ae31a7763a57856a4660be9a0925b2f0b9cc8"
+          }
+        },
+        {
+          "file": "idle/north/003.png",
+          "rect": [
+            240,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_003.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "32fc9e1c1b29623c9f8bd032a3ae1c3e8e27a758ea9da5f9f8dbeb5990e9e85e",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 9,
+            "before_sha256": "c56b06866ecedabff7a2a11e840885fa5acb816781e93adc5e1d0ca59f064530"
+          }
+        },
+        {
+          "file": "idle/north/004.png",
+          "rect": [
+            320,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_004.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "4278cd8f3b2add2ef446b08bd325e50e9f59d671650c46791eb6d5ea19264ef6",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 85,
+            "before_sha256": "f46e7e032ceada7ef9c94494726ad96423131a07917c6fc8269eab15cb6190f4"
+          }
+        },
+        {
+          "file": "idle/north/005.png",
+          "rect": [
+            400,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_005.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "134c7a8987209f0358d748671af4eb12be86293b8b00d836234515456a0c9950",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 110,
+            "before_sha256": "737d99e4f78a71977f05ba840539d38d282ec33698fec6985633cbbe075b2fd7"
+          }
+        },
+        {
+          "file": "idle/north/006.png",
+          "rect": [
+            480,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_006.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "6d33d8ea40ec087a31dafb6da6513971bd57c3453e51c8552705cbd560b89019",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 146,
+            "before_sha256": "229194476bbaf32344dcf8f8b18805701407b668a9616f722e786a4c8646127a"
+          }
+        },
+        {
+          "file": "idle/north/007.png",
+          "rect": [
+            560,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_007.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "d35f03f30bed138037600a4dfa79e8bf479fbcff5c38a810805ed9d297a34dcc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 8,
+            "before_sha256": "dd0db71816a814f30b801cd48d72454250a3ba3790381fb3edbe504ea6123aa4"
+          }
+        },
+        {
+          "file": "idle/north/008.png",
+          "rect": [
+            640,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 240,
+          "source": "Idle/animations/count-idle-north/north/frame_008.png",
+          "source_canvas": [
+            52,
+            68
+          ],
+          "translation": [
+            14,
+            14
+          ],
+          "source_sha256": "578ac429499b4b90c6515fbd5fef8fa12daf7611cc0bba1b8b5fdf9a3cf8293f",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 42,
+            "before_sha256": "a3ab82eada4691cc965bb6c2b502c9e8f6301d9f2cb0719cc5ee949fb7255e20"
+          }
+        }
+      ],
+      "durations_ms": [
+        240,
+        240,
+        240,
+        240,
+        240,
+        240,
+        240,
+        240,
+        240
+      ],
+      "cycle_ms": 2160
+    },
+    "idle_west": {
+      "action": "idle",
+      "direction": "west",
+      "model": "PixelLab PixMiniMax anchored",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "idle.png",
+      "frames": [
+        {
+          "file": "idle/west/000.png",
+          "rect": [
+            0,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/count-idle-west/west/frame_000.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "080bb86a96a79da014a4e874254e50dc7025a2b8ff654cdeafdf87b77334f24a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 0,
+            "before_sha256": "72a53fd7b957f709852650ddabae7c44472a1ed03286141a2f983e933782a5ca"
+          }
+        },
+        {
+          "file": "idle/west/001.png",
+          "rect": [
+            80,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-west/west/frame_001.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "7edccddbafcf15742f5053e6367ab4befc56e3e14ac91640e3465aaff479bd28",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 12,
+            "before_sha256": "8d93a13f7978dfe24d4edd8e0655d5c0ed14f251cae4b14638f26b9cbdee557b"
+          }
+        },
+        {
+          "file": "idle/west/002.png",
+          "rect": [
+            160,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-west/west/frame_002.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "83881ac930d424a42008459f99ff2efc001b0480023e97596d4c40fb1e0851b2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 19,
+            "before_sha256": "88de765a892aca6beb4f2c3d25686b226ae940567c4bf11796686c36ef18059a"
+          }
+        },
+        {
+          "file": "idle/west/003.png",
+          "rect": [
+            240,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-west/west/frame_003.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "86505a7df4abe7d768c9da8d2b804014f4a26b26149b53dfb641594d746d320b",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 24,
+            "before_sha256": "9d6c4374f773339f954393434c2a536d48d14560a0f74f9364473cfcb9f3e859"
+          }
+        },
+        {
+          "file": "idle/west/004.png",
+          "rect": [
+            320,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 80,
+          "source": "Idle/animations/count-idle-west/west/frame_004.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "e9ed8081848e87578411822bddedb5e0c330db0baa6286ff8c1ec31807aefeeb",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 28,
+            "before_sha256": "4c89e89310935a7ebdffc526cf3d511153e0b33ada4b723466233615d0a4ff26"
+          }
+        },
+        {
+          "file": "idle/west/005.png",
+          "rect": [
+            400,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-idle-west/west/frame_005.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "3bd1122c9f9552ef6c43bdff8b5eb2266681a1bccafa4e92c50177bcbfb7ebb0",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 27,
+            "before_sha256": "4cab92e68c74c1d8f7a06253fcd0961a02a987119436a3af3d126df08a94870f"
+          }
+        },
+        {
+          "file": "idle/west/006.png",
+          "rect": [
+            480,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 260,
+          "source": "Idle/animations/count-idle-west/west/frame_006.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "3b0e9b025f316d522ae8db192448d4ac298069ed9b945df7358f4f12cd3dc95c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 26,
+            "before_sha256": "0675ba909f7d66790e20b48ff408c016963c6b59c46c528b958187b9610493f2"
+          }
+        },
+        {
+          "file": "idle/west/007.png",
+          "rect": [
+            560,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 140,
+          "source": "Idle/animations/count-idle-west/west/frame_007.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "3a7f728bebd5855e6cd07eaccab6a653dff803e1f865c86ef1aab676a1002882",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 18,
+            "before_sha256": "5d14220606e7dc6b364fef9bded057b6808378f512a5e84d27e97595aa11f4ae"
+          }
+        },
+        {
+          "file": "idle/west/008.png",
+          "rect": [
+            640,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 400,
+          "source": "Idle/animations/count-idle-west/west/frame_008.png",
+          "source_canvas": [
+            48,
+            68
+          ],
+          "translation": [
+            15,
+            13
+          ],
+          "source_sha256": "971d5be5a49dfa0dddb8243139987c0e37346ea67926a47d7af9f6237e2dd4fa",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+            "changed_visible_pixels": 68,
+            "before_sha256": "e4a60b292708b6c4230b75dd501754d5d178f51bed5c481bb61d0f26d2fccd24"
+          }
+        }
+      ],
+      "durations_ms": [
+        400,
+        260,
+        260,
+        260,
+        80,
+        100,
+        260,
+        140,
+        400
+      ],
+      "cycle_ms": 2160
+    },
+    "walk_south": {
+      "action": "walk",
+      "direction": "south",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/south/000.png",
+          "rect": [
+            0,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "600ba140721b43b09a7bb5905a10ab2a296f55315a79f7994f2f36b4d62d7e6f",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "327ed9ff822d3edc860d2e688d06bd60057b34ab9aecf5e6b01d79112df1fb23"
+          }
+        },
+        {
+          "file": "walk/south/001.png",
+          "rect": [
+            80,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "3957c074043edb477dac65069d88d06d3b9e1798ed303014e8aa626582939249",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "272964890824344588d5f42b46383117150d239e05283620426eeb3d47a4fc3a"
+          }
+        },
+        {
+          "file": "walk/south/002.png",
+          "rect": [
+            160,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "a44f5c18c4e6458f1eb0675eca3701134fb9ac29ec2cb218bbdf4d72e2410319",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "0a721a78d4809223d9bad5332c55406a7bb6c439db095e82a9b47102ec052116"
+          }
+        },
+        {
+          "file": "walk/south/003.png",
+          "rect": [
+            240,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "0b80c434071160884fa61d9f1b99a227394f293126e34d5527f97fc2524de30d",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "a2e7463907e849e0a7502f5b7919dead20ae49bcf02a8fee2cee7039cb8bfbce"
+          }
+        },
+        {
+          "file": "walk/south/004.png",
+          "rect": [
+            320,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "ee29059f6ec03ecd42bc7740c4a3d8a343d3c03ed858e1c7e595b29e13884d81",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "d321f1c51dc6a0af43b6f2f33bfe9b467be536192ab478f9ccb928b5b9c3c0e8"
+          }
+        },
+        {
+          "file": "walk/south/005.png",
+          "rect": [
+            400,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "04e342ce9b9d303ccd33695b0d422e758096bebdb85c117e91fc5196df5f461e",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "08376942a8bbc9564f63f58e9b7ef7642df5c0c0c8490601a8460406f8ce7ff1"
+          }
+        },
+        {
+          "file": "walk/south/006.png",
+          "rect": [
+            480,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            6
+          ],
+          "source_sha256": "36ac53f3e9e347728d2dad49f970e21f711b7963f47c13b7e21efe0f4ad4cace",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "9c66c1ec1a202c464d2f7ee961e14e6964c3d1c6371188783f5600b5cf9fb442"
+          }
+        },
+        {
+          "file": "walk/south/007.png",
+          "rect": [
+            560,
+            0,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/south/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "03a9d37fbc1e94149accfd949b14e2f52aef3988d73a152a6eb5731526658ef7",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "bd6755faa734402a58373e1f0b462ed490982a29ff84c5ac6a47d707728aecc3"
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_east": {
+      "action": "walk",
+      "direction": "east",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/east/000.png",
+          "rect": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "8737bcd5950687c709de7e0b4962c4c68e82e215a63887e0d38268370e75d516",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "e831250d87f9e53d8cbdbe644197bef30bfa6fc13fb818d9d5e4d29ed930ca5c"
+          }
+        },
+        {
+          "file": "walk/east/001.png",
+          "rect": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            6
+          ],
+          "source_sha256": "567cd90bf4e43bd157bab8d25bd3a6262016c4f66c4d3e34cb809854174deed2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "bdd72dd8f5d0e2e38057bedbc8d4e2241b02d952f3d68b37cb30c9b38869834f"
+          }
+        },
+        {
+          "file": "walk/east/002.png",
+          "rect": [
+            160,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "f91e179aead84dd63623c1bd0f7d6f18ed8b3c6433ba438a2d6e81ab0df2ce13",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "658e1d1814f92f688bce9626dc67f6672c624e620103d523213f52a1e5eb06d3"
+          }
+        },
+        {
+          "file": "walk/east/003.png",
+          "rect": [
+            240,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "c716b45a03100e424edcbbb57306bf3f535da3b7b9a8f8e0a02aea5e98746011",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "854be7c3d38dd2c55eff01800d2629921f172b8dc50b22b5d064b9c999f45e81"
+          }
+        },
+        {
+          "file": "walk/east/004.png",
+          "rect": [
+            320,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "9caf662cad1f57159f519d95ff5f2d29ee7c832165e0b83bbc7fd17415576e8b",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "a0e42fed518e6f8928f5297b6f2296cb8ad1523b37763547f5b2a6f8194c7d4a"
+          }
+        },
+        {
+          "file": "walk/east/005.png",
+          "rect": [
+            400,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "7c9a007f0c9e0876680fad639ce9a2bc0d036b3d18cf602747e9a0900518adf5",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "1c4592c723d59520675bf13ed02e8338534cdc7d3899c483cefeba7553fb8f0e"
+          }
+        },
+        {
+          "file": "walk/east/006.png",
+          "rect": [
+            480,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "42c48714ce30d5b7e8ae819497254aaf374c767e35710ec801566d22c25f683c",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "8ef06bad6b4f28cff2cd0ab93fc4895f40703207ab4f99929de02b1616c70835"
+          }
+        },
+        {
+          "file": "walk/east/007.png",
+          "rect": [
+            560,
+            80,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/east/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            2,
+            7
+          ],
+          "source_sha256": "924ddf01a158a5e12f81eaba21b862f4b268cec84f6c94614222f1953cd46a9b",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "a6eadd2e07c18412cf912c1535317108a9507174dbca38d4ec6a8d7d34c47fae"
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_north": {
+      "action": "walk",
+      "direction": "north",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/north/000.png",
+          "rect": [
+            0,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_000.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            17
+          ],
+          "source_sha256": "93d1288cafb8aec07676e26b5bf2a8190f354bf92ca0ef20ae4e6460305c2807",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 8,
+            "before_sha256": "9529bc064fba9ec792b26cdfb0e18b54688ddc41efeb4e89ef8032fc6dcd4985"
+          }
+        },
+        {
+          "file": "walk/north/001.png",
+          "rect": [
+            80,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_001.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "167c07dcfc1b24cd84422476d4a50abf509a8a40de3e7a0c500a5cbe41f408d3",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "9f3842b6f32b5172023ef3b9aa68fc45b2c54b31b49064149335dc87f52c0cb9"
+          }
+        },
+        {
+          "file": "walk/north/002.png",
+          "rect": [
+            160,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_002.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            15
+          ],
+          "source_sha256": "0ddf3495d2dc938283fc7b8ef193dfd7b6e1ab82d114c4dc1fdf312299abdb99",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "e26ebaf295740fec83ab4fa2569415b3cf4d2e87084e77745a64997dba7589b0"
+          }
+        },
+        {
+          "file": "walk/north/003.png",
+          "rect": [
+            240,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_003.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "4e4188ebb8a01472c51ab8071a3215639acb08aa95c12ff895fb79c1baa92717",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "0df96c6c05d25e0c64ae4eb0c5a839a5bad5d217ba3e81944419fc2bfb0d3949"
+          }
+        },
+        {
+          "file": "walk/north/004.png",
+          "rect": [
+            320,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_004.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            17
+          ],
+          "source_sha256": "50b95381fd567f98af109d0912d10f776414f060e92df044b33c38dbebe41166",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "3ef8ff664d358700c360221b9aed30bdbfefd844e46ec88e4b10ef1056a68ff2"
+          }
+        },
+        {
+          "file": "walk/north/005.png",
+          "rect": [
+            400,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_005.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            15
+          ],
+          "source_sha256": "72e0b9976542967b3a6f53e506f55ada1e252ec4e13d86e545a4e6433217a515",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "8893b4d67f84ecba2f789781a88091cae5f4e271d6eab22091222e8fe7147ab6"
+          }
+        },
+        {
+          "file": "walk/north/006.png",
+          "rect": [
+            480,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_006.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            15
+          ],
+          "source_sha256": "cb4de113cba92a556865c5cf30c57f75d3754e66ac39c43292af2646384aa3c6",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "e678719e594a7ff16291057264bed5dad007639b6699c43deeca973b97b48a32"
+          }
+        },
+        {
+          "file": "walk/north/007.png",
+          "rect": [
+            560,
+            160,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/north/frame_007.png",
+          "source_canvas": [
+            64,
+            64
+          ],
+          "translation": [
+            8,
+            16
+          ],
+          "source_sha256": "cb35ac58f70390bcd9af8bba2661e12513ea8e732c639fc030833baf6dd56cf5",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "6bc203253317fb60bf6a9f0b937a0ae2bc196c46442afc3e94ff69d59469193f"
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    },
+    "walk_west": {
+      "action": "walk",
+      "direction": "west",
+      "model": "PixelLab skeleton-guided V3",
+      "cell": [
+        80,
+        80
+      ],
+      "pivot": [
+        40,
+        70
+      ],
+      "loop": true,
+      "sheet": "walk.png",
+      "frames": [
+        {
+          "file": "walk/west/000.png",
+          "rect": [
+            0,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_000.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "e92a0a05073ae770d820fa29fda4bc8702419f6ccd5a98ff96c1256e853f1fa2",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "c7f376bfc10b638e4898b1df973d19b4f3be44f9cd1938a5e15d2e4a1bcbadf8"
+          }
+        },
+        {
+          "file": "walk/west/001.png",
+          "rect": [
+            80,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_001.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "66f4fa7c86e3bc2ff003440295863828af797e39944e2e070c07a99a08649cc8",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "2d2b73f21e221d8c7a664b2ce720d38c024853ad88c1fe338342f2b843927b56"
+          }
+        },
+        {
+          "file": "walk/west/002.png",
+          "rect": [
+            160,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_002.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "723d21509e2e752ae6896753c02d124383cf358a36414fefc5194f78e3a7efbc",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "9c7e35a5f5f56644a50d5f936041519392d5f1c278d5cb6ac2912a12049c5f23"
+          }
+        },
+        {
+          "file": "walk/west/003.png",
+          "rect": [
+            240,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_003.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "3e0f15b723eda1b32cc4b34f6af6f6adf8c8cd1b0324a346f8cc4c1e9b3e4ffe",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "3a2a097d66f2b791d04254d32c1d38af200447286b354ec209c09a42844b5292"
+          }
+        },
+        {
+          "file": "walk/west/004.png",
+          "rect": [
+            320,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_004.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "17d7cd7c2f65da4b7b8dbfcbd6f4347c75a356ebb883f99f97393cfbe1c5df8f",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "910d73a11a356cce662e3d2420ae6cd7c45025ca52595f84b91a31900bf10556"
+          }
+        },
+        {
+          "file": "walk/west/005.png",
+          "rect": [
+            400,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_005.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "3b3ccd85fcd559150ad37b9ad84b816fb313df9ac653573357976ba9563e7f50",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "9832823d328318b0d17c925cb7764f85d963f9bce4d01917ae413c8a4142bf96"
+          }
+        },
+        {
+          "file": "walk/west/006.png",
+          "rect": [
+            480,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_006.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "109073adbdd8b6cb9aaca145d945dd97f0b0bc333c576b2566a5fe0f4166cf3a",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "5ef587c7dcdaaad58ce2f13a72c52a4fab42a64d217064ad5b4a29787ae785d1"
+          }
+        },
+        {
+          "file": "walk/west/007.png",
+          "rect": [
+            560,
+            240,
+            80,
+            80
+          ],
+          "duration_ms": 100,
+          "source": "Idle/animations/count-walk/west/frame_007.png",
+          "source_canvas": [
+            80,
+            80
+          ],
+          "translation": [
+            0,
+            7
+          ],
+          "source_sha256": "f396b2fe44f52f7d7e9a87667fc6d72c6623ab2354c19d36a1b97b0359341d02",
+          "cleanup": {
+            "provider": "PixelLab pixelart_workbench",
+            "image_id": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf",
+            "changed_visible_pixels": 0,
+            "before_sha256": "e90c8cbbd37d83eaae407c38dd30e04de1bf124cf25d91d20f0b2e7096999db1"
+          }
+        }
+      ],
+      "durations_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "cycle_ms": 800
+    }
+  },
+  "frame_count": 68,
+  "cell": [
+    80,
+    80
+  ],
+  "pivot": [
+    40,
+    70
+  ],
+  "root_motion": false,
+  "transitions": {
+    "walk_entry_frame": {
+      "south": 4,
+      "east": 3,
+      "north": 1,
+      "west": 3
+    },
+    "settle_ms": 120
+  },
+  "method": "PixelLab-generated motion, whole-pixel registration, followed by targeted PixelLab pixelart_workbench cleanup. Planted idle boots and cape edges copied from reviewed source frames; loop endpoint restored; one walk hair-contour row repaired. No character regeneration or scaling.",
+  "cleanup": {
+    "provider": "PixelLab pixelart_workbench",
+    "ids": {
+      "idle": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+      "walk": "0ab8ac28-d4a8-4147-926c-2e98d40a1ebf"
+    },
+    "changes": [
+      "Locked planted idle boots",
+      "Removed north idle hand flashes at cape edges",
+      "Exact idle endpoint closure",
+      "Repaired north walk first-frame hair fringe",
+      "Shortened closed-eye holds while preserving 2160 ms idle cycles",
+      "Corrected viewer-right eye on blink frame 7"
+    ],
+    "timing_note": "Closed-eye phases now 80–100 ms per frame, instead of 240 ms. North idle timing remains unchanged."
+  },
+  "eye_fix": {
+    "provider": "PixelLab pixelart_workbench",
+    "image_id": "7d9ee3bd-b938-4007-84af-34dc1a2fb147",
+    "clip": "idle_south",
+    "frame": 7,
+    "native_pixels": [
+      [
+        41,
+        35
+      ],
+      [
+        42,
+        35
+      ]
+    ],
+    "reason": "Removed two leftover upper-eye pixels on the viewer-right eye during the closed blink."
+  }
+}
