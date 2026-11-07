@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { createCollisionEnv, createTilemap } from './world/tilemap';
-import { createOpeningState, skipOpening, updateOpening } from './opening';
+import {
+  createOpeningState,
+  openingDialogue,
+  skipOpening,
+  updateOpening,
+} from './opening';
 import { RESTAURANT_STATIONS } from './world/areas';
 
 const ROWS = [
@@ -33,7 +38,7 @@ describe('restaurant opening choreography', () => {
 
     expect(state.complete).toBe(true);
     expect(state.customer).toBeUndefined();
-    expect(state.dialogue).toBeNull();
+    expect(openingDialogue(state)).toBeNull();
     expect(state.ronja.x).toBe(
       (RESTAURANT_STATIONS.iceCreamMachine.x + 0.5) * 32,
     );
@@ -49,11 +54,15 @@ describe('restaurant opening choreography', () => {
     const collisionEnv = createCollisionEnv(map);
     const state = createOpeningState(map, RESTAURANT_STATIONS);
 
-    for (let elapsed = 0; elapsed < 60_000 && !state.dialogue; elapsed += 16) {
+    for (
+      let elapsed = 0;
+      elapsed < 60_000 && !openingDialogue(state);
+      elapsed += 16
+    ) {
       updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
     }
 
-    expect(state.dialogue?.speaker).toBe('CUSTOMER');
+    expect(openingDialogue(state)?.speaker).toBe('CUSTOMER');
     expect(
       Math.hypot(
         (state.customer?.x ?? Number.POSITIVE_INFINITY) - (12 + 0.5) * 32,
@@ -69,10 +78,10 @@ describe('restaurant opening choreography', () => {
 
     for (let elapsed = 0; elapsed < 60_000; elapsed += 16) {
       updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
-      if (state.dialogue?.speaker === 'RONJA') break;
+      if (openingDialogue(state)?.speaker === 'RONJA') break;
     }
 
-    expect(state.dialogue?.speaker).toBe('RONJA');
+    expect(openingDialogue(state)?.speaker).toBe('RONJA');
     expect(state.ronja.vx).toBe(0);
     expect(state.ronja.vy).toBe(0);
     expect(state.customer?.vx).toBe(0);
@@ -87,8 +96,9 @@ describe('restaurant opening choreography', () => {
 
     for (let elapsed = 0; elapsed < 60_000 && !state.complete; elapsed += 16) {
       updateOpening(state, 16, map, RESTAURANT_STATIONS, collisionEnv);
-      if (state.dialogue) {
-        if (state.dialogue.speaker === 'RONJA') {
+      const currentDialogue = openingDialogue(state);
+      if (currentDialogue) {
+        if (currentDialogue.speaker === 'RONJA') {
           expect(state.ronja.x).toBe(
             (RESTAURANT_STATIONS.iceCreamMachine.x + 0.5) * 32,
           );
@@ -96,7 +106,7 @@ describe('restaurant opening choreography', () => {
             (RESTAURANT_STATIONS.iceCreamMachine.y + 0.5) * 32,
           );
         }
-        const line = `${state.dialogue.day}|${state.dialogue.speaker}|${state.dialogue.text}`;
+        const line = `${currentDialogue.day}|${currentDialogue.speaker}|${currentDialogue.text}`;
         if (dialogue.at(-1) !== line) dialogue.push(line);
       }
     }

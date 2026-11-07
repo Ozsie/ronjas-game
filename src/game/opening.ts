@@ -1,6 +1,13 @@
 import type { Entity } from './engine/entity';
 import { createEntity } from './engine/entity';
 import { moveAabb, type CollisionEnv } from './engine/physics';
+import {
+  advanceDialog,
+  currentDialogNode,
+  startDialog,
+  type DialogLine,
+  type DialogState,
+} from './dialog';
 import { cellCenter, type Tilemap } from './world/tilemap';
 
 export type OpeningStations = {
@@ -11,10 +18,15 @@ export type OpeningStations = {
   customerDoor: { x: number; y: number };
 };
 
-export type OpeningDialogue = {
+export type OpeningDialogue = DialogLine & {
   day: string;
   speaker: 'CUSTOMER' | 'RONJA';
-  text: string;
+};
+
+type ActiveOpeningDialogue = {
+  day: string;
+  speaker: OpeningDialogue['speaker'];
+  session: DialogState;
 };
 
 type OpeningPhase =
@@ -33,7 +45,7 @@ export type OpeningState = {
   phaseElapsedMs: number;
   ronja: Entity;
   customer?: Entity;
-  dialogue: OpeningDialogue | null;
+  dialogue: ActiveOpeningDialogue | null;
   complete: boolean;
 };
 
@@ -78,6 +90,19 @@ export const createOpeningState = (
   complete: false,
 });
 
+export const openingDialogue = (
+  state: OpeningState,
+): OpeningDialogue | null => {
+  if (!state.dialogue) return null;
+  const node = currentDialogNode(state.dialogue.session);
+  if (!node) return null;
+  return {
+    day: state.dialogue.day,
+    speaker: state.dialogue.speaker,
+    text: node.text,
+  };
+};
+
 export const skipOpening = (
   state: OpeningState,
   map: Tilemap,
@@ -101,7 +126,26 @@ const setPhase = (
 ): void => {
   state.phase = phase;
   state.phaseElapsedMs = 0;
-  state.dialogue = dialogue;
+  state.dialogue = dialogue
+    ? {
+        day: dialogue.day,
+        speaker: dialogue.speaker,
+        session: startDialog({
+          start: 'line',
+          nodes: {
+            line: { speaker: dialogue.speaker, text: dialogue.text },
+          },
+        }),
+      }
+    : null;
+};
+
+const completeDialogue = (state: OpeningState): void => {
+  if (!state.dialogue) return;
+  state.dialogue = {
+    ...state.dialogue,
+    session: advanceDialog(state.dialogue.session),
+  };
 };
 
 const dialogueForDay = (
@@ -189,6 +233,7 @@ export const updateOpening = (
   if (state.phase === 'customer-speaks') {
     state.phaseElapsedMs += stepMs;
     if (state.phaseElapsedMs >= DIALOGUE_DURATION_MS) {
+      completeDialogue(state);
       setPhase(state, 'ronja-to-machine-for-order');
     }
     return;
@@ -215,6 +260,7 @@ export const updateOpening = (
   if (state.phase === 'ronja-speaks') {
     state.phaseElapsedMs += stepMs;
     if (state.phaseElapsedMs >= DIALOGUE_DURATION_MS) {
+      completeDialogue(state);
       setPhase(state, 'customer-leaves');
     }
     return;
@@ -275,6 +321,7 @@ export const updateOpening = (
 
   state.phaseElapsedMs += stepMs;
   if (state.phaseElapsedMs >= DIALOGUE_DURATION_MS * 2) {
+    completeDialogue(state);
     state.complete = true;
   }
 };

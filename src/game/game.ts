@@ -8,6 +8,18 @@
 import { createCamera, updateCamera } from '@hoard-engine/camera';
 import { createEntity, type Entity } from './engine/entity';
 import {
+  advanceDialog,
+  currentDialogNode,
+  startDialog,
+  type DialogState,
+} from './dialog';
+import { STRANGE_MAN_DIALOG } from './dialogContent';
+import {
+  dialogPanelBounds,
+  drawDialogPanel,
+  isDialogPanelHit,
+} from './dialogView';
+import {
   createInputHarness,
   directionTowardPoint,
   InputAction,
@@ -45,7 +57,12 @@ import {
   isSkipButtonHit,
   skipButtonBounds,
 } from './intro';
-import { createOpeningState, skipOpening, updateOpening } from './opening';
+import {
+  createOpeningState,
+  openingDialogue,
+  skipOpening,
+  updateOpening,
+} from './opening';
 import {
   doorAtCell,
   arrivalPosition,
@@ -168,6 +185,13 @@ export const createGame = (
   let activeTouchPointerId: number | null = null;
   let touchTarget: { x: number; y: number } | null = null;
   let collisionDebugEnabled = false;
+  let streetDialogue: {
+    kind: 'greeting' | 'conversation';
+    session: DialogState;
+  } | null = null;
+  let greetingIndex = 0;
+  let wasNearStreetPerson = false;
+  let useRequested = false;
   const handOffToPlayer = (): void => {
     player.x = opening.ronja.x;
     player.y = opening.ronja.y;
@@ -181,6 +205,48 @@ export const createGame = (
     skipOpening(opening, currentArea.tilemap, RESTAURANT_STATIONS);
     handOffToPlayer();
   };
+  const isNearStreetPerson = (): boolean =>
+    currentArea.id === 'street' &&
+    Math.hypot(player.x - streetPerson.x, player.y - streetPerson.y) <=
+      currentArea.tilemap.cellSize * 1.5;
+  const updateStreetDialogue = (): boolean => {
+    const nearPerson = isNearStreetPerson();
+    if (!nearPerson && streetDialogue?.kind === 'greeting') {
+      streetDialogue = null;
+    }
+    if (nearPerson && !wasNearStreetPerson && !streetDialogue) {
+      const greetingNode =
+        greetingIndex % 2 === 0 ? 'greeting-first' : 'greeting-second';
+      streetDialogue = {
+        kind: 'greeting',
+        session: startDialog(STRANGE_MAN_DIALOG, greetingNode),
+      };
+      greetingIndex += 1;
+    }
+    wasNearStreetPerson = nearPerson;
+
+    if (useRequested) {
+      useRequested = false;
+      if (nearPerson) {
+        if (streetDialogue?.kind === 'conversation') {
+          const session = advanceDialog(streetDialogue.session);
+          streetDialogue = currentDialogNode(session)
+            ? { kind: 'conversation', session }
+            : null;
+        } else {
+          streetDialogue = {
+            kind: 'conversation',
+            session: startDialog(STRANGE_MAN_DIALOG, 'machine'),
+          };
+        }
+      }
+    }
+
+    if (streetDialogue?.kind === 'conversation' && !nearPerson) {
+      streetDialogue = null;
+    }
+    return streetDialogue?.kind === 'conversation';
+  };
   const onKeyDown = (event: KeyboardEvent): void => {
     if (isCollisionDebugToggleKey(event.key, event.repeat)) {
       collisionDebugEnabled = !collisionDebugEnabled;
@@ -190,6 +256,9 @@ export const createGame = (
     if (!opening.complete) {
       if (event.code === 'Escape') skipIntro();
       return;
+    }
+    if (!event.repeat && (event.code === 'KeyE' || event.code === 'Space')) {
+      useRequested = true;
     }
     input.handleKeyDown(event);
   };
@@ -207,6 +276,21 @@ export const createGame = (
       skipIntro();
       return;
     }
+    if (
+      opening.complete &&
+      event.pointerType === 'touch' &&
+      streetDialogue &&
+      isDialogPanelHit(
+        dialogPanelBounds(canvas.width, canvas.height),
+        event.offsetX,
+        event.offsetY,
+      )
+    ) {
+      event.preventDefault();
+      useRequested = true;
+      return;
+    }
+    if (streetDialogue?.kind === 'conversation') return;
     if (!opening.complete || event.pointerType !== 'touch') return;
     if (activeTouchPointerId !== null) return;
     event.preventDefault();
@@ -266,6 +350,8 @@ export const createGame = (
     player.vx = 0;
     player.vy = 0;
     camera = createCamera(player.x, player.y);
+    streetDialogue = null;
+    wasNearStreetPerson = false;
   };
 
   const update = (stepMs: number): void => {
@@ -298,6 +384,19 @@ export const createGame = (
       }
       player.vx = 0;
       player.vy = 0;
+      return;
+    }
+    if (updateStreetDialogue()) {
+      touchTarget = null;
+      player.vx = 0;
+      player.vy = 0;
+      camera = updateCamera(
+        camera,
+        player.x,
+        player.y,
+        CAMERA_LAG_PER_SECOND,
+        stepMs,
+      );
       return;
     }
     // Held-input velocity sampled per step, so the player never moves
@@ -444,8 +543,23 @@ export const createGame = (
         debugActor,
       );
     }
-    if (opening.dialogue && !opening.complete) {
-      drawIntroOverlay(ctx, canvas.width, canvas.height, opening.dialogue);
+    const dialogue = openingDialogue(opening);
+    if (dialogue && !opening.complete) {
+      drawIntroOverlay(ctx, canvas.width, canvas.height, dialogue);
+    }
+    const streetLine = streetDialogue
+      ? currentDialogNode(streetDialogue.session)
+      : null;
+    if (streetLine) {
+      drawDialogPanel(
+        ctx,
+        canvas.width,
+        canvas.height,
+        streetLine,
+        streetDialogue?.kind === 'greeting'
+          ? 'E / TAP TO TALK'
+          : 'E / TAP TO CONTINUE',
+      );
     }
     if (!opening.complete) drawSkipButton(ctx, canvas.width);
   };
