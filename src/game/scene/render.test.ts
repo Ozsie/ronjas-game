@@ -207,7 +207,7 @@ describe('isometric world rendering', () => {
     expect(imageBounds).toEqual([feet.x - 48, feet.y - 192, 96, 192]);
   });
 
-  it('projects wall cells, fixture shapes, and the player collision box', () => {
+  it('projects wall cells, fixture shapes, and every entity collision box', () => {
     let strokeCount = 0;
     const ctx = {
       beginPath: () => undefined,
@@ -236,13 +236,16 @@ describe('isometric world rendering', () => {
       view,
       {
         cellSize: map.cellSize,
-        isSolidCell: () => false,
+        isSolidCell: (cellX, cellY) => cellY === 0 && cellX < 2,
         obstacles: [{ x: 48, y: 16, halfWidth: 8, halfHeight: 6 }],
       },
-      { x: 48, y: 48, halfWidth: 8, halfHeight: 8 },
+      [
+        { x: 48, y: 48, halfWidth: 8, halfHeight: 8 },
+        { x: 80, y: 48, halfWidth: 6, halfHeight: 10 },
+      ],
     );
 
-    expect(strokeCount).toBe(3);
+    expect(strokeCount).toBe(5);
   });
 
   it('keeps isometric wall geometry instead of drawing wall sprites', () => {

@@ -202,13 +202,10 @@ export const createGameRenderer = (
         performance.now(),
       );
       if (state.collisionDebugEnabled) {
-        drawCollisionDebug(
-          ctx,
-          area.tilemap,
-          view,
-          state.collisionEnv,
-          features.hidePlayer ? (features.actors[0]?.entity ?? player) : player,
-        );
+        drawCollisionDebug(ctx, area.tilemap, view, state.collisionEnv, [
+          player,
+          ...features.actors.map((actor) => actor.entity),
+        ]);
       }
       if (features.intro) {
         drawIntroOverlay(ctx, canvas.width, canvas.height, features.intro);

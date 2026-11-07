@@ -129,11 +129,11 @@ export const drawCollisionDebug = (
   map: Tilemap,
   view: SceneIsoView,
   collisionEnv: CollisionEnv,
-  player: Aabb,
+  entities: ReadonlyArray<Aabb>,
 ): void => {
   for (let cellY = 0; cellY < map.rows.length; cellY += 1) {
     for (let cellX = 0; cellX < (map.rows[cellY]?.length ?? 0); cellX += 1) {
-      if (map.rows[cellY]?.[cellX] !== SOLID) continue;
+      if (!collisionEnv.isSolidCell(cellX, cellY)) continue;
       drawCollisionBox(
         ctx,
         view,
@@ -150,7 +150,9 @@ export const drawCollisionDebug = (
   for (const obstacle of collisionEnv.obstacles ?? []) {
     drawCollisionBox(ctx, view, obstacle, '#ff3b30');
   }
-  drawCollisionBox(ctx, view, player, '#00ff88');
+  for (const entity of entities) {
+    drawCollisionBox(ctx, view, entity, '#00ff88');
+  }
 };
 
 const drawWallCell = (
