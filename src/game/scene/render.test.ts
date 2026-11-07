@@ -5,11 +5,12 @@ import {
   worldToScreen,
 } from '@hoard-engine/scene';
 import { createEntity } from '../engine/entity';
-import { createTilemap } from '../world/tilemap';
+import { createTilemap, TREE } from '../world/tilemap';
 import {
   drawCollisionDebug,
   drawWorldFrame,
   type CafeteriaAssets,
+  type ForestDecorationAssets,
 } from './render';
 import { WORLD_PALETTE } from './palette';
 
@@ -124,6 +125,86 @@ describe('isometric world rendering', () => {
     });
     expect(clipCount).toBe(1);
     expect(fillCount).toBeGreaterThan(0);
+  });
+
+  it('draws forest decorations feet-anchored at their world position', () => {
+    const image = {
+      complete: true,
+      naturalWidth: 32,
+      naturalHeight: 64,
+    } as HTMLImageElement;
+    const drawnImages: CanvasImageSource[] = [];
+    const imageBounds: number[] = [];
+    const ctx = {
+      fillStyle: '',
+      fillRect: () => undefined,
+      beginPath: () => undefined,
+      moveTo: () => undefined,
+      lineTo: () => undefined,
+      closePath: () => undefined,
+      fill: () => undefined,
+      drawImage: (
+        source: CanvasImageSource,
+        _sourceX: number,
+        _sourceY: number,
+        _sourceWidth: number,
+        _sourceHeight: number,
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+      ) => {
+        drawnImages.push(source);
+        imageBounds.push(x, y, width, height);
+      },
+    } as unknown as CanvasRenderingContext2D;
+    const map = createTilemap(['.'], 32);
+    const view = createIsoView(
+      { x: 16, y: 16 },
+      200,
+      200,
+      map.cellSize,
+      createIsoProjection(map.cellSize),
+    );
+    const assets: ForestDecorationAssets = {
+      bracken_clump_with_drooping_fronds: image,
+    };
+    const feet = worldToScreen(view, 16, 16);
+
+    drawWorldFrame(
+      ctx,
+      map,
+      view,
+      [],
+      0,
+      new Map(),
+      [{ kind: 'bracken_clump_with_drooping_fronds', cellX: 0, cellY: 0 }],
+      'forest',
+      undefined,
+      assets,
+    );
+
+    expect(drawnImages).toEqual([image]);
+    expect(imageBounds).toEqual([feet.x - 12, feet.y - 48, 24, 48]);
+
+    drawnImages.length = 0;
+    imageBounds.length = 0;
+    const woodedMap = createTilemap([TREE], 32);
+    drawWorldFrame(
+      ctx,
+      woodedMap,
+      view,
+      [],
+      0,
+      new Map(),
+      [{ kind: 'sycamore_tree_with_a_thick_trunk', cellX: 0, cellY: 0 }],
+      'forest',
+      undefined,
+      { sycamore_tree_with_a_thick_trunk: image },
+    );
+
+    expect(drawnImages).toEqual([image]);
+    expect(imageBounds).toEqual([feet.x - 48, feet.y - 192, 96, 192]);
   });
 
   it('projects wall cells, fixture shapes, and the player collision box', () => {

@@ -11,6 +11,7 @@ import {
   mapWidthCells,
   mapWidthPx,
   SOLID,
+  TREE,
   tileAt,
 } from './tilemap';
 
@@ -29,6 +30,13 @@ describe('tilemap', () => {
     expect(isSolidCell(map, 1, 1)).toBe(false);
     expect(isSolidCell(map, 0, 0)).toBe(true);
     expect(isSolidCell(map, 4, 4)).toBe(true);
+  });
+
+  it('treats tree cells as solid', () => {
+    const woodedMap = createTilemap([`${TREE}.`], 32);
+    expect(tileAt(woodedMap, 0, 0)).toBe(TREE);
+    expect(isSolidCell(woodedMap, 0, 0)).toBe(true);
+    expect(isSolidCell(woodedMap, 1, 0)).toBe(false);
   });
 
   it('treats every edge outside the map as solid', () => {

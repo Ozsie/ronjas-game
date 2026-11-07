@@ -8,6 +8,12 @@ import { drawIntroOverlay, drawSkipButton } from '../intro';
 import type { Area } from '../world/area';
 import type { AreaFeaturePresentation } from '../world/areaFeatures';
 import { INITIAL_AREA_ID } from '../world/areas';
+import {
+  FOREST_DECORATIONS,
+  type ForestDecorationKind,
+  FOREST_TREES,
+  type ForestTreeKind,
+} from '../world/areas/forest/area';
 import { RESTAURANT_FIXTURES } from '../world/areas/restaurant/area';
 import { STREET_FIXTURES } from '../world/areas/street/area';
 import {
@@ -20,6 +26,7 @@ import {
   drawLights,
   drawWorldFrame,
   type CafeteriaAssets,
+  type ForestDecorationAssets,
 } from './render';
 
 export type GameRenderState = {
@@ -57,6 +64,12 @@ const loadCharacterSprites = (
 const loadCafeteriaAsset = (name: string): HTMLImageElement =>
   loadImage(`assets/cafeteria/${name}.png`);
 
+const loadForestDecoration = (kind: ForestDecorationKind): HTMLImageElement =>
+  loadImage(`assets/forest/decorations/${kind}.png`);
+
+const loadForestTree = (kind: ForestTreeKind): HTMLImageElement =>
+  loadImage(`assets/forest/trees/${kind}.png`);
+
 const playerLightAt = (player: Entity, cellSize: number) =>
   createLight(player.x / cellSize - 0.5, player.y / cellSize - 0.5, undefined, {
     id: 'player-light',
@@ -84,6 +97,41 @@ export const createGameRenderer = (
     reachInFridge: loadCafeteriaAsset('reach_in_fridge'),
     trashBin: loadCafeteriaAsset('trash_bin'),
     vendingMachine: loadCafeteriaAsset('vending_machine'),
+  };
+  const forestAssets: ForestDecorationAssets = {
+    bracken_clump_with_drooping_fronds: loadForestDecoration(
+      'bracken_clump_with_drooping_fronds',
+    ),
+    brown_mushroom_with_a_forked_cap: loadForestDecoration(
+      'brown_mushroom_with_a_forked_cap',
+    ),
+    clump_of_cattails_with_brown_seed_heads: loadForestDecoration(
+      'clump_of_cattails_with_brown_seed_heads',
+    ),
+    cluster_of_mustard_mushrooms_with_funnel_caps: loadForestDecoration(
+      'cluster_of_mustard_mushrooms_with_funnel_caps',
+    ),
+    tall_pampas_grass_clump_with_cream_plumes: loadForestDecoration(
+      'tall_pampas_grass_clump_with_cream_plumes',
+    ),
+    forked_birch_sapling_with_a_black_bark_band: loadForestTree(
+      'forked_birch_sapling_with_a_black_bark_band',
+    ),
+    linden_tree_with_heart_shaped_leaves: loadForestTree(
+      'linden_tree_with_heart_shaped_leaves',
+    ),
+    pine_sapling_with_a_bent_tip: loadForestTree(
+      'pine_sapling_with_a_bent_tip',
+    ),
+    sycamore_tree_with_a_thick_trunk: loadForestTree(
+      'sycamore_tree_with_a_thick_trunk',
+    ),
+    walnut_tree_with_a_broad_crown: loadForestTree(
+      'walnut_tree_with_a_broad_crown',
+    ),
+    young_apple_tree_with_red_apples: loadForestTree(
+      'young_apple_tree_with_red_apples',
+    ),
   };
   const actorDirections = new Map<string, CharacterDirection>();
   let animationTimeMs = 0;
@@ -120,13 +168,17 @@ export const createGameRenderer = (
           ? RESTAURANT_FIXTURES
           : area.id === 'street'
             ? STREET_FIXTURES
-            : [];
+            : area.id === 'forest'
+              ? [...FOREST_TREES, ...FOREST_DECORATIONS]
+              : [];
       const fixtureKind =
         area.id === INITIAL_AREA_ID
           ? 'restaurant'
           : area.id === 'street'
             ? 'street'
-            : null;
+            : area.id === 'forest'
+              ? 'forest'
+              : null;
       drawWorldFrame(
         ctx,
         area.tilemap,
@@ -137,6 +189,7 @@ export const createGameRenderer = (
         fixtures,
         fixtureKind,
         area.id === INITIAL_AREA_ID ? cafeteriaAssets : undefined,
+        area.id === 'forest' ? forestAssets : undefined,
       );
       const lightCarrier = features.lightCarrier ?? player;
       drawLights(

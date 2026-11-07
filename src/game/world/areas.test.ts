@@ -6,11 +6,61 @@ import {
   RESTAURANT_STATIONS,
 } from './areas/restaurant/area';
 import { STREET_FIXTURES } from './areas/street/area';
+import {
+  FOREST_DECORATIONS,
+  FOREST_DECORATION_KINDS,
+  FOREST_TREES,
+  FOREST_TREE_KINDS,
+} from './areas/forest/area';
 import { STRANGE_MAN } from './areas/street/actors/strangeMan/actor';
-import { DOOR, SOLID, isSolidCell, tileAt } from './tilemap';
+import { DOOR, SOLID, TREE, isSolidCell, tileAt } from './tilemap';
 import { moveAabb } from '../engine/physics';
 
 const AREA_IDS = [INITIAL_AREA_ID, 'street', 'forest'];
+
+const findTreeGroves = (rows: string[]) => {
+  const remaining = new Set(
+    rows.flatMap((row, cellY) =>
+      [...row].flatMap((cell, cellX) =>
+        cell === TREE ? [`${cellX},${cellY}`] : [],
+      ),
+    ),
+  );
+  const groves: { cellX: number; cellY: number }[][] = [];
+
+  while (remaining.size > 0) {
+    const firstCell = remaining.values().next().value;
+    if (firstCell === undefined) break;
+
+    const [cellX, cellY] = firstCell.split(',').map(Number);
+    const queue = [{ cellX: cellX ?? 0, cellY: cellY ?? 0 }];
+    const grove: { cellX: number; cellY: number }[] = [];
+    remaining.delete(firstCell);
+
+    for (let index = 0; index < queue.length; index += 1) {
+      const cell = queue[index];
+      if (!cell) continue;
+      grove.push(cell);
+
+      for (const [offsetX, offsetY] of [
+        [0, -1],
+        [1, 0],
+        [0, 1],
+        [-1, 0],
+      ]) {
+        const neighborX = cell.cellX + (offsetX ?? 0);
+        const neighborY = cell.cellY + (offsetY ?? 0);
+        const neighborKey = `${neighborX},${neighborY}`;
+        if (!remaining.delete(neighborKey)) continue;
+        queue.push({ cellX: neighborX, cellY: neighborY });
+      }
+    }
+
+    groves.push(grove);
+  }
+
+  return groves;
+};
 
 describe('area content invariants', () => {
   it('starts in the restaurant with an exit to the street', () => {
@@ -32,6 +82,60 @@ describe('area content invariants', () => {
       const width = rows[0].length;
       rows.forEach((row) => expect(row.length).toBe(width));
     }
+  });
+
+  it('gives the forest a 100 by 100 graybox layout', () => {
+    const { rows } = getArea('forest').tilemap;
+    expect(rows).toHaveLength(100);
+    rows.forEach((row) => expect(row).toHaveLength(100));
+  });
+
+  it('covers contiguous forest tree areas with solid tree fixtures', () => {
+    const forest = getArea('forest');
+    const treeGroves = findTreeGroves(forest.tilemap.rows);
+    const treeCells = treeGroves.flatMap((grove) =>
+      grove.map(({ cellX, cellY }) => `${cellX},${cellY}`),
+    );
+    const treeFixtureCells = new Set(
+      FOREST_TREES.map(({ cellX, cellY }) => `${cellX},${cellY}`),
+    );
+
+    expect(treeGroves).toHaveLength(4);
+    expect(
+      [...treeFixtureCells].every((cell) => treeCells.includes(cell)),
+    ).toBe(true);
+    expect(new Set(FOREST_TREES.map(({ kind }) => kind))).toEqual(
+      new Set(FOREST_TREE_KINDS),
+    );
+    treeGroves.forEach((grove) => {
+      const treeCount = grove.filter(({ cellX, cellY }) =>
+        treeFixtureCells.has(`${cellX},${cellY}`),
+      ).length;
+      expect(treeCount).toBe(Math.max(1, Math.floor(grove.length / 2)));
+    });
+    FOREST_TREES.forEach(({ cellX, cellY }) => {
+      expect(isSolidCell(forest.tilemap, cellX, cellY)).toBe(true);
+    });
+  });
+
+  it('scatters forest decorations across walkable cells away from the entrance', () => {
+    const forest = getArea('forest');
+    expect(FOREST_DECORATIONS).toHaveLength(144);
+    expect(
+      new Set(FOREST_DECORATIONS.map(({ cellX, cellY }) => `${cellX},${cellY}`))
+        .size,
+    ).toBe(FOREST_DECORATIONS.length);
+    expect(new Set(FOREST_DECORATIONS.map(({ kind }) => kind))).toEqual(
+      new Set(FOREST_DECORATION_KINDS),
+    );
+    FOREST_DECORATIONS.forEach(({ cellX, cellY }) => {
+      expect(isSolidCell(forest.tilemap, cellX, cellY)).toBe(false);
+      expect(tileAt(forest.tilemap, cellX, cellY)).not.toBe(TREE);
+      expect(tileAt(forest.tilemap, cellX, cellY)).not.toBe(DOOR);
+      expect(
+        Math.hypot(cellX - forest.spawnCell.x, cellY - forest.spawnCell.y),
+      ).toBeGreaterThan(3);
+    });
   });
 
   it('marks every door cell with the door token', () => {
@@ -150,7 +254,11 @@ describe('area content invariants', () => {
     expect(northDoor?.cellY).toBe(0);
     expect(northDoor?.targetAreaId).toBe('forest');
     expect(forest.doors[0]?.targetAreaId).toBe('street');
-    expect(forest.doors[0]?.spawnCell).toEqual({ x: 3, y: 6 });
+    expect(forest.doors[0]).toMatchObject({
+      cellX: 50,
+      cellY: 99,
+      spawnCell: { x: 50, y: 98 },
+    });
     expect(STRANGE_MAN).toMatchObject({ cellX: 2, cellY: 10 });
   });
 

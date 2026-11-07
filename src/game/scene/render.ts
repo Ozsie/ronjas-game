@@ -22,7 +22,7 @@ import {
 import type { Entity } from '../engine/entity';
 import type { Aabb, CollisionEnv } from '../engine/physics';
 import type { Tilemap } from '../world/tilemap';
-import { DOOR, SOLID } from '../world/tilemap';
+import { DOOR, SOLID, TREE } from '../world/tilemap';
 import {
   WALL_HEIGHT_BEHIND_ACTOR_PX,
   WALL_HEIGHT_PX,
@@ -238,6 +238,10 @@ export type CafeteriaAssets = {
   vendingMachine: HTMLImageElement;
 };
 
+export type ForestDecorationAssets = Readonly<
+  Record<string, HTMLImageElement | undefined>
+>;
+
 const imageReady = (
   image: HTMLImageElement | undefined,
 ): image is HTMLImageElement =>
@@ -329,6 +333,62 @@ const drawFixtureImage = (
   );
 };
 
+const drawForestDecoration = (
+  ctx: CanvasRenderingContext2D,
+  view: SceneIsoView,
+  cellSize: number,
+  fixture: WorldFixture,
+  image: HTMLImageElement,
+): void => {
+  const feet = worldToScreen(
+    view,
+    (fixture.cellX + 0.5) * cellSize,
+    (fixture.cellY + 0.5) * cellSize,
+  );
+  const scale = (cellSize * 3) / 128;
+  const width = image.naturalWidth * scale;
+  const height = image.naturalHeight * scale;
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    image.naturalWidth,
+    image.naturalHeight,
+    feet.x - width / 2,
+    feet.y - height,
+    width,
+    height,
+  );
+};
+
+const drawForestTree = (
+  ctx: CanvasRenderingContext2D,
+  view: SceneIsoView,
+  cellSize: number,
+  fixture: WorldFixture,
+  image: HTMLImageElement,
+): void => {
+  const feet = worldToScreen(
+    view,
+    (fixture.cellX + 0.5) * cellSize,
+    (fixture.cellY + 0.5) * cellSize,
+  );
+  const scale = (cellSize * 3) / 32;
+  const width = image.naturalWidth * scale;
+  const height = image.naturalHeight * scale;
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    image.naturalWidth,
+    image.naturalHeight,
+    feet.x - width / 2,
+    feet.y - height,
+    width,
+    height,
+  );
+};
+
 type PainterEntry = { depth: number; draw: () => void };
 
 // One full world pass: floors first, then walls, actors and fixtures in
@@ -347,8 +407,9 @@ export const drawWorldFrame = (
   animationTimeMs = 0,
   actorDirections: Map<string, CharacterDirection> = new Map(),
   fixtures: ReadonlyArray<WorldFixture> = [],
-  fixtureKind: 'restaurant' | 'street' | null = null,
+  fixtureKind: 'restaurant' | 'street' | 'forest' | null = null,
   cafeteriaAssets?: CafeteriaAssets,
+  forestAssets?: ForestDecorationAssets,
 ): void => {
   const world = isoWorldView(map);
   const mainActor = actors[0]?.entity;
@@ -573,6 +634,15 @@ export const drawWorldFrame = (
           }
         } else if (fixtureKind === 'street') {
           drawStreetFixtures(ctx, view, world.cellSize, [fixture]);
+        } else if (fixtureKind === 'forest' && forestAssets) {
+          const image = forestAssets[fixture.kind];
+          if (imageReady(image)) {
+            if (world.rows[fixture.cellY]?.[fixture.cellX] === TREE) {
+              drawForestTree(ctx, view, world.cellSize, fixture, image);
+            } else {
+              drawForestDecoration(ctx, view, world.cellSize, fixture, image);
+            }
+          }
         }
       },
     });

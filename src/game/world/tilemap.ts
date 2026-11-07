@@ -7,6 +7,7 @@ import type { Aabb, CollisionEnv } from '../engine/physics';
 
 export const FLOOR = '.';
 export const SOLID = WALL;
+export const TREE = 'T';
 // A walkable gap in a wall that connects two areas (see world/area.ts):
 // not solid, rendered as a marked tile, triggers travel when the player
 // stands in it.
@@ -50,7 +51,8 @@ export const isSolidCell = (
   ) {
     return true;
   }
-  return tileAt(map, cellX, cellY) === SOLID;
+  const cell = tileAt(map, cellX, cellY);
+  return cell === SOLID || cell === TREE;
 };
 
 export const isDoorCell = (
