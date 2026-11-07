@@ -10,7 +10,6 @@ import { createEntity } from './engine/entity';
 import { dialogPanelBounds, isDialogPanelHit } from './dialogView';
 import {
   createInputHarness,
-  directionTowardPoint,
   InputAction,
   type InputHarness,
   isCollisionDebugToggleKey,
@@ -20,13 +19,16 @@ import { moveAabb, type CollisionEnv } from './engine/physics';
 import {
   createIsoProjection,
   isoPlaneToWorld,
-  screenDirectionToWorld,
   type IsoProjection,
   worldToIsoPlane,
 } from '@hoard-engine/scene';
 import { seedRun } from './rng';
 import { createGameRenderer } from './scene/gameRenderer';
 import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
+import {
+  worldMovementForInput,
+  worldMovementForScreenDirection,
+} from './scene/movement';
 import { isSkipButtonHit, skipButtonBounds } from './intro';
 import {
   doorAtCell,
@@ -245,21 +247,32 @@ export const createGame = (
     // Held-input velocity sampled per step, so the player never moves
     // faster at a higher frame rate; walls stop movement flush (the
     // zeroed velocity marks a blocked axis for wall-slide feedback).
-    // Controls are screen-relative: the held screen direction maps
-    // through the projection to a world-plane unit vector first, so
-    // "up" on the keyboard moves screen-up under the iso projection.
+    // Scale held keyboard axes by the projection so paired directions
+    // follow cell edges; normalize in projected space so every direction
+    // travels at the same apparent speed.
     const screenDirX =
       (input.isHeld(InputAction.RIGHT) ? 1 : 0) -
       (input.isHeld(InputAction.LEFT) ? 1 : 0);
     const screenDirY =
       (input.isHeld(InputAction.DOWN) ? 1 : 0) -
       (input.isHeld(InputAction.UP) ? 1 : 0);
-    const touchDistance = touchTarget
-      ? Math.hypot(touchTarget.x - player.x, touchTarget.y - player.y)
+    const touchScreenDelta = touchTarget
+      ? worldToIsoPlane(
+          projection,
+          touchTarget.x - player.x,
+          touchTarget.y - player.y,
+        )
       : null;
-    const worldDir = touchTarget
-      ? directionTowardPoint(player, touchTarget)
-      : screenDirectionToWorld(projection, screenDirX, screenDirY);
+    const touchDistance = touchScreenDelta
+      ? Math.hypot(touchScreenDelta.x, touchScreenDelta.y)
+      : null;
+    const worldDir = touchScreenDelta
+      ? worldMovementForScreenDirection(
+          projection,
+          touchScreenDelta.x,
+          touchScreenDelta.y,
+        )
+      : worldMovementForInput(projection, screenDirX, screenDirY);
     const dtS = stepMs / 1000;
     const moveDistance =
       touchDistance === null
