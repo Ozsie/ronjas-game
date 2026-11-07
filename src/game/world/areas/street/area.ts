@@ -1,6 +1,7 @@
 import { createLight, type LightSource } from '@hoard-engine/lighting';
 import type { Area } from '../../area';
 import { createTilemap } from '../../tilemap';
+import { createStrangeManFeature } from './features';
 
 const CELL_SIZE = 32;
 
@@ -64,4 +65,5 @@ export const STREET_AREA: Area = {
     },
   ],
   lights: streetLights,
+  features: [createStrangeManFeature],
 };

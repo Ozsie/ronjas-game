@@ -5,6 +5,9 @@ import {
 } from '@hoard-engine/lighting';
 import type { Area } from '../../area';
 import { createCollisionEnv, createTilemap } from '../../tilemap';
+import { createOpeningFeature } from './openingFeature';
+
+export { RESTAURANT_STATIONS } from './stations';
 
 const CELL_SIZE = 32;
 
@@ -96,14 +99,6 @@ export const RESTAURANT_FIXTURES = [
   { kind: 'ice-cream-machine', cellX: 20, cellY: 5 },
 ] as const;
 
-export const RESTAURANT_STATIONS = {
-  register: { x: 12, y: 4 },
-  pickup: { x: 16, y: 4 },
-  iceCreamMachine: { x: 20, y: 4 },
-  customerStop: { x: 12, y: 7 },
-  customerDoor: { x: 22, y: 8 },
-} as const;
-
 const restaurantLights: LightSource[] = [
   createLight(5, 5, undefined, {
     id: 'restaurant-counter-light',
@@ -136,6 +131,7 @@ export const RESTAURANT_AREA: Area = {
     },
   ],
   lights: restaurantLights,
+  features: [createOpeningFeature],
 };
 
 export const createRestaurantCollisionEnv = (area: Area) =>

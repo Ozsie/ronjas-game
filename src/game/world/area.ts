@@ -4,6 +4,7 @@
 // engine modules (physics, lighting, rendering) only ever see one area's
 // tilemap.
 import type { LightSource } from '@hoard-engine/lighting';
+import type { AreaFeatureFactory } from './areaFeatures';
 import { cellCenter } from './tilemap';
 import type { Tilemap } from './tilemap';
 
@@ -29,6 +30,7 @@ export type Area = {
   doors: AreaDoor[];
   spawnCell: { x: number; y: number };
   lights: LightSource[];
+  features?: readonly AreaFeatureFactory[];
 };
 
 // The door whose cell contains the given position, if the player is

@@ -28,7 +28,6 @@ import { seedRun } from './rng';
 import { createGameRenderer } from './scene/gameRenderer';
 import { createLightingEnv, occlusionKeyFor } from './scene/lightingEnv';
 import { isSkipButtonHit, skipButtonBounds } from './intro';
-import { createOpeningState, skipOpening, updateOpening } from './opening';
 import {
   doorAtCell,
   arrivalPosition,
@@ -40,9 +39,10 @@ import {
   createAreaCollisionEnv,
   getArea,
 } from './world/areas';
-import { RESTAURANT_STATIONS } from './world/areas/restaurant/area';
-import { STRANGE_MAN } from './world/areas/street/actors/strangeMan/actor';
-import { createStrangeManInteraction } from './world/areas/street/actors/strangeMan/interaction';
+import {
+  createAreaFeatureController,
+  type AreaFeatureController,
+} from './world/areaFeatures';
 import { cellCenter } from './world/tilemap';
 import type { LightingEnv } from '@hoard-engine/lighting';
 import {
@@ -89,51 +89,42 @@ export const createGame = (
     currentArea.spawnCell.y,
   );
   const player = createEntity('player', spawn, PLAYER_HALF_EXTENTS);
-  const streetPerson = createEntity(
-    STRANGE_MAN.id,
-    cellCenter(getArea('street').tilemap, STRANGE_MAN.cellX, STRANGE_MAN.cellY),
-    STRANGE_MAN.halfExtents,
-  );
   let camera = createCamera(player.x, player.y);
-  const opening = createOpeningState(currentArea.tilemap, RESTAURANT_STATIONS);
+  const featureControllers = new Map<string, AreaFeatureController>();
+  const featuresForArea = (area: Area): AreaFeatureController => {
+    let controller = featureControllers.get(area.id);
+    if (!controller) {
+      controller = createAreaFeatureController(area, player);
+      featureControllers.set(area.id, controller);
+    }
+    return controller;
+  };
+  let areaFeatures = featuresForArea(currentArea);
 
   const input: InputHarness = createInputHarness();
   let activeTouchPointerId: number | null = null;
   let touchTarget: { x: number; y: number } | null = null;
   let collisionDebugEnabled = false;
-  const strangeManInteraction = createStrangeManInteraction();
-  const handOffToPlayer = (): void => {
-    player.x = opening.ronja.x;
-    player.y = opening.ronja.y;
-    player.vx = 0;
-    player.vy = 0;
-    camera = createCamera(player.x, player.y);
-    input.clear();
-    touchTarget = null;
-  };
-  const skipIntro = (): void => {
-    skipOpening(opening, currentArea.tilemap, RESTAURANT_STATIONS);
-    handOffToPlayer();
-  };
   const onKeyDown = (event: KeyboardEvent): void => {
     if (isCollisionDebugToggleKey(event.key, event.repeat)) {
       collisionDebugEnabled = !collisionDebugEnabled;
       event.preventDefault();
       return;
     }
-    if (!opening.complete) {
-      if (event.code === 'Escape') skipIntro();
+    if (areaFeatures.presentation().hidePlayer) {
+      if (event.code === 'Escape') areaFeatures.handleAction('skip');
       return;
     }
     if (!event.repeat && (event.code === 'KeyE' || event.code === 'Space')) {
-      strangeManInteraction.requestUse();
+      areaFeatures.handleAction('interact');
     }
     input.handleKeyDown(event);
   };
   const onKeyUp = (event: KeyboardEvent): void => input.handleKeyUp(event);
   const onPointerDown = (event: PointerEvent): void => {
+    const presentation = areaFeatures.presentation();
     if (
-      !opening.complete &&
+      presentation.showSkipButton &&
       isSkipButtonHit(
         skipButtonBounds(canvas.width),
         event.offsetX,
@@ -141,13 +132,12 @@ export const createGame = (
       )
     ) {
       event.preventDefault();
-      skipIntro();
+      areaFeatures.handleAction('skip');
       return;
     }
     if (
-      opening.complete &&
       event.pointerType === 'touch' &&
-      strangeManInteraction.currentDialogue() &&
+      presentation.dialogue &&
       isDialogPanelHit(
         dialogPanelBounds(canvas.width, canvas.height),
         event.offsetX,
@@ -155,12 +145,12 @@ export const createGame = (
       )
     ) {
       event.preventDefault();
-      strangeManInteraction.requestUse();
+      areaFeatures.handleAction('interact');
       return;
     }
-    if (strangeManInteraction.currentDialogue()?.kind === 'conversation')
+    if (presentation.dialogue?.blocksMovement || presentation.hidePlayer)
       return;
-    if (!opening.complete || event.pointerType !== 'touch') return;
+    if (event.pointerType !== 'touch') return;
     if (activeTouchPointerId !== null) return;
     event.preventDefault();
     activeTouchPointerId = event.pointerId;
@@ -209,7 +199,9 @@ export const createGame = (
   const travelThrough = (door: AreaDoor): void => {
     const target = getArea(door.targetAreaId);
     const arrival = arrivalPosition(target, door.targetDoorId);
+    areaFeatures.reset();
     currentArea = target;
+    areaFeatures = featuresForArea(target);
     collisionEnv = createAreaCollisionEnv(target);
     lightingEnv = createLightingEnv(target.tilemap);
     occlusionKey = occlusionKeyFor(target.tilemap);
@@ -219,52 +211,35 @@ export const createGame = (
     player.vx = 0;
     player.vy = 0;
     camera = createCamera(player.x, player.y);
-    strangeManInteraction.reset();
   };
 
   const update = (stepMs: number): void => {
-    if (!opening.complete) {
-      updateOpening(
-        opening,
-        stepMs,
-        currentArea.tilemap,
-        RESTAURANT_STATIONS,
-        collisionEnv,
-      );
-      const focus = opening.customer
-        ? {
-            x: (opening.ronja.x + opening.customer.x) / 2,
-            y: (opening.ronja.y + opening.customer.y) / 2,
-          }
-        : {
-            x: (opening.ronja.x + player.x) / 2,
-            y: (opening.ronja.y + player.y) / 2,
-          };
-      camera = updateCamera(
-        camera,
-        focus.x,
-        focus.y,
-        CAMERA_LAG_PER_SECOND,
-        stepMs,
-      );
-      if (opening.complete) {
-        handOffToPlayer();
-      }
+    const featureUpdate = areaFeatures.update(stepMs, collisionEnv);
+    if (featureUpdate.playerPosition) {
+      player.x = featureUpdate.playerPosition.x;
+      player.y = featureUpdate.playerPosition.y;
       player.vx = 0;
       player.vy = 0;
-      return;
-    }
-    if (strangeManInteraction.update(player, currentArea)) {
+      camera = createCamera(player.x, player.y);
+      input.clear();
       touchTarget = null;
+    }
+    if (featureUpdate.blocksPlayer) {
       player.vx = 0;
       player.vy = 0;
-      camera = updateCamera(
-        camera,
-        player.x,
-        player.y,
-        CAMERA_LAG_PER_SECOND,
-        stepMs,
-      );
+      if (!featureUpdate.playerPosition) {
+        const focus = featureUpdate.cameraFocus ?? {
+          x: player.x,
+          y: player.y,
+        };
+        camera = updateCamera(
+          camera,
+          focus.x,
+          focus.y,
+          CAMERA_LAG_PER_SECOND,
+          stepMs,
+        );
+      }
       return;
     }
     // Held-input velocity sampled per step, so the player never moves
@@ -332,9 +307,7 @@ export const createGame = (
           camera,
           projection,
           player,
-          streetPerson,
-          opening,
-          streetDialogue: strangeManInteraction.currentDialogue(),
+          features: areaFeatures.presentation(),
           collisionEnv,
           lightingEnv,
           occlusionKey,
@@ -357,6 +330,7 @@ export const createGame = (
       canvas.removeEventListener('lostpointercapture', onPointerEnd);
       window.removeEventListener('resize', onResize);
       input.clear();
+      areaFeatures.reset();
     },
   };
 };

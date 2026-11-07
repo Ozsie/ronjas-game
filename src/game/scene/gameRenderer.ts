@@ -5,15 +5,12 @@ import type { Entity } from '../engine/entity';
 import type { CollisionEnv } from '../engine/physics';
 import { drawDialogPanel } from '../dialogView';
 import { drawIntroOverlay, drawSkipButton } from '../intro';
-import { openingDialogue, type OpeningState } from '../opening';
 import type { Area } from '../world/area';
+import type { AreaFeaturePresentation } from '../world/areaFeatures';
 import { INITIAL_AREA_ID } from '../world/areas';
 import { RESTAURANT_FIXTURES } from '../world/areas/restaurant/area';
 import { STREET_FIXTURES } from '../world/areas/street/area';
-import { STRANGE_MAN } from '../world/areas/street/actors/strangeMan/actor';
-import type { StrangeManDialogue } from '../world/areas/street/actors/strangeMan/interaction';
 import {
-  customerCharacterForDay,
   type CharacterDirection,
   type CharacterId,
   type CharacterSpriteSheets,
@@ -30,9 +27,7 @@ export type GameRenderState = {
   camera: Camera;
   projection: IsoProjection;
   player: Entity;
-  streetPerson: Entity;
-  opening: OpeningState;
-  streetDialogue: StrangeManDialogue | null;
+  features: AreaFeaturePresentation;
   collisionEnv: CollisionEnv;
   lightingEnv: LightingEnv;
   occlusionKey: string;
@@ -96,7 +91,7 @@ export const createGameRenderer = (
   return {
     render: (state, frameMs) => {
       animationTimeMs += Math.max(frameMs, 0);
-      const { area, camera, opening, player, projection, streetPerson } = state;
+      const { area, camera, features, player, projection } = state;
       const cellSize = area.tilemap.cellSize;
       const view = createIsoView(
         camera,
@@ -105,39 +100,21 @@ export const createGameRenderer = (
         cellSize,
         projection,
       );
-      const actors = opening.complete
-        ? [
-            { entity: player, character: characterSprites.barista },
-            ...(area.id === 'street'
-              ? [
-                  {
-                    entity: streetPerson,
-                    character: characterSprites[STRANGE_MAN.characterId],
-                    ...(Math.hypot(
-                      player.x - streetPerson.x,
-                      player.y - streetPerson.y,
-                    ) <=
-                    cellSize * 1.5
-                      ? { name: STRANGE_MAN.displayName }
-                      : {}),
-                  },
-                ]
-              : []),
-          ]
-        : [
-            { entity: opening.ronja, character: characterSprites.barista },
-            ...(opening.customer
-              ? [
-                  {
-                    entity: opening.customer,
-                    character:
-                      characterSprites[
-                        customerCharacterForDay(opening.dayIndex)
-                      ],
-                  },
-                ]
-              : []),
-          ];
+      const actors = [
+        ...(features.hidePlayer
+          ? []
+          : [{ entity: player, character: characterSprites.barista }]),
+        ...features.actors.map((actor) => ({
+          entity: actor.entity,
+          character: characterSprites[actor.characterId],
+          ...(actor.displayName &&
+          (actor.displayNameDistance === undefined ||
+            Math.hypot(player.x - actor.entity.x, player.y - actor.entity.y) <=
+              actor.displayNameDistance)
+            ? { name: actor.displayName }
+            : {}),
+        })),
+      ];
       const fixtures =
         area.id === INITIAL_AREA_ID
           ? RESTAURANT_FIXTURES
@@ -161,7 +138,7 @@ export const createGameRenderer = (
         fixtureKind,
         area.id === INITIAL_AREA_ID ? cafeteriaAssets : undefined,
       );
-      const lightCarrier = opening.complete ? player : opening.ronja;
+      const lightCarrier = features.lightCarrier ?? player;
       drawLights(
         ctx,
         [...area.lights, playerLightAt(lightCarrier, cellSize)],
@@ -177,26 +154,22 @@ export const createGameRenderer = (
           area.tilemap,
           view,
           state.collisionEnv,
-          opening.complete ? player : opening.ronja,
+          features.hidePlayer ? (features.actors[0]?.entity ?? player) : player,
         );
       }
-      const intro = openingDialogue(opening);
-      if (intro && !opening.complete) {
-        drawIntroOverlay(ctx, canvas.width, canvas.height, intro);
+      if (features.intro) {
+        drawIntroOverlay(ctx, canvas.width, canvas.height, features.intro);
       }
-      const dialogueLine = state.streetDialogue?.line;
-      if (dialogueLine) {
+      if (features.dialogue) {
         drawDialogPanel(
           ctx,
           canvas.width,
           canvas.height,
-          dialogueLine,
-          state.streetDialogue?.kind === 'greeting'
-            ? 'E / TAP TO TALK'
-            : 'E / TAP TO CONTINUE',
+          features.dialogue.line,
+          features.dialogue.prompt,
         );
       }
-      if (!opening.complete) drawSkipButton(ctx, canvas.width);
+      if (features.showSkipButton) drawSkipButton(ctx, canvas.width);
     },
   };
 };

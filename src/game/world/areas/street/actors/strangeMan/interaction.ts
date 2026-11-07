@@ -63,7 +63,7 @@ export const createStrangeManInteraction = (): StrangeManInteraction => {
         useRequested = false;
         if (near) {
           if (dialogue?.kind === 'conversation') {
-            const session = advanceDialog(dialogue.session);
+            const session = advanceDialog(dialogue?.session);
             dialogue = currentDialogNode(session)
               ? { kind: 'conversation', session }
               : null;
