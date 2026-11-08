@@ -30,10 +30,12 @@ import {
   WORLD_PALETTE,
 } from './palette';
 import {
-  characterFrame,
+  characterAtlasReady,
   characterDirectionForMotion,
+  characterSpriteDraw,
   type CharacterAction,
   type CharacterDirection,
+  type CharacterSpriteDraw,
   type CharacterSpriteSheets,
 } from './characters';
 
@@ -528,18 +530,32 @@ export const drawWorldFrame = (
     const feet = { x: entity.x, y: entity.y };
     const depth = isoDepth(feet.x, feet.y);
     const spriteReady =
-      character?.idle.complete &&
-      character.idle.naturalWidth > 0 &&
-      character.walk.complete &&
-      character.walk.naturalWidth > 0;
+      !!character &&
+      characterAtlasReady(character.idle) &&
+      characterAtlasReady(character.walk);
     queue.push({
       depth,
       draw: () => {
+        let sprite: CharacterSpriteDraw | undefined;
+        if (character && spriteReady) {
+          const moving = Math.hypot(entity.vx, entity.vy) > 0.1;
+          const facing = directionForActor(
+            entity,
+            view,
+            actorDirections.get(entity.id) ?? direction,
+          );
+          if (moving) actorDirections.set(entity.id, facing);
+          const action: CharacterAction = moving ? 'walk' : 'idle';
+          sprite = characterSpriteDraw(
+            character,
+            action,
+            facing,
+            animationTimeMs,
+          );
+        }
+        const labelRatio = sprite ? sprite.pivot[1] / sprite.cell[1] : 50 / 64;
         const drawName = (screenX: number, screenY: number): void => {
           if (!name) return;
-          const pivotRatio = character
-            ? character.pivotY / character.frameSize
-            : 50 / 64;
           ctx.save();
           ctx.fillStyle = '#FFF4D9';
           ctx.font = 'bold 12px sans-serif';
@@ -548,11 +564,11 @@ export const drawWorldFrame = (
           ctx.fillText(
             name,
             screenX,
-            screenY - map.cellSize * 3 * pivotRatio - 2,
+            screenY - map.cellSize * 3 * labelRatio - 2,
           );
           ctx.restore();
         };
-        if (!spriteReady || !character) {
+        if (!sprite || !character) {
           const shape = actorView(entity, color);
           const screenFeet = worldToScreen(view, shape.feet.x, shape.feet.y);
           const shadowRadius = Math.max(shape.halfWidth * 1.2, 5);
@@ -580,34 +596,15 @@ export const drawWorldFrame = (
           drawName(screenFeet.x, screenFeet.y);
           return;
         }
-
-        const moving = Math.hypot(entity.vx, entity.vy) > 0.1;
-        const facing = directionForActor(
-          entity,
-          view,
-          actorDirections.get(entity.id) ?? direction,
-        );
-        if (moving) actorDirections.set(entity.id, facing);
-        const action: CharacterAction = moving ? 'walk' : 'idle';
-        const frameCount = Math.max(
-          1,
-          Math.floor(character[action].naturalWidth / character.frameSize),
-        );
-        const source = characterFrame(
-          action,
-          facing,
-          animationTimeMs,
-          character.frameSize,
-          frameCount,
-        );
         const screenFeet = worldToScreen(view, feet.x, feet.y);
-        const spriteSize = map.cellSize * 3;
-        const spriteOrigin = spriteAnchoredOrigin(
+        const spriteHeight = map.cellSize * 3;
+        const spriteWidth = (spriteHeight * sprite.cell[0]) / sprite.cell[1];
+        const origin = spriteAnchoredOrigin(
           { x: screenFeet.x, y: screenFeet.y },
-          [character.pivotX, character.pivotY],
-          [character.frameSize, character.frameSize],
-          spriteSize,
-          spriteSize,
+          sprite.pivot,
+          sprite.cell,
+          spriteWidth,
+          spriteHeight,
         );
 
         ctx.fillStyle = WORLD_PALETTE.entityShadow;
@@ -623,15 +620,15 @@ export const drawWorldFrame = (
         );
         ctx.fill();
         ctx.drawImage(
-          character[action],
-          source.sx,
-          source.sy,
-          source.sw,
-          source.sh,
-          spriteOrigin.x,
-          spriteOrigin.y,
-          spriteSize,
-          spriteSize,
+          sprite.image,
+          sprite.source.sx,
+          sprite.source.sy,
+          sprite.source.sw,
+          sprite.source.sh,
+          origin.x,
+          origin.y,
+          spriteWidth,
+          spriteHeight,
         );
         drawName(screenFeet.x, screenFeet.y);
       },

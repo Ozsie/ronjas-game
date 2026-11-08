@@ -2,10 +2,12 @@ import { describe, expect, it } from 'vitest';
 import {
   createIsoProjection,
   createIsoView,
+  parseSpriteSheetManifest,
   worldToScreen,
 } from '@hoard-engine/scene';
 import { createEntity } from '../engine/entity';
 import { createTilemap, TREE } from '../world/tilemap';
+import type { CharacterSpriteSheets } from './characters';
 import {
   drawCollisionDebug,
   drawWorldFrame,
@@ -355,12 +357,26 @@ describe('isometric world rendering', () => {
       complete: true,
       naturalWidth: 576,
     } as HTMLImageElement;
-    const character = {
-      idle: image,
-      walk: image,
-      frameSize: 64,
-      pivotX: 32,
-      pivotY: 50,
+    const manifest = parseSpriteSheetManifest({
+      cell: [64, 64],
+      pivot: [32, 50],
+      clips: {
+        idle_south: {
+          loop: true,
+          durations_ms: [300, 300],
+          frames: [{ rect: [0, 0, 64, 64] }, { rect: [64, 0, 64, 64] }],
+        },
+        walk_south: {
+          loop: true,
+          frames: [{ rect: [0, 256, 64, 64], duration_ms: 100 }],
+        },
+      },
+    });
+    const character: CharacterSpriteSheets = {
+      idle: { image, clips: { south: manifest.clips['idle_south'] } },
+      walk: { image, clips: { south: manifest.clips['walk_south'] } },
+      cell: manifest.cell,
+      pivot: manifest.pivot,
     };
     const entity = createEntity(
       'ronja',

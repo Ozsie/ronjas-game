@@ -2,7 +2,9 @@ import type { Camera } from '@hoard-engine/camera';
 import { createLight, type LightingEnv } from '@hoard-engine/lighting';
 import {
   createIsoView,
+  parseSpriteSheetManifest,
   spriteAnchoredOrigin,
+  spriteClipKey,
   type IsoProjection,
 } from '@hoard-engine/scene';
 import type { Entity } from '../engine/entity';
@@ -22,8 +24,8 @@ import {
 import { RESTAURANT_FIXTURES } from '../world/areas/restaurant/area';
 import { STREET_FIXTURES } from '../world/areas/street/area';
 import {
-  CHARACTER_SPRITE_CONFIG,
-  characterFrame,
+  characterSpriteDraw,
+  type CharacterAction,
   type CharacterDirection,
   type CharacterId,
   type CharacterSpriteSheets,
@@ -59,26 +61,60 @@ const loadImage = (path: string): HTMLImageElement => {
   return image;
 };
 
+const SHEET_DIRECTIONS: readonly CharacterDirection[] = [
+  'south',
+  'east',
+  'north',
+  'west',
+];
+
+// Character sheets come in two atlas families, both described by the
+// Godot-style manifests parsed by @hoard-engine/scene: the aligned
+// sheets (one aligned.png atlas whose aligned.json covers every
+// clip) and the animation sheets (per-action animations/*.png with
+// per-clip `sheet` values in animation.json). The manifests are
+// fetched at runtime; until one arrives its atlas has no clips and
+// actors render with the placeholder fallback.
 const loadCharacterSprites = (
   characterId: CharacterId,
 ): CharacterSpriteSheets => {
-  const usesAnimationAssets = [
+  const usesAnimationAtlas = [
     'rogue',
     'vampire-count',
     'vampire-countess',
     'blood-alchemist',
   ].includes(characterId);
-  const assetPath = `characters/${characterId}/${usesAnimationAssets ? 'animations' : 'assets'}`;
-  const spriteConfig = CHARACTER_SPRITE_CONFIG[characterId] ?? {
-    frameSize: 64,
-    pivotX: 32,
-    pivotY: 50,
+  const base = `characters/${characterId}`;
+  const sharedAtlas = usesAnimationAtlas
+    ? undefined
+    : loadImage(`${base}/aligned.png`);
+  const atlasImage = (action: CharacterAction) =>
+    sharedAtlas ?? loadImage(`${base}/animations/${action}.png`);
+  const sheets: CharacterSpriteSheets = {
+    idle: { image: atlasImage('idle'), clips: {} },
+    walk: { image: atlasImage('walk'), clips: {} },
   };
-  return {
-    idle: loadImage(`${assetPath}/idle.png`),
-    walk: loadImage(`${assetPath}/walk.png`),
-    ...spriteConfig,
-  };
+  const manifestPath = usesAnimationAtlas
+    ? `${base}/animations/animation.json`
+    : `${base}/aligned.json`;
+  void fetch(`${import.meta.env.BASE_URL}${manifestPath}`)
+    .then((response) => response.json() as Promise<unknown>)
+    .then((raw) => {
+      const manifest = parseSpriteSheetManifest(raw);
+      sheets.cell = manifest.cell;
+      sheets.pivot = manifest.pivot;
+      for (const action of ['idle', 'walk'] as const) {
+        for (const direction of SHEET_DIRECTIONS) {
+          sheets[action].clips[direction] =
+            manifest.clips[spriteClipKey(action, direction)];
+        }
+      }
+    })
+    .catch(() => {
+      // A character whose manifest fails to load keeps placeholder
+      // rendering.
+    });
+  return sheets;
 };
 
 const loadCafeteriaAsset = (name: string): HTMLImageElement =>
@@ -189,37 +225,38 @@ export const createGameRenderer = (
 
     const drawCombatant = (characterId: CharacterId, centerX: number): void => {
       const character = characterSprites[characterId];
-      if (!character.idle.complete || character.idle.naturalWidth === 0) return;
-      const frameCount = Math.max(
-        1,
-        Math.floor(character.idle.naturalWidth / character.frameSize),
-      );
-      const source = characterFrame(
+      const sprite = characterSpriteDraw(
+        character,
         'idle',
         'south',
         animationTimeMs,
-        character.frameSize,
-        frameCount,
       );
-      const size = Math.min(canvas.width * 0.22, canvas.height * 0.42);
-      const feetY = canvas.height * 0.72;
+      if (
+        !sprite ||
+        !sprite.image.complete ||
+        sprite.image.naturalWidth === 0
+      ) {
+        return;
+      }
+      const height = Math.min(canvas.width * 0.22, canvas.height * 0.42);
+      const width = (height * sprite.cell[0]) / sprite.cell[1];
       const origin = spriteAnchoredOrigin(
-        { x: centerX, y: feetY },
-        [character.pivotX, character.pivotY],
-        [character.frameSize, character.frameSize],
-        size,
-        size,
+        { x: centerX, y: canvas.height * 0.72 },
+        sprite.pivot,
+        sprite.cell,
+        width,
+        height,
       );
       ctx.drawImage(
-        character.idle,
-        source.sx,
-        source.sy,
-        source.sw,
-        source.sh,
+        sprite.image,
+        sprite.source.sx,
+        sprite.source.sy,
+        sprite.source.sw,
+        sprite.source.sh,
         origin.x,
         origin.y,
-        size,
-        size,
+        width,
+        height,
       );
     };
     drawCombatant('barista', canvas.width * 0.28);

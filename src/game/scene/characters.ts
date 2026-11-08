@@ -1,7 +1,7 @@
 import {
-  spriteDirectionRow,
-  spriteGridFrameAt,
+  spriteClipFrameAt,
   type SpriteClipSource,
+  type SpriteManifestClip,
 } from '@hoard-engine/scene';
 
 export const CHARACTER_IDS = [
@@ -27,37 +27,23 @@ export const CUSTOMER_CHARACTER_IDS = [
 export type CharacterDirection = 'south' | 'east' | 'north' | 'west';
 export type CharacterAction = 'idle' | 'walk';
 
-export type CharacterSpriteConfig = {
-  frameSize: number;
-  pivotX: number;
-  pivotY: number;
-};
-
-export const CHARACTER_SPRITE_CONFIG: Partial<
-  Record<CharacterId, CharacterSpriteConfig>
-> = {
-  rogue: { frameSize: 80, pivotX: 40, pivotY: 70 },
-  'vampire-count': { frameSize: 80, pivotX: 40, pivotY: 70 },
-  'vampire-countess': { frameSize: 80, pivotX: 40, pivotY: 70 },
-  'blood-alchemist': { frameSize: 80, pivotX: 40, pivotY: 70 },
+// One action's atlas: the sheet image the manifest's clips reference
+// and the clip for each facing, resolved from the character's
+// Godot-style manifest (aligned.json or animation.json) at load time.
+// Until the manifest has been fetched the clips stay empty and actors
+// render with the placeholder fallback.
+export type CharacterActionSprites = {
+  image: HTMLImageElement;
+  clips: Partial<Record<CharacterDirection, SpriteManifestClip>>;
 };
 
 export type CharacterSpriteSheets = {
-  idle: HTMLImageElement;
-  walk: HTMLImageElement;
-  frameSize: number;
-  pivotX: number;
-  pivotY: number;
+  idle: CharacterActionSprites;
+  walk: CharacterActionSprites;
+  cell?: readonly [number, number];
+  pivot?: readonly [number, number];
 };
 
-// The character sheets' Godot-format row order: one row per
-// direction, south first — the manifests' `directions` list.
-const SHEET_DIRECTIONS: readonly CharacterDirection[] = [
-  'south',
-  'east',
-  'north',
-  'west',
-];
 const DIRECTION_SWITCH_RATIO = 1.25;
 
 export const characterDirectionForMotion = (
@@ -95,20 +81,37 @@ export const customerCharacterForDay = (dayIndex: number): CharacterId =>
   CUSTOMER_CHARACTER_IDS[dayIndex % CUSTOMER_CHARACTER_IDS.length] ??
   'resident';
 
-export const characterFrame = (
+export const characterAtlasReady = (atlas: CharacterActionSprites): boolean =>
+  atlas.image.complete && atlas.image.naturalWidth > 0;
+
+// The frame to draw for an action facing at the animation time,
+// resolved from the manifest clip's authored frame rects and
+// durations, with the pivot/cell that anchor it — the clip's own
+// values over the manifest's. Clips without authored pivots anchor
+// at the bottom center of their frame; a character without a clip
+// for the action and facing has no frame to draw and renders with
+// the placeholder fallback.
+export type CharacterSpriteDraw = {
+  image: HTMLImageElement;
+  source: SpriteClipSource;
+  pivot: readonly [number, number];
+  cell: readonly [number, number];
+};
+
+export const characterSpriteDraw = (
+  sheets: CharacterSpriteSheets,
   action: CharacterAction,
   direction: CharacterDirection,
   timeMs: number,
-  frameSize = 64,
-  frameCount = action === 'idle' ? 9 : 8,
-): SpriteClipSource =>
-  spriteGridFrameAt(
-    {
-      cellWidth: frameSize,
-      cellHeight: frameSize,
-      row: spriteDirectionRow(SHEET_DIRECTIONS, direction),
-      frameCount,
-      frameDurationMs: action === 'idle' ? 300 : 100,
-    },
-    timeMs,
-  );
+): CharacterSpriteDraw | undefined => {
+  const atlas = sheets[action];
+  const clip = atlas.clips[direction];
+  if (!clip) return undefined;
+  const source = spriteClipFrameAt(clip, timeMs);
+  if (!source) return undefined;
+  const cell: readonly [number, number] = clip.cell ??
+    sheets.cell ?? [source.sw, source.sh];
+  const pivot: readonly [number, number] = clip.pivot ??
+    sheets.pivot ?? [cell[0] / 2, cell[1]];
+  return { image: atlas.image, source, pivot, cell };
+};
