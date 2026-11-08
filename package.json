@@ -13,8 +13,8 @@
 		"lint:fix": "eslint . --fix",
 		"prettier": "prettier --plugin-search-dir . --check . ",
 		"prettier:format": "prettier --plugin-search-dir . --write . ",
-    "deploy": "npm run build && npx gh-pages -d build -t"
-  },
+		"deploy": "npm run build && npx gh-pages -d build -t"
+	},
 	"type": "module",
 	"dependencies": {
 		"@hoard-engine/audio": "^0.1.0",
@@ -26,7 +26,7 @@
 		"@hoard-engine/primitives": "^0.1.0",
 		"@hoard-engine/rng": "^0.1.0",
 		"@hoard-engine/saves": "^0.1.0",
-		"@hoard-engine/scene": "file:../scene",
+		"@hoard-engine/scene": "^0.3.0",
 		"@hoard-engine/uikit": "^0.1.0"
 	},
 	"devDependencies": {
@@ -38,6 +38,7 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.0.0",
 		"eslint-plugin-svelte": "^3.24.0",
+		"gh-pages": "^6.0.0",
 		"globals": "^17.14.0",
 		"prettier": "^3.1.0",
 		"prettier-plugin-svelte": "^4.1.1",
@@ -48,7 +49,6 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.72.1",
 		"vite": "^8.3.5",
-		"vitest": "^5.1.0",
-    "gh-pages": "^6.0.0"
-  }
+		"vitest": "^5.1.0"
+	}
 }
