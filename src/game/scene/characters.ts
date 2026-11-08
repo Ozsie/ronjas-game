@@ -1,3 +1,9 @@
+import {
+  spriteDirectionRow,
+  spriteGridFrameAt,
+  type SpriteClipSource,
+} from '@hoard-engine/scene';
+
 export const CHARACTER_IDS = [
   'barista',
   'resident',
@@ -44,12 +50,14 @@ export type CharacterSpriteSheets = {
   pivotY: number;
 };
 
-const DIRECTION_ROWS: Record<CharacterDirection, number> = {
-  south: 0,
-  east: 1,
-  north: 2,
-  west: 3,
-};
+// The character sheets' Godot-format row order: one row per
+// direction, south first — the manifests' `directions` list.
+const SHEET_DIRECTIONS: readonly CharacterDirection[] = [
+  'south',
+  'east',
+  'north',
+  'west',
+];
 const DIRECTION_SWITCH_RATIO = 1.25;
 
 export const characterDirectionForMotion = (
@@ -93,14 +101,14 @@ export const characterFrame = (
   timeMs: number,
   frameSize = 64,
   frameCount = action === 'idle' ? 9 : 8,
-): { sx: number; sy: number; sw: number; sh: number } => {
-  const frameDurationMs = action === 'idle' ? 300 : 100;
-  const frame = Math.floor(Math.max(timeMs, 0) / frameDurationMs) % frameCount;
-
-  return {
-    sx: frame * frameSize,
-    sy: DIRECTION_ROWS[direction] * frameSize,
-    sw: frameSize,
-    sh: frameSize,
-  };
-};
+): SpriteClipSource =>
+  spriteGridFrameAt(
+    {
+      cellWidth: frameSize,
+      cellHeight: frameSize,
+      row: spriteDirectionRow(SHEET_DIRECTIONS, direction),
+      frameCount,
+      frameDurationMs: action === 'idle' ? 300 : 100,
+    },
+    timeMs,
+  );

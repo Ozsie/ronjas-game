@@ -1,6 +1,10 @@
 import type { Camera } from '@hoard-engine/camera';
 import { createLight, type LightingEnv } from '@hoard-engine/lighting';
-import { createIsoView, type IsoProjection } from '@hoard-engine/scene';
+import {
+  createIsoView,
+  spriteAnchoredOrigin,
+  type IsoProjection,
+} from '@hoard-engine/scene';
 import type { Entity } from '../engine/entity';
 import type { CollisionEnv } from '../engine/physics';
 import { drawStaminaHud, shouldShowStaminaHud } from './staminaHud';
@@ -199,14 +203,21 @@ export const createGameRenderer = (
       );
       const size = Math.min(canvas.width * 0.22, canvas.height * 0.42);
       const feetY = canvas.height * 0.72;
+      const origin = spriteAnchoredOrigin(
+        { x: centerX, y: feetY },
+        [character.pivotX, character.pivotY],
+        [character.frameSize, character.frameSize],
+        size,
+        size,
+      );
       ctx.drawImage(
         character.idle,
         source.sx,
         source.sy,
         source.sw,
         source.sh,
-        centerX - (size * character.pivotX) / character.frameSize,
-        feetY - (size * character.pivotY) / character.frameSize,
+        origin.x,
+        origin.y,
         size,
         size,
       );

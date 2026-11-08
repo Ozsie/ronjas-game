@@ -6,6 +6,7 @@ import {
   drawIsoLights,
   isoDepth,
   screenWorldBounds,
+  spriteAnchoredOrigin,
   type SceneIsoActorView,
   type SceneIsoLightView,
   type SceneIsoView,
@@ -601,8 +602,13 @@ export const drawWorldFrame = (
         );
         const screenFeet = worldToScreen(view, feet.x, feet.y);
         const spriteSize = map.cellSize * 3;
-        const pivotX = (spriteSize * character.pivotX) / character.frameSize;
-        const pivotY = (spriteSize * character.pivotY) / character.frameSize;
+        const spriteOrigin = spriteAnchoredOrigin(
+          { x: screenFeet.x, y: screenFeet.y },
+          [character.pivotX, character.pivotY],
+          [character.frameSize, character.frameSize],
+          spriteSize,
+          spriteSize,
+        );
 
         ctx.fillStyle = WORLD_PALETTE.entityShadow;
         ctx.beginPath();
@@ -622,8 +628,8 @@ export const drawWorldFrame = (
           source.sy,
           source.sw,
           source.sh,
-          screenFeet.x - pivotX,
-          screenFeet.y - pivotY,
+          spriteOrigin.x,
+          spriteOrigin.y,
           spriteSize,
           spriteSize,
         );
